@@ -1,0 +1,618 @@
+{
+  "last_node_id": 400,
+  "last_link_id": 600,
+  "nodes": [
+    {
+      "id": 97,
+      "type": "UnetLoaderGGUFDisTorchMultiGPU",
+      "pos": [50, 100],
+      "size": [320, 150],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [501], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "UnetLoaderGGUFDisTorchMultiGPU"},
+      "widgets_values": ["wan2.1-i2v-14b-720p-Q4_K_S.gguf", "cuda:0", 8, false, ""],
+      "title": "(1) WAN Model Loader"
+    },
+    {
+      "id": 98,
+      "type": "CLIPLoaderMultiGPU",
+      "pos": [50, 280],
+      "size": [320, 106],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {"name": "CLIP", "type": "CLIP", "links": [502, 503], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPLoaderMultiGPU"},
+      "widgets_values": ["umt5_xxl_fp8_e4m3fn_scaled.safetensors", "wan", "cuda:0"],
+      "title": "(2) CLIP Loader"
+    },
+    {
+      "id": 99,
+      "type": "VAELoaderMultiGPU",
+      "pos": [50, 420],
+      "size": [320, 82],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {"name": "VAE", "type": "VAE", "links": [504, 505], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "VAELoaderMultiGPU"},
+      "widgets_values": ["wan_2.1_vae.safetensors", "cuda:0"],
+      "title": "(3) VAE Loader"
+    },
+    {
+      "id": 17,
+      "type": "CLIPVisionLoader",
+      "pos": [50, 540],
+      "size": [320, 58],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {"name": "CLIP_VISION", "type": "CLIP_VISION", "links": [506], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPVisionLoader"},
+      "widgets_values": ["clip_vision_h.safetensors"],
+      "title": "(4) Vision Model Loader"
+    },
+    {
+      "id": 95,
+      "type": "LoraLoaderModelOnly",
+      "pos": [450, 100],
+      "size": [315, 82],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 501}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [507], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "LoraLoaderModelOnly"},
+      "widgets_values": ["WAN\\bounceV_01.safetensors", 1.0],
+      "title": "(5) LoRA - Bounce Motion"
+    },
+    {
+      "id": 236,
+      "type": "LoraLoaderModelOnly",
+      "pos": [450, 220],
+      "size": [315, 82],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 507}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [508], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "LoraLoaderModelOnly"},
+      "widgets_values": ["WAN\\BouncyWalkV01.safetensors", 0.8],
+      "title": "(6) LoRA - Bouncy Walk"
+    },
+    {
+      "id": 48,
+      "type": "ModelSamplingSD3",
+      "pos": [850, 100],
+      "size": [315, 82],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 508}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [509], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ModelSamplingSD3"},
+      "widgets_values": [5.0],
+      "title": "(7) Model Sampling Config"
+    },
+    {
+      "id": 28,
+      "type": "PathchSageAttentionKJ",
+      "pos": [850, 220],
+      "size": [315, 82],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 509}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [510], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "PathchSageAttentionKJ"},
+      "widgets_values": ["auto"],
+      "title": "(8) Sage Attention Patch"
+    },
+    {
+      "id": 339,
+      "type": "LoadImage",
+      "pos": [450, 420],
+      "size": [315, 314],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [511, 512], "slot_index": 0},
+        {"name": "MASK", "type": "MASK", "links": null}
+      ],
+      "properties": {"Node name for S&R": "LoadImage"},
+      "widgets_values": ["clipspace/clipspace-mask-19330537.8.png [input]", "image"],
+      "title": "(9) Input Image"
+    },
+    {
+      "id": 118,
+      "type": "CLIPTextEncode",
+      "pos": [850, 340],
+      "size": [400, 154],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 502}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [513], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["A realistic video of a beautiful woman, she's jumping and Her breasts bounce in an exaggerated manner. her breasts are really soft and wobble a lot when she jump. her breasts are bouncing. she looking at the camera."],
+      "title": "(10) Positive Prompt"
+    },
+    {
+      "id": 14,
+      "type": "CLIPTextEncode",
+      "pos": [850, 520],
+      "size": [400, 154],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 503}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [514], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncode"},
+      "widgets_values": ["Overexposure, static, blurred details, subtitles, paintings, pictures, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, mutilated, redundant fingers, poorly painted hands, poorly painted faces, deformed, disfigured, deformed limbs, fused fingers, cluttered background, three legs, upside down, white flashlights, glow light effect, post edit, ugly distorted hands, scrambled fingers, wild arm movement, text, icons, logo, post production, speaking, a lot of people in the background"],
+      "title": "(11) Negative Prompt"
+    },
+    {
+      "id": 96,
+      "type": "ImageResizeKJ",
+      "pos": [850, 700],
+      "size": [315, 178],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 511}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [515], "slot_index": 0},
+        {"name": "width", "type": "INT", "links": [516], "slot_index": 1},
+        {"name": "height", "type": "INT", "links": [517], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "ImageResizeKJ"},
+      "widgets_values": [720, 720, "lanczos", true, 16, 0],
+      "title": "(12) Image Resize"
+    },
+    {
+      "id": 16,
+      "type": "CLIPVisionEncode",
+      "pos": [850, 900],
+      "size": [315, 46],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip_vision", "type": "CLIP_VISION", "link": 506},
+        {"name": "image", "type": "IMAGE", "link": 515}
+      ],
+      "outputs": [
+        {"name": "CLIP_VISION_OUTPUT", "type": "CLIP_VISION_OUTPUT", "links": [518], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPVisionEncode"},
+      "widgets_values": ["none"],
+      "title": "(13) Vision Encode"
+    },
+    {
+      "id": 315,
+      "type": "WanImageToVideo_F2",
+      "pos": [1350, 100],
+      "size": [315, 130],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {"name": "image", "type": "IMAGE", "link": 515},
+        {"name": "width", "type": "INT", "link": 516},
+        {"name": "height", "type": "INT", "link": 517},
+        {"name": "positive", "type": "CONDITIONING", "link": 513},
+        {"name": "negative", "type": "CONDITIONING", "link": 514},
+        {"name": "clip_vision", "type": "CLIP_VISION_OUTPUT", "link": 518}
+      ],
+      "outputs": [
+        {"name": "positive", "type": "CONDITIONING", "links": [519], "slot_index": 0},
+        {"name": "negative", "type": "CONDITIONING", "links": [520], "slot_index": 1},
+        {"name": "latent", "type": "LATENT", "links": [521], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "WanImageToVideo_F2"},
+      "widgets_values": [45],
+      "title": "(14) WAN Image to Video"
+    },
+    {
+      "id": 54,
+      "type": "WanVideoTeaCacheKJ",
+      "pos": [1350, 260],
+      "size": [315, 150],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 510}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [522], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "WanVideoTeaCacheKJ"},
+      "widgets_values": [0.23, 0, 1, "main_device", "i2v_720"],
+      "title": "(15) Video Cache"
+    },
+    {
+      "id": 230,
+      "type": "Seed Everywhere",
+      "pos": [1350, 440],
+      "size": [315, 82],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "outputs": [
+        {"name": "INT", "type": "INT", "links": [523], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "Seed Everywhere"},
+      "widgets_values": [6516516620],
+      "title": "(16) Seed Control"
+    },
+    {
+      "id": 317,
+      "type": "BasicScheduler",
+      "pos": [1750, 100],
+      "size": [315, 106],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 522}
+      ],
+      "outputs": [
+        {"name": "SIGMAS", "type": "SIGMAS", "links": [524], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "BasicScheduler"},
+      "widgets_values": ["sgm_uniform", 20, 1],
+      "title": "(17) Scheduler"
+    },
+    {
+      "id": 314,
+      "type": "SplitSigmas",
+      "pos": [1750, 240],
+      "size": [315, 78],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {"name": "sigmas", "type": "SIGMAS", "link": 524}
+      ],
+      "outputs": [
+        {"name": "high_sigmas", "type": "SIGMAS", "links": [525], "slot_index": 0},
+        {"name": "low_sigmas", "type": "SIGMAS", "links": [526], "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "SplitSigmas"},
+      "widgets_values": [6],
+      "title": "(18) Split Sigmas"
+    },
+    {
+      "id": 310,
+      "type": "CFGGuider",
+      "pos": [1750, 350],
+      "size": [315, 98],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 522},
+        {"name": "positive", "type": "CONDITIONING", "link": 519},
+        {"name": "negative", "type": "CONDITIONING", "link": 520}
+      ],
+      "outputs": [
+        {"name": "GUIDER", "type": "GUIDER", "links": [527], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CFGGuider"},
+      "widgets_values": [6],
+      "title": "(19) CFG Guider - Pass 1"
+    },
+    {
+      "id": 312,
+      "type": "CFGGuider",
+      "pos": [1750, 470],
+      "size": [315, 98],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 522},
+        {"name": "positive", "type": "CONDITIONING", "link": 519},
+        {"name": "negative", "type": "CONDITIONING", "link": 520}
+      ],
+      "outputs": [
+        {"name": "GUIDER", "type": "GUIDER", "links": [528], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CFGGuider"},
+      "widgets_values": [1],
+      "title": "(20) CFG Guider - Pass 2"
+    },
+    {
+      "id": 319,
+      "type": "RandomNoise",
+      "pos": [1750, 590],
+      "size": [315, 82],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {"name": "noise_seed", "type": "INT", "link": 523}
+      ],
+      "outputs": [
+        {"name": "NOISE", "type": "NOISE", "links": [529, 530], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "RandomNoise"},
+      "widgets_values": [1061653907119176],
+      "title": "(21) Random Noise"
+    },
+    {
+      "id": 318,
+      "type": "KSamplerSelect",
+      "pos": [1750, 700],
+      "size": [315, 58],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "outputs": [
+        {"name": "SAMPLER", "type": "SAMPLER", "links": [531], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "KSamplerSelect"},
+      "widgets_values": ["uni_pc"],
+      "title": "(22) Sampler - UniPC"
+    },
+    {
+      "id": 311,
+      "type": "KSamplerSelect",
+      "pos": [1750, 780],
+      "size": [315, 58],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "outputs": [
+        {"name": "SAMPLER", "type": "SAMPLER", "links": [532], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "KSamplerSelect"},
+      "widgets_values": ["gradient_estimation"],
+      "title": "(23) Sampler - Gradient"
+    },
+    {
+      "id": 313,
+      "type": "SamplerCustomAdvanced",
+      "pos": [2150, 100],
+      "size": [315, 106],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {"name": "noise", "type": "NOISE", "link": 529},
+        {"name": "guider", "type": "GUIDER", "link": 527},
+        {"name": "sampler", "type": "SAMPLER", "link": 531},
+        {"name": "sigmas", "type": "SIGMAS", "link": 525},
+        {"name": "latent_image", "type": "LATENT", "link": 521}
+      ],
+      "outputs": [
+        {"name": "output", "type": "LATENT", "links": [533], "slot_index": 0},
+        {"name": "denoised_output", "type": "LATENT", "links": null}
+      ],
+      "properties": {"Node name for S&R": "SamplerCustomAdvanced"},
+      "title": "(24) Sampler Pass 1"
+    },
+    {
+      "id": 316,
+      "type": "SamplerCustomAdvanced",
+      "pos": [2150, 240],
+      "size": [315, 106],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {"name": "noise", "type": "NOISE", "link": 530},
+        {"name": "guider", "type": "GUIDER", "link": 528},
+        {"name": "sampler", "type": "SAMPLER", "link": 532},
+        {"name": "sigmas", "type": "SIGMAS", "link": 526},
+        {"name": "latent_image", "type": "LATENT", "link": 533}
+      ],
+      "outputs": [
+        {"name": "output", "type": "LATENT", "links": [534], "slot_index": 0},
+        {"name": "denoised_output", "type": "LATENT", "links": null}
+      ],
+      "properties": {"Node name for S&R": "SamplerCustomAdvanced"},
+      "title": "(25) Sampler Pass 2"
+    },
+    {
+      "id": 320,
+      "type": "VAEDecode",
+      "pos": [2150, 380],
+      "size": [315, 46],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 534},
+        {"name": "vae", "type": "VAE", "link": 504}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [535], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "VAEDecode"},
+      "title": "(26) VAE Decode Pass 1"
+    },
+    {
+      "id": 322,
+      "type": "VAEDecode",
+      "pos": [2150, 460],
+      "size": [315, 46],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 534},
+        {"name": "vae", "type": "VAE", "link": 505}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [536], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "VAEDecode"},
+      "title": "(27) VAE Decode Pass 2"
+    },
+    {
+      "id": 110,
+      "type": "PreviewImage",
+      "pos": [2550, 100],
+      "size": [320, 246],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 512}
+      ],
+      "properties": {"Node name for S&R": "PreviewImage"},
+      "title": "(28) Preview - Input"
+    },
+    {
+      "id": 246,
+      "type": "PreviewImage",
+      "pos": [2550, 380],
+      "size": [320, 246],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 535}
+      ],
+      "properties": {"Node name for S&R": "PreviewImage"},
+      "title": "(29) Preview - Pass 1"
+    },
+    {
+      "id": 38,
+      "type": "VHS_VideoCombine",
+      "pos": [2550, 660],
+      "size": [380, 290],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 536}
+      ],
+      "properties": {"Node name for S&R": "VHS_VideoCombine"},
+      "widgets_values": [24, 0, "Wan/", "video/h264-mp4", "yuv420p", 19, false, false, false, false],
+      "title": "(30) Video Output"
+    }
+  ],
+  "links": [
+    [501, 97, 0, 95, 0, "MODEL"],
+    [502, 98, 0, 118, 0, "CLIP"],
+    [503, 98, 0, 14, 0, "CLIP"],
+    [504, 99, 0, 320, 1, "VAE"],
+    [505, 99, 0, 322, 1, "VAE"],
+    [506, 17, 0, 16, 0, "CLIP_VISION"],
+    [507, 95, 0, 236, 0, "MODEL"],
+    [508, 236, 0, 48, 0, "MODEL"],
+    [509, 48, 0, 28, 0, "MODEL"],
+    [510, 28, 0, 54, 0, "MODEL"],
+    [511, 339, 0, 96, 0, "IMAGE"],
+    [512, 339, 0, 110, 0, "IMAGE"],
+    [513, 118, 0, 315, 3, "CONDITIONING"],
+    [514, 14, 0, 315, 4, "CONDITIONING"],
+    [515, 96, 0, 16, 1, "IMAGE"],
+    [516, 96, 1, 315, 1, "INT"],
+    [517, 96, 2, 315, 2, "INT"],
+    [518, 16, 0, 315, 5, "CLIP_VISION_OUTPUT"],
+    [519, 315, 0, 310, 1, "CONDITIONING"],
+    [520, 315, 1, 310, 2, "CONDITIONING"],
+    [521, 315, 2, 313, 4, "LATENT"],
+    [522, 54, 0, 310, 0, "MODEL"],
+    [523, 230, 0, 319, 0, "INT"],
+    [524, 317, 0, 314, 0, "SIGMAS"],
+    [525, 314, 0, 313, 3, "SIGMAS"],
+    [526, 314, 1, 316, 3, "SIGMAS"],
+    [527, 310, 0, 313, 1, "GUIDER"],
+    [528, 312, 0, 316, 1, "GUIDER"],
+    [529, 319, 0, 313, 0, "NOISE"],
+    [530, 319, 0, 316, 0, "NOISE"],
+    [531, 318, 0, 313, 2, "SAMPLER"],
+    [532, 311, 0, 316, 2, "SAMPLER"],
+    [533, 313, 0, 316, 4, "LATENT"],
+    [534, 316, 0, 320, 0, "LATENT"],
+    [535, 320, 0, 246, 0, "IMAGE"],
+    [536, 322, 0, 38, 0, "IMAGE"]
+  ],
+  "groups": [
+    {
+      "title": "Model Loading",
+      "bounding": [20, 20, 770, 600],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "Input Processing",
+      "bounding": [420, 340, 380, 620],
+      "color": "#b58b2a",
+      "font_size": 24
+    },
+    {
+      "title": "Text Encoding",
+      "bounding": [820, 260, 460, 440],
+      "color": "#84a96e",
+      "font_size": 24
+    },
+    {
+      "title": "WAN Video Generation",
+      "bounding": [1320, 20, 380, 540],
+      "color": "#a1309b",
+      "font_size": 24
+    },
+    {
+      "title": "Sampling Pipeline",
+      "bounding": [1720, 20, 380, 840],
+      "color": "#8b4c9b",
+      "font_size": 24
+    },
+    {
+      "title": "VAE & Output",
+      "bounding": [2120, 20, 840, 960],
+      "color": "#b06634",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {
+    "workflow_name": "WAN Video Outfit Changer",
+    "description": "Organized workflow for outfit variation using WAN model",
+    "version": "v10_20250816_201349"
+  },
+  "version": 0.4
+}

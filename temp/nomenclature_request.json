@@ -1,0 +1,26 @@
+{
+  "action": "apply_nomenclature",
+  "workflow_path": "C:\\Users\\gdahl\\OneDrive\\Documents\\Projects\\ComfyUI\\comfywfBuilder2.0\\output\\workflows\\v5_20250815_142937_collision_refined\\workflow_collision_refined.json",
+  "workflow_type": "outfit_variation",
+  "requirements": {
+    "node_naming": {
+      "format": "[Order]_[Category]_[Function]",
+      "examples": [
+        "(1) Model Loader - SDXL",
+        "(2) LoRA Stack - Outfit Styles",
+        "(3) Text Encode - Positive Prompt"
+      ]
+    },
+    "group_naming": {
+      "format": "(Stage) Purpose - Description",
+      "examples": [
+        "(0) Model & Resource Loaders",
+        "(1) LoRA Application Chain",
+        "(2) Text Encoding & Conditioning"
+      ]
+    },
+    "include_metadata": true,
+    "preserve_functionality": true
+  },
+  "output_path": "C:\\Users\\gdahl\\OneDrive\\Documents\\Projects\\ComfyUI\\comfywfBuilder2.0\\output\\workflows\\v6_outfit_variation_named"
+}

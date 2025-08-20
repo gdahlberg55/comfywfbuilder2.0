@@ -1,0 +1,213 @@
+{
+  "semantic_groups": [
+    {
+      "title": "(0) Model & Resource Loaders",
+      "bounding": [
+        0,
+        -2200,
+        2000,
+        2800
+      ],
+      "color": "#355335",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(1) LoRA Application Chain",
+      "bounding": [
+        2500,
+        -2200,
+        4000,
+        1200
+      ],
+      "color": "#355335",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(2) Text Encoding & Conditioning",
+      "bounding": [
+        7000,
+        -1600,
+        4000,
+        2200
+      ],
+      "color": "#353553",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(3) Image Preparation & Masking",
+      "bounding": [
+        11500,
+        -1200,
+        4000,
+        2400
+      ],
+      "color": "#453553",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(4) Seeds & Control Parameters",
+      "bounding": [
+        16000,
+        -800,
+        4000,
+        2400
+      ],
+      "color": "#534535",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(5) Sampling & Generation",
+      "bounding": [
+        20500,
+        -1600,
+        4000,
+        2400
+      ],
+      "color": "#533535",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(6) Video Enhancement & Combination",
+      "bounding": [
+        25000,
+        -1200,
+        4000,
+        2400
+      ],
+      "color": "#533545",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(7) Preview & Save Operations",
+      "bounding": [
+        29500,
+        -800,
+        3000,
+        2400
+      ],
+      "color": "#355353",
+      "locked": false,
+      "font_size": 24
+    },
+    {
+      "title": "(8) Workflow Documentation",
+      "bounding": [
+        33000,
+        -2200,
+        7000,
+        4400
+      ],
+      "color": "#444444",
+      "locked": false,
+      "font_size": 24
+    }
+  ],
+  "group_assignments": {
+    "loaders": [
+      98,
+      17,
+      97,
+      95,
+      236,
+      99
+    ],
+    "lora_chain": [
+      84,
+      95,
+      236
+    ],
+    "conditioning": [
+      14,
+      16,
+      118,
+      310,
+      312
+    ],
+    "image_processing": [
+      306,
+      305,
+      109,
+      96,
+      294,
+      291
+    ],
+    "control": [
+      230,
+      278,
+      277,
+      301,
+      349,
+      356
+    ],
+    "sampling": [
+      318,
+      319,
+      313,
+      316,
+      311,
+      322,
+      320,
+      317,
+      314
+    ],
+    "video_processing": [
+      50,
+      54,
+      321,
+      282,
+      299,
+      38,
+      315,
+      221,
+      222
+    ],
+    "output": [
+      110,
+      321,
+      284,
+      299,
+      38,
+      222,
+      246,
+      247
+    ],
+    "documentation": [
+      324,
+      328,
+      329,
+      330,
+      327,
+      332,
+      334,
+      337,
+      326,
+      325,
+      331,
+      335,
+      333,
+      338,
+      355,
+      336
+    ]
+  },
+  "color_scheme_used": {
+    "loaders": "#355335",
+    "conditioning": "#353553",
+    "sampling": "#533535",
+    "latent": "#535335",
+    "post_processing": "#453553",
+    "utility": "#444444",
+    "control": "#534535",
+    "image_io": "#355353",
+    "custom": "#533545"
+  },
+  "total_groups": 9,
+  "workflow_file": "output/workflows/v1_20250814_174438/Wan_2.1_seamless_loop_reorganized.json"
+}

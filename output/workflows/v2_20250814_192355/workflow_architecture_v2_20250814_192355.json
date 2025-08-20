@@ -1,0 +1,252 @@
+{
+  "workflow_name": "SDXL Advanced Multi-Detail Enhancement with Video Extension",
+  "description": "Comprehensive SDXL workflow with multi-region detail enhancement, preview capabilities, upscaling, and video generation branch",
+  "architecture_version": "2.0",
+  "timestamp": "20250814_192355",
+  
+  "stages": [
+    {
+      "stage_id": "S1",
+      "stage_name": "Input & Model Loading",
+      "pillar": "Foundation",
+      "color_group": "blue",
+      "nodes_required": [
+        "CheckpointLoaderSimple",
+        "LoraStackerEfficientBatch",
+        "CLIPTextEncode (Positive)",
+        "CLIPTextEncode (Negative)",
+        "EmptyLatentImage",
+        "PrimitiveNode (Seed)",
+        "PrimitiveNode (Steps)",
+        "PrimitiveNode (CFG)"
+      ],
+      "connections": [
+        "Checkpoint -> MODEL/CLIP to downstream",
+        "LoRA Stacker -> MODEL enhancement",
+        "Text encoders -> Conditioning",
+        "Primitives -> Control parameters"
+      ],
+      "position": {
+        "x_range": [0, 800],
+        "y_range": [0, 1200]
+      }
+    },
+    
+    {
+      "stage_id": "S2",
+      "stage_name": "Base Generation",
+      "pillar": "Generation",
+      "color_group": "green",
+      "nodes_required": [
+        "KSampler",
+        "VAEDecode",
+        "PreviewImage"
+      ],
+      "connections": [
+        "Model + Conditioning + Latent -> KSampler",
+        "KSampler -> VAE Decode",
+        "VAE Decode -> Preview (Base)"
+      ],
+      "position": {
+        "x_range": [1000, 1600],
+        "y_range": [200, 600]
+      }
+    },
+    
+    {
+      "stage_id": "S3",
+      "stage_name": "Multi-Region Detail Enhancement",
+      "pillar": "Enhancement",
+      "color_group": "purple",
+      "nodes_required": [
+        "ADetailer (Face)",
+        "ADetailer (Nose)",
+        "ADetailer (Tits)",
+        "ADetailer (Ass)",
+        "ADetailer (Feet)",
+        "PreviewImage (per detailer)"
+      ],
+      "connections": [
+        "Base image -> Each ADetailer",
+        "Each ADetailer -> Individual preview",
+        "Sequential processing: Face -> Nose -> Tits -> Ass -> Feet"
+      ],
+      "position": {
+        "x_range": [1800, 2800],
+        "y_range": [0, 1500]
+      },
+      "layout_note": "Vertical stack with 300px spacing between detailers"
+    },
+    
+    {
+      "stage_id": "S4",
+      "stage_name": "Upscaling",
+      "pillar": "Refinement",
+      "color_group": "orange",
+      "nodes_required": [
+        "UpscaleModelLoader",
+        "ImageUpscaleWithModel",
+        "ImageScaleBy",
+        "PreviewImage"
+      ],
+      "connections": [
+        "Final detailed image -> Upscaler",
+        "Upscaler -> Scale adjustment",
+        "Scale -> Preview (Upscaled)"
+      ],
+      "position": {
+        "x_range": [3000, 3600],
+        "y_range": [400, 800]
+      }
+    },
+    
+    {
+      "stage_id": "S5",
+      "stage_name": "Output & Save",
+      "pillar": "Output",
+      "color_group": "red",
+      "nodes_required": [
+        "SaveImage (Final)",
+        "SaveImage (Intermediate stages)",
+        "ImageCompositeMasked (Optional)"
+      ],
+      "connections": [
+        "Upscaled image -> Save Final",
+        "All preview points -> Save Intermediates"
+      ],
+      "position": {
+        "x_range": [3800, 4400],
+        "y_range": [200, 600]
+      }
+    },
+    
+    {
+      "stage_id": "S6",
+      "stage_name": "Video Generation Branch",
+      "pillar": "Extension",
+      "color_group": "cyan",
+      "nodes_required": [
+        "VideoLinearCFGGuidance",
+        "SVD_img2vid_Conditioning",
+        "KSampler (Video)",
+        "VAEDecodeVideo",
+        "VideoCombine",
+        "PreviewVideo"
+      ],
+      "connections": [
+        "Upscaled image -> SVD Conditioning",
+        "Video conditioning -> Video KSampler",
+        "Video latent -> VAE Decode Video",
+        "Decoded frames -> Video Combine",
+        "Combined -> Preview/Save"
+      ],
+      "position": {
+        "x_range": [3000, 4400],
+        "y_range": [1000, 1600]
+      }
+    }
+  ],
+  
+  "data_buses": [
+    {
+      "bus_name": "MODEL_BUS",
+      "type": "MODEL",
+      "y_position": -200,
+      "connects": ["S1", "S2", "S3", "S6"]
+    },
+    {
+      "bus_name": "CLIP_BUS",
+      "type": "CLIP",
+      "y_position": -100,
+      "connects": ["S1", "S2", "S3"]
+    },
+    {
+      "bus_name": "VAE_BUS",
+      "type": "VAE",
+      "y_position": 1700,
+      "connects": ["S1", "S2", "S3", "S6"]
+    }
+  ],
+  
+  "parameters": {
+    "user_adjustable": [
+      "positive_prompt",
+      "negative_prompt",
+      "seed",
+      "steps",
+      "cfg_scale",
+      "lora_weights",
+      "detailer_strengths",
+      "upscale_factor",
+      "video_frames",
+      "video_fps"
+    ],
+    "fixed": [
+      "model_checkpoint",
+      "vae_model",
+      "upscale_model",
+      "video_model",
+      "scheduler_type"
+    ]
+  },
+  
+  "optimization_features": [
+    "Efficient batch processing for LoRAs",
+    "Shared MODEL/CLIP/VAE via data buses",
+    "Progressive enhancement pipeline",
+    "Parallel preview generation",
+    "Conditional video branch (can be disabled)"
+  ],
+  
+  "hierarchical_structure": {
+    "vertical_pillars": [
+      {
+        "pillar": "Foundation",
+        "x_center": 400,
+        "components": ["Input", "Model Loading", "Conditioning"]
+      },
+      {
+        "pillar": "Generation",
+        "x_center": 1300,
+        "components": ["Base Sampling", "Initial Decode"]
+      },
+      {
+        "pillar": "Enhancement",
+        "x_center": 2300,
+        "components": ["Multi-region detailing", "Sequential processing"]
+      },
+      {
+        "pillar": "Refinement",
+        "x_center": 3300,
+        "components": ["Upscaling", "Final adjustments"]
+      },
+      {
+        "pillar": "Output",
+        "x_center": 4100,
+        "components": ["Save operations", "Format conversions"]
+      },
+      {
+        "pillar": "Extension",
+        "x_center": 3700,
+        "y_offset": 1000,
+        "components": ["Video generation", "Temporal processing"]
+      }
+    ],
+    
+    "spacing_rules": {
+      "intra_group": 60,
+      "inter_group": 200,
+      "pillar_spacing": 900,
+      "vertical_stack_spacing": 300
+    }
+  },
+  
+  "estimated_node_count": 45,
+  "estimated_complexity": "Advanced",
+  "performance_considerations": [
+    "Sequential detailer processing may increase generation time",
+    "Video branch adds significant processing overhead",
+    "Multiple preview nodes for debugging and quality control",
+    "Efficient routing via data buses reduces connection complexity"
+  ]
+}

@@ -1,0 +1,650 @@
+{
+  "14": {
+    "inputs": {
+      "text": "Overexposure, static, blurred details, subtitles, paintings, pictures, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, mutilated, redundant fingers, poorly painted hands, poorly painted faces, deformed, disfigured, deformed limbs, fused fingers, cluttered background, three legs,  upside down, white flashlights, glow light effect, post edit, ugly distorted hands, scrambled fingers, wild arm movement, text, icons, logo, post production, speaking, a lot of people in the background"
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "(2) Text Encode - Negative Prompt"
+    }
+  },
+  "16": {
+    "inputs": {
+      "crop": "none"
+    },
+    "class_type": "CLIPVisionEncode",
+    "_meta": {
+      "title": "(2) Vision Encode - Style Reference"
+    }
+  },
+  "17": {
+    "inputs": {
+      "clip_name": "clip_vision_h.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "(0) Vision Model - CLIP"
+    }
+  },
+  "28": {
+    "inputs": {
+      "sage_attention": "auto",
+      "model": [
+        "48",
+        0
+      ]
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "(1) Model Patch - Sage Attention"
+    }
+  },
+  "38": {
+    "inputs": {
+      "frame_rate": 24,
+      "loop_count": 0,
+      "filename_prefix": "Wan/",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": false
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "(6) Video Output - Combine & Save"
+    }
+  },
+  "48": {
+    "inputs": {
+      "shift": 5.000000000000001,
+      "model": [
+        "236",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "(1) Model Config - SD3 Sampling"
+    }
+  },
+  "54": {
+    "inputs": {
+      "rel_l1_thresh": 0.23000000000000007,
+      "start_percent": 0,
+      "end_percent": 1,
+      "cache_device": "main_device",
+      "coefficients": "i2v_720"
+    },
+    "class_type": "WanVideoTeaCacheKJ",
+    "_meta": {
+      "title": "(46) WanVideoTeaCacheKJ"
+    }
+  },
+  "95": {
+    "inputs": {
+      "lora_name": "WAN\\bounceV_01.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "97",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "(1) LoRA Stack - Bounce Motion V01"
+    }
+  },
+  "96": {
+    "inputs": {
+      "width": 720,
+      "height": 720,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 16,
+      "crop": 0
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "(39) ImageResizeKJ"
+    }
+  },
+  "97": {
+    "inputs": {
+      "unet_name": "wan2.1-i2v-14b-720p-Q4_K_S.gguf",
+      "device": "cuda:0",
+      "virtual_vram_gb": 8,
+      "use_other_vram": false,
+      "expert_mode_allocations": ""
+    },
+    "class_type": "UnetLoaderGGUFDisTorchMultiGPU",
+    "_meta": {
+      "title": "(0) Model Loader - GGUF Multi-GPU"
+    }
+  },
+  "98": {
+    "inputs": {
+      "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "wan",
+      "device": "cuda:0"
+    },
+    "class_type": "CLIPLoaderMultiGPU",
+    "_meta": {
+      "title": "(0) CLIP Loader - Multi-GPU"
+    }
+  },
+  "99": {
+    "inputs": {
+      "vae_name": "wan_2.1_vae.safetensors",
+      "device": "cuda:0"
+    },
+    "class_type": "VAELoaderMultiGPU",
+    "_meta": {
+      "title": "(3) VAELoaderMultiGPU"
+    }
+  },
+  "110": {
+    "inputs": {},
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "(7) Preview - Input Image"
+    }
+  },
+  "112": {
+    "inputs": {
+      "anything": [
+        "339",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "(35) easy cleanGpuUsed"
+    }
+  },
+  "118": {
+    "inputs": {
+      "text": "A realistic video of a beautiful woman, she's jumping and Her breasts bounce in an exaggerated manner. her breasts are really soft and wobble a lot when she jump. her breasts are bouncing. she looking at the camera."
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "(32) CLIPTextEncode"
+    }
+  },
+  "230": {
+    "inputs": {
+      "seed": 6516516620
+    },
+    "class_type": "Seed Everywhere",
+    "_meta": {
+      "title": "(17) Seed Everywhere"
+    }
+  },
+  "236": {
+    "inputs": {
+      "lora_name": "WAN\\BouncyWalkV01.safetensors",
+      "strength_model": 0.8000000000000002,
+      "model": [
+        "95",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "(1) LoRA Stack - Bouncy Walk V01"
+    }
+  },
+  "246": {
+    "inputs": {},
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "(62) PreviewImage"
+    }
+  },
+  "247": {
+    "inputs": {},
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "(74) PreviewImage"
+    }
+  },
+  "249": {
+    "inputs": {
+      "start_index": [
+        "277",
+        0
+      ],
+      "num_frames": [
+        "279",
+        0
+      ]
+    },
+    "class_type": "GetImageRangeFromBatch",
+    "_meta": {
+      "title": "(60) GetImageRangeFromBatch"
+    }
+  },
+  "276": {
+    "inputs": {},
+    "class_type": "VHS_GetImageCount",
+    "_meta": {
+      "title": "(56) VHS_GetImageCount"
+    }
+  },
+  "277": {
+    "inputs": {
+      "Xi": 0,
+      "Xf": 0,
+      "isfloatX": 0
+    },
+    "class_type": "mxSlider",
+    "_meta": {
+      "title": "(24) mxSlider"
+    }
+  },
+  "278": {
+    "inputs": {
+      "Xi": 1,
+      "Xf": 1,
+      "isfloatX": 0
+    },
+    "class_type": "mxSlider",
+    "_meta": {
+      "title": "(23) mxSlider"
+    }
+  },
+  "279": {
+    "inputs": {
+      "expression": "a-b-c",
+      "a": [
+        "276",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "(4) Math - Expression Calculator"
+    }
+  },
+  "281": {
+    "inputs": {
+      "any_1": [
+        "249",
+        0
+      ],
+      "any_2": [
+        "305",
+        0
+      ]
+    },
+    "class_type": "easy batchAnything",
+    "_meta": {
+      "title": "(70) easy batchAnything"
+    }
+  },
+  "282": {
+    "inputs": {
+      "ckpt_name": "rife47.pth",
+      "clear_cache_after_n_frames": 10,
+      "multiplier": [
+        "301",
+        0
+      ],
+      "fast_mode": true,
+      "ensemble": true,
+      "scale_factor": 1
+    },
+    "class_type": "RIFE VFI",
+    "_meta": {
+      "title": "(67) RIFE VFI"
+    }
+  },
+  "284": {
+    "inputs": {},
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "(68) PreviewImage"
+    }
+  },
+  "290": {
+    "inputs": {
+      "expression": "a-1",
+      "a": [
+        "279",
+        0
+      ]
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "(4) Math - Expression Calculator"
+    }
+  },
+  "291": {
+    "inputs": {
+      "index": 0
+    },
+    "class_type": "JWImageExtractFromBatch",
+    "_meta": {
+      "title": "(63) JWImageExtractFromBatch"
+    }
+  },
+  "293": {
+    "inputs": {
+      "any_1": [
+        "294",
+        0
+      ],
+      "any_2": [
+        "291",
+        0
+      ]
+    },
+    "class_type": "easy batchAnything",
+    "_meta": {
+      "title": "(66) easy batchAnything"
+    }
+  },
+  "294": {
+    "inputs": {
+      "start": [
+        "290",
+        0
+      ],
+      "length": -1
+    },
+    "class_type": "ImageFromBatch+",
+    "_meta": {
+      "title": "(65) ImageFromBatch+"
+    }
+  },
+  "299": {
+    "inputs": {
+      "frame_rate": 24,
+      "loop_count": 0,
+      "filename_prefix": "Wan/",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": false
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "(6) Video Output - Combine & Save"
+    }
+  },
+  "301": {
+    "inputs": {
+      "Xi": 2,
+      "Xf": 2,
+      "isfloatX": 0
+    },
+    "class_type": "mxSlider",
+    "_meta": {
+      "title": "(25) mxSlider"
+    }
+  },
+  "304": {
+    "inputs": {
+      "expression": "a-1"
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "(4) Math - Expression Calculator"
+    }
+  },
+  "305": {
+    "inputs": {
+      "start": 1,
+      "length": [
+        "304",
+        0
+      ],
+      "image": [
+        "282",
+        0
+      ]
+    },
+    "class_type": "ImageFromBatch+",
+    "_meta": {
+      "title": "(69) ImageFromBatch+"
+    }
+  },
+  "306": {
+    "inputs": {
+      "UNKNOWN": 1
+    },
+    "_meta": {
+      "title": "(6) Color Process - Match Reference"
+    }
+  },
+  "310": {
+    "inputs": {
+      "cfg": 6,
+      "model": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "CFGGuider",
+    "_meta": {
+      "title": "(47) CFGGuider"
+    }
+  },
+  "311": {
+    "inputs": {
+      "sampler_name": "gradient_estimation"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "(5) Sampler - Gradient Estimation"
+    }
+  },
+  "312": {
+    "inputs": {
+      "cfg": 1,
+      "positive": [
+        "315",
+        0
+      ],
+      "negative": [
+        "315",
+        1
+      ]
+    },
+    "class_type": "CFGGuider",
+    "_meta": {
+      "title": "(49) CFGGuider"
+    }
+  },
+  "313": {
+    "inputs": {
+      "noise": [
+        "319",
+        0
+      ],
+      "guider": [
+        "310",
+        0
+      ],
+      "sampler": [
+        "318",
+        0
+      ],
+      "sigmas": [
+        "314",
+        0
+      ],
+      "latent_image": [
+        "315",
+        2
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "(5) Sampler - Advanced Custom"
+    }
+  },
+  "314": {
+    "inputs": {
+      "step": 6,
+      "sigmas": [
+        "317",
+        0
+      ]
+    },
+    "class_type": "SplitSigmas",
+    "_meta": {
+      "title": "(50) SplitSigmas"
+    }
+  },
+  "315": {
+    "inputs": {
+      "width": [
+        "96",
+        1
+      ],
+      "height": [
+        "96",
+        2
+      ],
+      "length": 45
+    },
+    "class_type": "WanImageToVideo_F2",
+    "_meta": {
+      "title": "(44) WanImageToVideo_F2"
+    }
+  },
+  "316": {
+    "inputs": {
+      "noise": [
+        "319",
+        0
+      ],
+      "guider": [
+        "312",
+        0
+      ],
+      "sampler": [
+        "311",
+        0
+      ],
+      "sigmas": [
+        "314",
+        1
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "(5) Sampler - Advanced Custom"
+    }
+  },
+  "317": {
+    "inputs": {
+      "scheduler": "sgm_uniform",
+      "steps": 20,
+      "denoise": 1
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "(5) Scheduler - Basic"
+    }
+  },
+  "318": {
+    "inputs": {
+      "sampler_name": "uni_pc"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "(5) Sampler - Gradient Estimation"
+    }
+  },
+  "319": {
+    "inputs": {
+      "noise_seed": 1061653907119176
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "(6) RandomNoise"
+    }
+  },
+  "320": {
+    "inputs": {
+      "samples": [
+        "316",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "(5) VAE Decode - First Pass"
+    }
+  },
+  "321": {
+    "inputs": {
+      "frame_rate": 24,
+      "loop_count": 0,
+      "filename_prefix": "Wan/",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": false
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "(6) Video Output - Combine & Save"
+    }
+  },
+  "322": {
+    "inputs": {},
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "(5) VAE Decode - Second Pass"
+    }
+  },
+  "323": {
+    "inputs": {
+      "skip_end_frames": 1,
+      "images": [
+        "322",
+        0
+      ]
+    },
+    "class_type": "WanSkipEndFrameImages_F2",
+    "_meta": {
+      "title": "(6) Video - Skip End Frames"
+    }
+  },
+  "339": {
+    "inputs": {
+      "image": "clipspace/clipspace-mask-19330537.8.png [input]"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "(3) Image Input - Source"
+    }
+  },
+  "358": {
+    "inputs": {
+      "any_1": [
+        "281",
+        0
+      ],
+      "any_2": [
+        "291",
+        0
+      ]
+    },
+    "class_type": "easy batchAnything",
+    "_meta": {
+      "title": "(72) easy batchAnything"
+    }
+  }
+}

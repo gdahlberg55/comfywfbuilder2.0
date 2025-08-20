@@ -1,0 +1,392 @@
+{
+  "workflow_graph": {
+    "name": "SDXL Advanced Multi-Detail Enhancement with Video Extension",
+    "version": "2.0",
+    "timestamp": "20250814_192355",
+    "total_nodes": 16,
+    "total_connections": 15,
+    
+    "connections": [
+      {
+        "connection_id": "conn_001",
+        "description": "Model output from checkpoint to LoRA stack loader",
+        "source": {
+          "node_id": "1",
+          "output_slot": 0,
+          "output_name": "MODEL"
+        },
+        "target": {
+          "node_id": "3",
+          "input_slot": 0,
+          "input_name": "model"
+        },
+        "data_type": "MODEL"
+      },
+      {
+        "connection_id": "conn_002",
+        "description": "CLIP output from checkpoint to LoRA stack loader",
+        "source": {
+          "node_id": "1",
+          "output_slot": 1,
+          "output_name": "CLIP"
+        },
+        "target": {
+          "node_id": "3",
+          "input_slot": 1,
+          "input_name": "clip"
+        },
+        "data_type": "CLIP"
+      },
+      {
+        "connection_id": "conn_003",
+        "description": "LoRA stack to LoRA stack loader",
+        "source": {
+          "node_id": "2",
+          "output_slot": 0,
+          "output_name": "LORA_STACK"
+        },
+        "target": {
+          "node_id": "3",
+          "input_slot": 2,
+          "input_name": "lora_stack"
+        },
+        "data_type": "LORA_STACK"
+      },
+      {
+        "connection_id": "conn_004",
+        "description": "Enhanced CLIP from LoRA loader to positive prompt",
+        "source": {
+          "node_id": "3",
+          "output_slot": 1,
+          "output_name": "CLIP"
+        },
+        "target": {
+          "node_id": "4",
+          "input_slot": 0,
+          "input_name": "clip"
+        },
+        "data_type": "CLIP"
+      },
+      {
+        "connection_id": "conn_005",
+        "description": "Enhanced CLIP from LoRA loader to negative prompt",
+        "source": {
+          "node_id": "3",
+          "output_slot": 1,
+          "output_name": "CLIP"
+        },
+        "target": {
+          "node_id": "5",
+          "input_slot": 0,
+          "input_name": "clip"
+        },
+        "data_type": "CLIP"
+      },
+      {
+        "connection_id": "conn_006",
+        "description": "Enhanced Model from LoRA loader to efficient sampler",
+        "source": {
+          "node_id": "3",
+          "output_slot": 0,
+          "output_name": "MODEL"
+        },
+        "target": {
+          "node_id": "7",
+          "input_slot": 0,
+          "input_name": "model"
+        },
+        "data_type": "MODEL"
+      },
+      {
+        "connection_id": "conn_007",
+        "description": "Positive conditioning to efficient sampler",
+        "source": {
+          "node_id": "4",
+          "output_slot": 0,
+          "output_name": "CONDITIONING"
+        },
+        "target": {
+          "node_id": "7",
+          "input_slot": 1,
+          "input_name": "positive"
+        },
+        "data_type": "CONDITIONING"
+      },
+      {
+        "connection_id": "conn_008",
+        "description": "Negative conditioning to efficient sampler",
+        "source": {
+          "node_id": "5",
+          "output_slot": 0,
+          "output_name": "CONDITIONING"
+        },
+        "target": {
+          "node_id": "7",
+          "input_slot": 2,
+          "input_name": "negative"
+        },
+        "data_type": "CONDITIONING"
+      },
+      {
+        "connection_id": "conn_009",
+        "description": "Empty latent to efficient sampler",
+        "source": {
+          "node_id": "6",
+          "output_slot": 0,
+          "output_name": "LATENT"
+        },
+        "target": {
+          "node_id": "7",
+          "input_slot": 3,
+          "input_name": "latent_image"
+        },
+        "data_type": "LATENT"
+      },
+      {
+        "connection_id": "conn_010",
+        "description": "Generated image from sampler to face detailer",
+        "source": {
+          "node_id": "7",
+          "output_slot": 5,
+          "output_name": "IMAGE"
+        },
+        "target": {
+          "node_id": "9",
+          "input_slot": 0,
+          "input_name": "image"
+        },
+        "data_type": "IMAGE"
+      },
+      {
+        "connection_id": "conn_011",
+        "description": "Enhanced CLIP from LoRA loader to face detailer",
+        "source": {
+          "node_id": "3",
+          "output_slot": 1,
+          "output_name": "CLIP"
+        },
+        "target": {
+          "node_id": "9",
+          "input_slot": 2,
+          "input_name": "clip"
+        },
+        "data_type": "CLIP"
+      },
+      {
+        "connection_id": "conn_012",
+        "description": "BBOX detector from ADetailer loader to face detailer",
+        "source": {
+          "node_id": "8",
+          "output_slot": 0,
+          "output_name": "BBOX_DETECTOR"
+        },
+        "target": {
+          "node_id": "9",
+          "input_slot": 6,
+          "input_name": "bbox_detector"
+        },
+        "data_type": "BBOX_DETECTOR"
+      },
+      {
+        "connection_id": "conn_013",
+        "description": "Enhanced face image to image scaler",
+        "source": {
+          "node_id": "9",
+          "output_slot": 0,
+          "output_name": "IMAGE"
+        },
+        "target": {
+          "node_id": "10",
+          "input_slot": 0,
+          "input_name": "image"
+        },
+        "data_type": "IMAGE"
+      },
+      {
+        "connection_id": "conn_014",
+        "description": "Enhanced face image to save node",
+        "source": {
+          "node_id": "9",
+          "output_slot": 0,
+          "output_name": "IMAGE"
+        },
+        "target": {
+          "node_id": "15",
+          "input_slot": 0,
+          "input_name": "images"
+        },
+        "data_type": "IMAGE"
+      },
+      {
+        "connection_id": "conn_015",
+        "description": "Scaled image to SVD conditioning",
+        "source": {
+          "node_id": "10",
+          "output_slot": 0,
+          "output_name": "IMAGE"
+        },
+        "target": {
+          "node_id": "12",
+          "input_slot": 1,
+          "input_name": "init_image"
+        },
+        "data_type": "IMAGE"
+      },
+      {
+        "connection_id": "conn_016",
+        "description": "CLIP Vision from SVD model to SVD conditioning",
+        "source": {
+          "node_id": "11",
+          "output_slot": 1,
+          "output_name": "CLIP_VISION"
+        },
+        "target": {
+          "node_id": "12",
+          "input_slot": 0,
+          "input_name": "clip_vision"
+        },
+        "data_type": "CLIP_VISION"
+      },
+      {
+        "connection_id": "conn_017",
+        "description": "SVD VAE to SVD conditioning",
+        "source": {
+          "node_id": "11",
+          "output_slot": 2,
+          "output_name": "VAE"
+        },
+        "target": {
+          "node_id": "12",
+          "input_slot": 2,
+          "input_name": "vae"
+        },
+        "data_type": "VAE"
+      },
+      {
+        "connection_id": "conn_018",
+        "description": "SVD Model to video sampler",
+        "source": {
+          "node_id": "11",
+          "output_slot": 0,
+          "output_name": "MODEL"
+        },
+        "target": {
+          "node_id": "13",
+          "input_slot": 0,
+          "input_name": "model"
+        },
+        "data_type": "MODEL"
+      },
+      {
+        "connection_id": "conn_019",
+        "description": "Positive SVD conditioning to video sampler",
+        "source": {
+          "node_id": "12",
+          "output_slot": 0,
+          "output_name": "CONDITIONING"
+        },
+        "target": {
+          "node_id": "13",
+          "input_slot": 1,
+          "input_name": "positive"
+        },
+        "data_type": "CONDITIONING"
+      },
+      {
+        "connection_id": "conn_020",
+        "description": "Negative SVD conditioning to video sampler",
+        "source": {
+          "node_id": "12",
+          "output_slot": 1,
+          "output_name": "CONDITIONING"
+        },
+        "target": {
+          "node_id": "13",
+          "input_slot": 2,
+          "input_name": "negative"
+        },
+        "data_type": "CONDITIONING"
+      },
+      {
+        "connection_id": "conn_021",
+        "description": "SVD latent to video sampler",
+        "source": {
+          "node_id": "12",
+          "output_slot": 2,
+          "output_name": "LATENT"
+        },
+        "target": {
+          "node_id": "13",
+          "input_slot": 3,
+          "input_name": "latent_image"
+        },
+        "data_type": "LATENT"
+      },
+      {
+        "connection_id": "conn_022",
+        "description": "Video latent to VAE decode",
+        "source": {
+          "node_id": "13",
+          "output_slot": 0,
+          "output_name": "LATENT"
+        },
+        "target": {
+          "node_id": "14",
+          "input_slot": 0,
+          "input_name": "samples"
+        },
+        "data_type": "LATENT"
+      },
+      {
+        "connection_id": "conn_023",
+        "description": "SVD VAE to decode",
+        "source": {
+          "node_id": "11",
+          "output_slot": 2,
+          "output_name": "VAE"
+        },
+        "target": {
+          "node_id": "14",
+          "input_slot": 1,
+          "input_name": "vae"
+        },
+        "data_type": "VAE"
+      },
+      {
+        "connection_id": "conn_024",
+        "description": "Decoded video frames to save animation",
+        "source": {
+          "node_id": "14",
+          "output_slot": 0,
+          "output_name": "IMAGE"
+        },
+        "target": {
+          "node_id": "16",
+          "input_slot": 0,
+          "input_name": "images"
+        },
+        "data_type": "IMAGE"
+      }
+    ],
+    
+    "data_flow_summary": {
+      "main_pipeline": [
+        "CheckpointLoader (1) -> LoRA Stack (2,3) -> Text Encoding (4,5) + Empty Latent (6) -> Efficient Sampler (7) -> Face Detailer (9) -> Save Image (15)"
+      ],
+      "video_pipeline": [
+        "Face Detailer Output (9) -> Scale Down (10) -> SVD Model (11) + SVD Conditioning (12) -> Video Sampler (13) -> VAE Decode (14) -> Save Animation (16)"
+      ],
+      "support_connections": [
+        "ADetailer Model (8) provides face detection for Face Detailer (9)",
+        "Various model/clip/vae connections passed through from efficient sampler to face detailer"
+      ]
+    },
+    
+    "connection_validation": {
+      "all_required_inputs_connected": true,
+      "no_circular_dependencies": true,
+      "type_compatibility_verified": true,
+      "total_connections": 24
+    }
+  }
+}

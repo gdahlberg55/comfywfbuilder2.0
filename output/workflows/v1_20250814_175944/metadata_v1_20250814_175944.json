@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "timestamp": "2025-08-14T17:59:44",
+  "source_workflow": "Wan 2.1 - seamless loop workflow v1.2.json",
+  "reorganization_type": "zigzag_compact",
+  "parameters": {
+    "horizontal_spacing": 450,
+    "vertical_spacing": 50,
+    "grid_snap": 20,
+    "max_column_height": 2000,
+    "start_position": [100, 100]
+  },
+  "description": "Compact zigzag layout with 50px node spacing as requested. Nodes flow down in first column, up in second column, down in third, etc.",
+  "node_count": 61,
+  "group_count": 3
+}

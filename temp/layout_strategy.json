@@ -1,0 +1,157 @@
+{
+  "layout_parameters": {
+    "horizontal_spacing": 1500,
+    "vertical_spacing": 120,
+    "grid_snap": 20,
+    "routing_style": "engineering_straight_lines",
+    "data_bus_lanes": {
+      "MODEL": {
+        "primary_y": -1833,
+        "color": "#FF6B6B",
+        "width": 3,
+        "priority": 1,
+        "routing_channel": -2600
+      },
+      "CLIP": {
+        "primary_y": -1595,
+        "color": "#4ECDC4",
+        "width": 2,
+        "priority": 2,
+        "routing_channel": -2580
+      },
+      "VAE": {
+        "primary_y": -1635,
+        "color": "#45B7D1",
+        "width": 2,
+        "priority": 3,
+        "routing_channel": -2560
+      },
+      "CONDITIONING": {
+        "primary_y": -1862,
+        "color": "#96CEB4",
+        "width": 2,
+        "priority": 4,
+        "routing_channel": -2540
+      },
+      "LATENT": {
+        "primary_y": -1803,
+        "color": "#DDA0DD",
+        "width": 2,
+        "priority": 5,
+        "routing_channel": -2520
+      },
+      "IMAGE": {
+        "primary_y": -1408,
+        "color": "#FFD93D",
+        "width": 3,
+        "priority": 6,
+        "routing_channel": -2500
+      }
+    },
+    "processing_stages": [
+      {
+        "stage": 1,
+        "x_position": -2000,
+        "title": "Input/Loaders",
+        "nodes": ["UnetLoaderGGUFDisTorchMultiGPU", "CLIPLoaderMultiGPU", "VAELoaderMultiGPU", "LoadImage"]
+      },
+      {
+        "stage": 2,
+        "x_position": -1000,
+        "title": "Model Enhancement",
+        "nodes": ["LoraLoaderModelOnly", "ModelSamplingSD3", "PatchModelPatcherOrder", "WanVideoEnhanceAVideoKJ"]
+      },
+      {
+        "stage": 3,
+        "x_position": 0,
+        "title": "Conditioning",
+        "nodes": ["CLIPTextEncode", "CLIPVisionEncode", "WanImageToVideo_F2"]
+      },
+      {
+        "stage": 4,
+        "x_position": 1500,
+        "title": "Sampling",
+        "nodes": ["SamplerCustomAdvanced", "CFGGuider", "BasicScheduler"]
+      },
+      {
+        "stage": 5,
+        "x_position": 3000,
+        "title": "Decode/Process",
+        "nodes": ["VAEDecode", "ColorMatchImage", "GetImageRangeFromBatch"]
+      },
+      {
+        "stage": 6,
+        "x_position": 4500,
+        "title": "Interpolation",
+        "nodes": ["RIFE VFI", "ImageFromBatch+", "easy batchAnything"]
+      },
+      {
+        "stage": 7,
+        "x_position": 6000,
+        "title": "Output",
+        "nodes": ["VHS_VideoCombine", "PreviewImage"]
+      }
+    ],
+    "routing_strategy": {
+      "style": "orthogonal",
+      "connection_rules": [
+        {
+          "rule": "main_bus_routing",
+          "description": "Route primary data types through dedicated horizontal channels below the workflow",
+          "implementation": [
+            "1. Exit node from bottom edge",
+            "2. Drop vertically to designated routing channel Y position",
+            "3. Route horizontally along channel to target X position",
+            "4. Rise vertically to target node bottom edge",
+            "5. Enter target node from bottom"
+          ]
+        },
+        {
+          "rule": "local_connections",
+          "description": "Direct connections within same stage or adjacent stages",
+          "implementation": [
+            "1. Use straight horizontal lines for same Y-level connections",
+            "2. Use L-shaped routing for vertical + horizontal connections",
+            "3. Maintain 40px minimum separation between parallel routes"
+          ]
+        },
+        {
+          "rule": "nested_routing",
+          "description": "Handle overlapping long-distance connections",
+          "implementation": [
+            "1. Assign routing priority based on connection length (longer = lower channel)",
+            "2. Stack routing channels with 20px vertical separation",
+            "3. Use different line weights: primary=3px, secondary=2px, tertiary=1px",
+            "4. Break out connections at 90-degree angles only"
+          ]
+        }
+      ]
+    },
+    "node_positioning": {
+      "vertical_alignment": "center",
+      "horizontal_distribution": "stage_based",
+      "group_spacing": 200,
+      "rules": [
+        "Align nodes in vertical columns by processing stage",
+        "Primary flow nodes centered vertically",
+        "Secondary/utility nodes offset ±200px vertically",
+        "Control nodes (sliders, settings) in top row at Y=-2200",
+        "Preview/output nodes in dedicated column at X=6000"
+      ]
+    },
+    "visual_hierarchy": {
+      "primary_flow": {
+        "nodes": ["UnetLoader", "CLIPLoader", "VAELoader", "SamplerCustomAdvanced", "VAEDecode", "VHS_VideoCombine"],
+        "styling": "Bold borders, larger size"
+      },
+      "secondary_flow": {
+        "nodes": ["LoraLoader", "ModelSampling", "CLIPTextEncode"],
+        "styling": "Normal borders, standard size"
+      },
+      "utility_nodes": {
+        "nodes": ["ImageResize", "GetImageRange", "MathExpression"],
+        "styling": "Dashed borders, compact size"
+      }
+    }
+  }
+}

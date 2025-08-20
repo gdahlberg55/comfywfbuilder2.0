@@ -1,0 +1,885 @@
+{
+  "routing_summary": {
+    "total_connections": 90,
+    "bus_routed_connections": 41,
+    "total_reroutes_added": 104
+  },
+  "bus_utilization": {
+    "MODEL": {
+      "y_position": -2000,
+      "utilized": true,
+      "connection_count": 10,
+      "color": "#FFB6C1"
+    },
+    "CLIP": {
+      "y_position": -1600,
+      "utilized": true,
+      "connection_count": 4,
+      "color": "#98D8C8"
+    },
+    "VAE": {
+      "y_position": -1200,
+      "utilized": true,
+      "connection_count": 3,
+      "color": "#F7DC6F"
+    },
+    "IMAGE": {
+      "y_position": -800,
+      "utilized": true,
+      "connection_count": 29,
+      "color": "#BB8FCE"
+    },
+    "LATENT": {
+      "y_position": -400,
+      "utilized": true,
+      "connection_count": 5,
+      "color": "#85C1E2"
+    },
+    "CONDITIONING": {
+      "y_position": 0,
+      "utilized": true,
+      "connection_count": 6,
+      "color": "#F8C471"
+    },
+    "CONTROL": {
+      "y_position": 400,
+      "utilized": false,
+      "connection_count": 0,
+      "color": "#ABEBC6"
+    }
+  },
+  "reroute_nodes": [
+    {
+      "id": "reroute_1",
+      "position": [
+        -300,
+        -1600
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_2",
+      "position": [
+        -600,
+        -1600
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_3",
+      "position": [
+        -600,
+        150
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_4",
+      "position": [
+        -300,
+        -2000
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_5",
+      "position": [
+        -600,
+        -2000
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_6",
+      "position": [
+        -600,
+        -500
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_7",
+      "position": [
+        -600,
+        -2000
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_8",
+      "position": [
+        -600,
+        -750
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_9",
+      "position": [
+        -900,
+        -1600
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_10",
+      "position": [
+        -600,
+        -1600
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_11",
+      "position": [
+        -600,
+        -50
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_12",
+      "position": [
+        -900,
+        -1600
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_13",
+      "position": [
+        -600,
+        -1600
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_14",
+      "position": [
+        -600,
+        -250
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_15",
+      "position": [
+        -600,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_16",
+      "position": [
+        -900,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_17",
+      "position": [
+        -900,
+        100
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_18",
+      "position": [
+        -600,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_19",
+      "position": [
+        -600,
+        150
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_20",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_21",
+      "position": [
+        750,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_22",
+      "position": [
+        750,
+        -550
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_23",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_24",
+      "position": [
+        1400,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_25",
+      "position": [
+        1400,
+        -50
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_26",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_27",
+      "position": [
+        1400,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_28",
+      "position": [
+        1400,
+        -50
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_29",
+      "position": [
+        1600,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_30",
+      "position": [
+        750,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_31",
+      "position": [
+        750,
+        -100
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_32",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_33",
+      "position": [
+        1500,
+        -250
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_34",
+      "position": [
+        1550,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_35",
+      "position": [
+        1200,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_36",
+      "position": [
+        1200,
+        50
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_37",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_38",
+      "position": [
+        1200,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_39",
+      "position": [
+        1200,
+        -50
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_40",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_41",
+      "position": [
+        1200,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_42",
+      "position": [
+        1200,
+        -100
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_43",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_44",
+      "position": [
+        1900,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_45",
+      "position": [
+        1900,
+        -250
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_46",
+      "position": [
+        1500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_47",
+      "position": [
+        1450,
+        50
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_48",
+      "position": [
+        300,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_49",
+      "position": [
+        1200,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_50",
+      "position": [
+        1200,
+        100
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_51",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "CONDITIONING"
+    },
+    {
+      "id": "reroute_52",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "CONDITIONING"
+    },
+    {
+      "id": "reroute_53",
+      "position": [
+        300,
+        -450
+      ],
+      "data_type": "LATENT"
+    },
+    {
+      "id": "reroute_54",
+      "position": [
+        -600,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_55",
+      "position": [
+        -300,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_56",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_57",
+      "position": [
+        -600,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_58",
+      "position": [
+        -300,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_59",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_60",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "CONDITIONING"
+    },
+    {
+      "id": "reroute_61",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "CONDITIONING"
+    },
+    {
+      "id": "reroute_62",
+      "position": [
+        -900,
+        -1200
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_63",
+      "position": [
+        -300,
+        -1200
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_64",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_65",
+      "position": [
+        -600,
+        -700
+      ],
+      "data_type": "LATENT"
+    },
+    {
+      "id": "reroute_66",
+      "position": [
+        500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_67",
+      "position": [
+        1200,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_68",
+      "position": [
+        1200,
+        -150
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_69",
+      "position": [
+        500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_70",
+      "position": [
+        50,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_71",
+      "position": [
+        50,
+        0
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_72",
+      "position": [
+        -300,
+        -1600
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_73",
+      "position": [
+        -300,
+        -700
+      ],
+      "data_type": "CLIP"
+    },
+    {
+      "id": "reroute_74",
+      "position": [
+        300,
+        -400
+      ],
+      "data_type": "LATENT"
+    },
+    {
+      "id": "reroute_75",
+      "position": [
+        50,
+        -400
+      ],
+      "data_type": "LATENT"
+    },
+    {
+      "id": "reroute_76",
+      "position": [
+        50,
+        -250
+      ],
+      "data_type": "LATENT"
+    },
+    {
+      "id": "reroute_77",
+      "position": [
+        -900,
+        -1200
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_78",
+      "position": [
+        50,
+        -1200
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_79",
+      "position": [
+        50,
+        -250
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_80",
+      "position": [
+        -300,
+        -2000
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_81",
+      "position": [
+        -300,
+        -250
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_82",
+      "position": [
+        -300,
+        -2000
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_83",
+      "position": [
+        50,
+        -2000
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_84",
+      "position": [
+        50,
+        -600
+      ],
+      "data_type": "MODEL"
+    },
+    {
+      "id": "reroute_85",
+      "position": [
+        -900,
+        -1200
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_86",
+      "position": [
+        300,
+        -1200
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_87",
+      "position": [
+        300,
+        -350
+      ],
+      "data_type": "VAE"
+    },
+    {
+      "id": "reroute_88",
+      "position": [
+        300,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_89",
+      "position": [
+        500,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_90",
+      "position": [
+        500,
+        -400
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_91",
+      "position": [
+        -900,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_92",
+      "position": [
+        -900,
+        -250
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_93",
+      "position": [
+        -600,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_94",
+      "position": [
+        50,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_95",
+      "position": [
+        50,
+        0
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_96",
+      "position": [
+        3100,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_97",
+      "position": [
+        2300,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_98",
+      "position": [
+        2300,
+        -200
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_99",
+      "position": [
+        1650,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_100",
+      "position": [
+        2700,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_101",
+      "position": [
+        2700,
+        -700
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_102",
+      "position": [
+        3350,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_103",
+      "position": [
+        2700,
+        -800
+      ],
+      "data_type": "IMAGE"
+    },
+    {
+      "id": "reroute_104",
+      "position": [
+        2700,
+        0
+      ],
+      "data_type": "IMAGE"
+    }
+  ]
+}

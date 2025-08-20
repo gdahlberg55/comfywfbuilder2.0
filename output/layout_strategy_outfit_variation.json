@@ -1,0 +1,133 @@
+{
+  "workflow_analysis": {
+    "total_nodes": 77,
+    "total_links": 90,
+    "current_span": {
+      "horizontal": 40800,
+      "vertical": 4160
+    },
+    "current_spacing": {
+      "horizontal_avg": 1700,
+      "vertical_avg": 92
+    },
+    "complexity_score": 8.5,
+    "node_density": "medium",
+    "workflow_type": "outfit_variation_with_animation"
+  },
+  
+  "calculated_layout_parameters": {
+    "spacing_recommendation": "extreme_plus",
+    "calculated_spacing": {
+      "horizontal": 2000,
+      "vertical": 400,
+      "group_padding": 120,
+      "data_bus_lane_height": 150
+    },
+    "layout_type": "data_bus_with_stages",
+    "grid_size": 50,
+    
+    "data_bus_lanes": {
+      "MODEL": {"y": -2000, "color": "#FFB6C1"},
+      "CLIP": {"y": -1600, "color": "#98D8C8"},
+      "VAE": {"y": -1200, "color": "#F7DC6F"},
+      "IMAGE": {"y": -800, "color": "#BB8FCE"},
+      "LATENT": {"y": -400, "color": "#85C1E2"},
+      "CONDITIONING": {"y": 0, "color": "#F8C471"},
+      "CONTROL": {"y": 400, "color": "#ABEBC6"}
+    },
+    
+    "stage_positions": {
+      "0_input_loaders": {
+        "x_start": 0,
+        "x_end": 2000,
+        "y_start": -2200,
+        "y_end": 600,
+        "description": "Model, CLIP, VAE loaders"
+      },
+      "1_lora_stack": {
+        "x_start": 2500,
+        "x_end": 6500,
+        "y_start": -2200,
+        "y_end": -1000,
+        "description": "LoRA application chain"
+      },
+      "2_conditioning": {
+        "x_start": 7000,
+        "x_end": 11000,
+        "y_start": -1600,
+        "y_end": 600,
+        "description": "Text encoding and conditioning"
+      },
+      "3_image_processing": {
+        "x_start": 11500,
+        "x_end": 15500,
+        "y_start": -1200,
+        "y_end": 1200,
+        "description": "Image preparation and masking"
+      },
+      "4_generation_control": {
+        "x_start": 16000,
+        "x_end": 20000,
+        "y_start": -800,
+        "y_end": 1600,
+        "description": "Seeds, parameters, control flow"
+      },
+      "5_sampling": {
+        "x_start": 20500,
+        "x_end": 24500,
+        "y_start": -1600,
+        "y_end": 800,
+        "description": "KSampler and sampling operations"
+      },
+      "6_video_processing": {
+        "x_start": 25000,
+        "x_end": 29000,
+        "y_start": -1200,
+        "y_end": 1200,
+        "description": "Video enhancement and combination"
+      },
+      "7_output": {
+        "x_start": 29500,
+        "x_end": 32500,
+        "y_start": -800,
+        "y_end": 1600,
+        "description": "Preview and save operations"
+      },
+      "8_notes": {
+        "x_start": 33000,
+        "x_end": 40000,
+        "y_start": -2200,
+        "y_end": 2200,
+        "description": "Documentation notes"
+      }
+    },
+    
+    "optimization_strategies": {
+      "primary": "extreme_horizontal_spacing",
+      "secondary": "data_bus_routing",
+      "node_grouping": "semantic_stages",
+      "collision_resolution": "AABB_with_padding",
+      "reroute_strategy": "orthogonal_with_buses"
+    }
+  },
+  
+  "recommendations": {
+    "immediate_actions": [
+      "Apply 2000px horizontal spacing between stages",
+      "Implement data bus lanes for MODEL, CLIP, VAE, IMAGE, LATENT paths",
+      "Group nodes by semantic function into colored regions",
+      "Use reroute nodes to create clean orthogonal routing"
+    ],
+    "layout_benefits": [
+      "Clear visual separation of workflow stages",
+      "Easy tracing of data flow through bus lanes",
+      "Reduced visual clutter despite high node count",
+      "Professional appearance suitable for sharing"
+    ],
+    "warnings": [
+      "Workflow will require 32,500px horizontal space minimum",
+      "May need zoom adjustment for overview",
+      "Consider collapsing groups after organization"
+    ]
+  }
+}

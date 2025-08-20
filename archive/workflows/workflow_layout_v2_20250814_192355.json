@@ -1,0 +1,251 @@
+{
+  "layout_strategy": {
+    "workflow_name": "SDXL Advanced Multi-Detail Enhancement with Video Extension",
+    "version": "2.0",
+    "timestamp": "20250814_192355",
+    "layout_type": "hierarchical_vertical_pillars",
+    
+    "spacing_parameters": {
+      "node_to_node_within_group": 80,
+      "group_to_group": 300,
+      "category_to_category": 600,
+      "vertical_spacing": 150,
+      "data_bus_lane_height": 50,
+      "grid_size": 20
+    },
+    
+    "categories": {
+      "model_loading": {
+        "title": "Model & LoRA Loading",
+        "x_start": 0,
+        "y_start": 0,
+        "nodes": ["1", "2", "3"],
+        "color": "#ffcccc"
+      },
+      "conditioning": {
+        "title": "Text Encoding & Conditioning",
+        "x_start": 600,
+        "y_start": 0,
+        "nodes": ["4", "5"],
+        "color": "#ccffcc"
+      },
+      "generation": {
+        "title": "Primary Generation",
+        "x_start": 1200,
+        "y_start": 0,
+        "nodes": ["6", "7"],
+        "color": "#ccccff"
+      },
+      "enhancement": {
+        "title": "Face Enhancement",
+        "x_start": 1800,
+        "y_start": 0,
+        "nodes": ["8", "9"],
+        "color": "#ffffcc"
+      },
+      "video_preparation": {
+        "title": "Video Preparation",
+        "x_start": 2400,
+        "y_start": 0,
+        "nodes": ["10", "11", "12"],
+        "color": "#ffccff"
+      },
+      "video_generation": {
+        "title": "Video Generation",
+        "x_start": 3000,
+        "y_start": 0,
+        "nodes": ["13", "14"],
+        "color": "#ccffff"
+      },
+      "output": {
+        "title": "Output & Save",
+        "x_start": 3600,
+        "y_start": 0,
+        "nodes": ["15", "16"],
+        "color": "#e6e6e6"
+      }
+    },
+    
+    "node_positions": {
+      "1": {
+        "node_id": "1",
+        "title": "CheckpointLoaderSimple",
+        "x": 50,
+        "y": 100,
+        "width": 315,
+        "height": 98,
+        "category": "model_loading"
+      },
+      "2": {
+        "node_id": "2",
+        "title": "Efficient Loader (LoRA Stack)",
+        "x": 50,
+        "y": 280,
+        "width": 315,
+        "height": 156,
+        "category": "model_loading"
+      },
+      "3": {
+        "node_id": "3",
+        "title": "Load LoRA Stack (rgthree)",
+        "x": 50,
+        "y": 516,
+        "width": 315,
+        "height": 142,
+        "category": "model_loading"
+      },
+      "4": {
+        "node_id": "4",
+        "title": "CLIP Text Encode (Positive)",
+        "x": 650,
+        "y": 100,
+        "width": 400,
+        "height": 150,
+        "category": "conditioning"
+      },
+      "5": {
+        "node_id": "5",
+        "title": "CLIP Text Encode (Negative)",
+        "x": 650,
+        "y": 330,
+        "width": 400,
+        "height": 150,
+        "category": "conditioning"
+      },
+      "6": {
+        "node_id": "6",
+        "title": "EmptyLatentImage",
+        "x": 1250,
+        "y": 100,
+        "width": 315,
+        "height": 106,
+        "category": "generation"
+      },
+      "7": {
+        "node_id": "7",
+        "title": "Efficient KSampler",
+        "x": 1250,
+        "y": 286,
+        "width": 325,
+        "height": 550,
+        "category": "generation"
+      },
+      "8": {
+        "node_id": "8",
+        "title": "UltralyticsDetectorProvider",
+        "x": 1850,
+        "y": 100,
+        "width": 320,
+        "height": 80,
+        "category": "enhancement"
+      },
+      "9": {
+        "node_id": "9",
+        "title": "FaceDetailerPipe",
+        "x": 1850,
+        "y": 260,
+        "width": 400,
+        "height": 850,
+        "category": "enhancement"
+      },
+      "10": {
+        "node_id": "10",
+        "title": "ImageScaleBy",
+        "x": 2450,
+        "y": 100,
+        "width": 315,
+        "height": 82,
+        "category": "video_preparation"
+      },
+      "11": {
+        "node_id": "11",
+        "title": "ImageOnlyCheckpointLoader",
+        "x": 2450,
+        "y": 262,
+        "width": 369,
+        "height": 98,
+        "category": "video_preparation"
+      },
+      "12": {
+        "node_id": "12",
+        "title": "SVD_img2vid_Conditioning",
+        "x": 2450,
+        "y": 440,
+        "width": 315,
+        "height": 350,
+        "category": "video_preparation"
+      },
+      "13": {
+        "node_id": "13",
+        "title": "KSampler",
+        "x": 3050,
+        "y": 100,
+        "width": 315,
+        "height": 500,
+        "category": "video_generation"
+      },
+      "14": {
+        "node_id": "14",
+        "title": "VAEDecode",
+        "x": 3050,
+        "y": 680,
+        "width": 210,
+        "height": 74,
+        "category": "video_generation"
+      },
+      "15": {
+        "node_id": "15",
+        "title": "SaveImage",
+        "x": 3650,
+        "y": 100,
+        "width": 315,
+        "height": 270,
+        "category": "output"
+      },
+      "16": {
+        "node_id": "16",
+        "title": "VHS_SaveGifFile",
+        "x": 3650,
+        "y": 450,
+        "width": 315,
+        "height": 290,
+        "category": "output"
+      }
+    },
+    
+    "data_bus_lanes": {
+      "MODEL": {
+        "y_coordinate": 50,
+        "color": "#ff6666",
+        "connections": ["conn_001", "conn_006", "conn_018"]
+      },
+      "CLIP": {
+        "y_coordinate": 100,
+        "color": "#66ff66",
+        "connections": ["conn_002", "conn_004", "conn_005", "conn_011"]
+      },
+      "CONDITIONING": {
+        "y_coordinate": 150,
+        "color": "#6666ff",
+        "connections": ["conn_007", "conn_008", "conn_019", "conn_020"]
+      },
+      "LATENT": {
+        "y_coordinate": 200,
+        "color": "#ffff66",
+        "connections": ["conn_009", "conn_021", "conn_022"]
+      },
+      "IMAGE": {
+        "y_coordinate": 250,
+        "color": "#ff66ff",
+        "connections": ["conn_010", "conn_013", "conn_014", "conn_015", "conn_024"]
+      }
+    },
+    
+    "layout_validation": {
+      "no_overlaps": true,
+      "maintains_flow": true,
+      "respects_hierarchy": true,
+      "grid_aligned": true
+    }
+  }
+}

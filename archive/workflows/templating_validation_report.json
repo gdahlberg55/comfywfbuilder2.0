@@ -1,0 +1,73 @@
+{
+  "validation_timestamp": "2025-08-15T15:55:00",
+  "workflow_file": "v6_20250815_145203_nomenclature_applied/outfit_variation_named.json",
+  "validation_results": {
+    "data_bus_compliance": {
+      "bus_utilization_percentage": 74.7,
+      "target": 80,
+      "passed": false,
+      "bus_connections": 145,
+      "direct_connections": 49,
+      "reroute_nodes_count": 104,
+      "bus_lane_y_coordinates": [-2000, -1900, -1800, -1600, -1500, -1400, -1000, -900, -750, -700]
+    },
+    "routing_quality": {
+      "orthogonal_percentage": 22.7,
+      "target": 95,
+      "passed": false,
+      "total_links": 194,
+      "diagonal_links": 150,
+      "violations": "Significant diagonal routing detected"
+    },
+    "spacing_validation": {
+      "has_overlaps": "Not checked (requires AABB collision detection)",
+      "overlap_pairs": [],
+      "min_group_spacing": "Not measured"
+    },
+    "group_validation": {
+      "group_count": 9,
+      "target_range": [5, 15],
+      "passed": true,
+      "ungrouped_nodes": "Not checked",
+      "incorrect_colors": 0,
+      "color_compliance": true,
+      "groups": [
+        "(0) Model & Resource Loading",
+        "(1) Prompt Engineering & Conditioning",
+        "(2) Animation & Scene Control",
+        "(3) LoRA & Model Control",
+        "(4) Seeds & Control Parameters",
+        "(5) Sampling & Generation",
+        "(6) Video Enhancement & Combination",
+        "(7) Preview & Save Operations",
+        "(8) Workflow Documentation"
+      ]
+    },
+    "alignment_validation": {
+      "misaligned_nodes": 100,
+      "total_nodes": 181,
+      "grid_compliance_percentage": 44.8,
+      "target": 100,
+      "passed": false,
+      "examples": [
+        {"id": 28, "pos": [-900, -450]},
+        {"id": 95, "pos": [-850, -800]},
+        {"id": 236, "pos": [-950, -600]}
+      ]
+    }
+  },
+  "overall_status": "FAILED",
+  "critical_failures": [
+    "Grid alignment: Only 44.8% of nodes are aligned to 20px grid (100% required)",
+    "Orthogonal routing: Only 22.7% orthogonal connections (>95% required)",
+    "Data bus utilization: 74.7% (>80% required)"
+  ],
+  "recommendations": [
+    "1. Re-run Layout-Refiner agent to snap all nodes to 20px grid",
+    "2. Re-run Reroute-Engineer agent to improve orthogonal routing",
+    "3. Increase data bus usage for common connection types",
+    "4. Consider increasing horizontal spacing between groups for better clarity"
+  ],
+  "gold_standard_compliance": false,
+  "action_required": "Report failure to Orchestrator and trigger Learning-Agent"
+}

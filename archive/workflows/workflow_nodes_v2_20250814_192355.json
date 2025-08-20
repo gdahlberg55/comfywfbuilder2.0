@@ -1,0 +1,422 @@
+{
+  "nodes": {
+    "1": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "sdxl_base_1.0.safetensors"
+      },
+      "outputs": [
+        "MODEL",
+        "CLIP",
+        "VAE"
+      ],
+      "_meta": {
+        "title": "(1) SDXL Model Loader"
+      }
+    },
+    "2": {
+      "class_type": "LoraStacker",
+      "inputs": {
+        "lora_count": 3,
+        "lora1_name": "None",
+        "lora1_model_strength": 1.0,
+        "lora1_clip_strength": 1.0,
+        "lora2_name": "None",
+        "lora2_model_strength": 1.0,
+        "lora2_clip_strength": 1.0,
+        "lora3_name": "None",
+        "lora3_model_strength": 1.0,
+        "lora3_clip_strength": 1.0
+      },
+      "outputs": [
+        "LORA_STACK"
+      ],
+      "_meta": {
+        "title": "(2) LoRA Stack Builder"
+      }
+    },
+    "3": {
+      "class_type": "LoRAStackLoader_",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "clip": [
+          "1",
+          1
+        ],
+        "lora_stack": [
+          "2",
+          0
+        ]
+      },
+      "outputs": [
+        "MODEL",
+        "CLIP"
+      ],
+      "_meta": {
+        "title": "(3) Apply LoRA Stack"
+      }
+    },
+    "4": {
+      "class_type": "CLIPTextEncodeSDXL",
+      "inputs": {
+        "clip": [
+          "3",
+          1
+        ],
+        "width": 1024,
+        "height": 1024,
+        "crop_w": 0,
+        "crop_h": 0,
+        "target_width": 1024,
+        "target_height": 1024,
+        "text_g": "",
+        "text_l": ""
+      },
+      "outputs": [
+        "CONDITIONING"
+      ],
+      "_meta": {
+        "title": "(4) Positive Prompt SDXL"
+      }
+    },
+    "5": {
+      "class_type": "CLIPTextEncodeSDXL",
+      "inputs": {
+        "clip": [
+          "3",
+          1
+        ],
+        "width": 1024,
+        "height": 1024,
+        "crop_w": 0,
+        "crop_h": 0,
+        "target_width": 1024,
+        "target_height": 1024,
+        "text_g": "",
+        "text_l": ""
+      },
+      "outputs": [
+        "CONDITIONING"
+      ],
+      "_meta": {
+        "title": "(5) Negative Prompt SDXL"
+      }
+    },
+    "6": {
+      "class_type": "EmptyLatentImage",
+      "inputs": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1
+      },
+      "outputs": [
+        "LATENT"
+      ],
+      "_meta": {
+        "title": "(6) Empty Latent SDXL"
+      }
+    },
+    "7": {
+      "class_type": "KSampler_Efficient",
+      "inputs": {
+        "model": [
+          "3",
+          0
+        ],
+        "positive": [
+          "4",
+          0
+        ],
+        "negative": [
+          "5",
+          0
+        ],
+        "latent_image": [
+          "6",
+          0
+        ],
+        "seed": 42,
+        "steps": 30,
+        "cfg": 7.0,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "denoise": 1.0,
+        "preview_method": "auto"
+      },
+      "outputs": [
+        "MODEL",
+        "CONDITIONING+",
+        "CONDITIONING-",
+        "LATENT",
+        "VAE",
+        "IMAGE"
+      ],
+      "_meta": {
+        "title": "(7) Efficient KSampler SDXL"
+      }
+    },
+    "8": {
+      "class_type": "ADetailerLoader",
+      "inputs": {
+        "model_name": "face_yolov8n.pt"
+      },
+      "outputs": [
+        "BBOX_DETECTOR",
+        "SEGM_DETECTOR"
+      ],
+      "_meta": {
+        "title": "(8) ADetailer Model Loader"
+      }
+    },
+    "9": {
+      "class_type": "FaceDetailer",
+      "inputs": {
+        "image": [
+          "7",
+          5
+        ],
+        "model": [
+          "7",
+          0
+        ],
+        "clip": [
+          "3",
+          1
+        ],
+        "vae": [
+          "7",
+          4
+        ],
+        "positive": [
+          "7",
+          1
+        ],
+        "negative": [
+          "7",
+          2
+        ],
+        "bbox_detector": [
+          "8",
+          0
+        ],
+        "sam_detection_hint": "center-1",
+        "sam_dilation": 0,
+        "sam_threshold": 0.93,
+        "bbox_expansion": 0,
+        "bbox_crop_factor": 3.0,
+        "drop_size": 10,
+        "refiner_ratio": 0.2,
+        "guide_size": 384,
+        "guide_size_for": "bbox",
+        "max_size": 1024,
+        "seed": 42,
+        "steps": 20,
+        "cfg": 7.0,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 0.35,
+        "feather": 5,
+        "force_inpaint": true,
+        "wildcard": ""
+      },
+      "outputs": [
+        "IMAGE",
+        "CROPPED_REFINED",
+        "CROPPED_ENHANCED_ALPHA",
+        "MASK",
+        "DETAILER_PIPE"
+      ],
+      "_meta": {
+        "title": "(9) Face Detail Enhancement"
+      }
+    },
+    "10": {
+      "class_type": "ImageScaleBy",
+      "inputs": {
+        "image": [
+          "9",
+          0
+        ],
+        "upscale_method": "lanczos",
+        "scale_by": 0.5
+      },
+      "outputs": [
+        "IMAGE"
+      ],
+      "_meta": {
+        "title": "(10) Scale for SVD"
+      }
+    },
+    "11": {
+      "class_type": "ImageOnlyCheckpointLoader",
+      "inputs": {
+        "ckpt_name": "svd_xt_1_1.safetensors"
+      },
+      "outputs": [
+        "MODEL",
+        "CLIP_VISION",
+        "VAE"
+      ],
+      "_meta": {
+        "title": "(11) SVD Model Loader"
+      }
+    },
+    "12": {
+      "class_type": "SVD_img2vid_Conditioning",
+      "inputs": {
+        "clip_vision": [
+          "11",
+          1
+        ],
+        "init_image": [
+          "10",
+          0
+        ],
+        "vae": [
+          "11",
+          2
+        ],
+        "width": 1024,
+        "height": 576,
+        "num_frames": 25,
+        "motion_bucket_id": 127,
+        "fps": 6,
+        "augmentation_level": 0.0
+      },
+      "outputs": [
+        "CONDITIONING",
+        "CONDITIONING",
+        "LATENT"
+      ],
+      "_meta": {
+        "title": "(12) SVD Video Conditioning"
+      }
+    },
+    "13": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": [
+          "11",
+          0
+        ],
+        "positive": [
+          "12",
+          0
+        ],
+        "negative": [
+          "12",
+          1
+        ],
+        "latent_image": [
+          "12",
+          2
+        ],
+        "seed": 42,
+        "steps": 25,
+        "cfg": 2.5,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0
+      },
+      "outputs": [
+        "LATENT"
+      ],
+      "_meta": {
+        "title": "(13) SVD Video Generation"
+      }
+    },
+    "14": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "13",
+          0
+        ],
+        "vae": [
+          "11",
+          2
+        ]
+      },
+      "outputs": [
+        "IMAGE"
+      ],
+      "_meta": {
+        "title": "(14) Decode Video Frames"
+      }
+    },
+    "15": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": [
+          "9",
+          0
+        ],
+        "filename_prefix": "ComfyUI_enhanced"
+      },
+      "outputs": [],
+      "_meta": {
+        "title": "(15) Save Enhanced Image"
+      }
+    },
+    "16": {
+      "class_type": "SaveAnimatedWEBP",
+      "inputs": {
+        "images": [
+          "14",
+          0
+        ],
+        "filename_prefix": "ComfyUI_video",
+        "fps": 6,
+        "lossless": false,
+        "quality": 80,
+        "method": "default"
+      },
+      "outputs": [],
+      "_meta": {
+        "title": "(16) Save Video Animation"
+      }
+    }
+  },
+  "metadata": {
+    "total_nodes": 16,
+    "node_types": {
+      "loaders": [
+        "CheckpointLoaderSimple",
+        "LoraStacker",
+        "LoRAStackLoader_",
+        "ADetailerLoader",
+        "ImageOnlyCheckpointLoader"
+      ],
+      "conditioning": [
+        "CLIPTextEncodeSDXL",
+        "SVD_img2vid_Conditioning"
+      ],
+      "sampling": [
+        "KSampler_Efficient",
+        "KSampler"
+      ],
+      "processing": [
+        "FaceDetailer",
+        "ImageScaleBy"
+      ],
+      "latent": [
+        "EmptyLatentImage",
+        "VAEDecode"
+      ],
+      "output": [
+        "SaveImage",
+        "SaveAnimatedWEBP"
+      ]
+    },
+    "features": {
+      "sdxl_support": true,
+      "lora_stacking": true,
+      "adetailer_integration": true,
+      "svd_video_generation": true,
+      "efficiency_nodes": true
+    }
+  }
+}

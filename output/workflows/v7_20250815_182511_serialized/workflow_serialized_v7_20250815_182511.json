@@ -1,0 +1,9502 @@
+{
+  "id": "outfit-variation-data-bus-routed",
+  "revision": 0,
+  "last_node_id": 359,
+  "last_link_id": 715,
+  "nodes": [
+    {
+      "id": 98,
+      "type": "CLIPLoaderMultiGPU",
+      "pos": [
+        -1200,
+        -600
+      ],
+      "size": [
+        280,
+        106
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            272,
+            303
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-multigpu",
+        "ver": "1.6.2",
+        "Node name for S&R": "CLIPLoaderMultiGPU",
+        "title": "(0) CLIP Loader - Multi-GPU"
+      },
+      "widgets_values": [
+        "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+        "wan",
+        "cuda:0"
+      ],
+      "title": "(0) CLIP Loader - Multi-GPU"
+    },
+    {
+      "id": 84,
+      "type": "PatchModelPatcherOrder",
+      "pos": [
+        -600,
+        -800
+      ],
+      "size": [
+        280,
+        82
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 43,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 213
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            214
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "52c2e31a903fec2dd654fb614ea82ba2757d5028",
+        "Node name for S&R": "PatchModelPatcherOrder",
+        "title": "(1) Model Patch - Patcher Order"
+      },
+      "widgets_values": [
+        "weight_patch_first",
+        "disabled"
+      ],
+      "title": "(1) Model Patch - Patcher Order"
+    },
+    {
+      "id": 50,
+      "type": "WanVideoEnhanceAVideoKJ",
+      "pos": [
+        -600,
+        -600
+      ],
+      "size": [
+        280,
+        78
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 214
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "link": 504
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            172
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "a5bd3c86c8ed6b83c55c2d0e7a59515b15a0137f",
+        "Node name for S&R": "WanVideoEnhanceAVideoKJ",
+        "title": "(1) Video Enhancement - A*Video"
+      },
+      "widgets_values": [
+        2.0000000000000004
+      ],
+      "title": "(1) Video Enhancement - A*Video"
+    },
+    {
+      "id": 17,
+      "type": "CLIPVisionLoader",
+      "pos": [
+        -600,
+        -200
+      ],
+      "size": [
+        280,
+        58
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "CLIP_VISION",
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "links": [
+            19
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPVisionLoader",
+        "title": "(0) Vision Model - CLIP"
+      },
+      "widgets_values": [
+        "clip_vision_h.safetensors"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "title": "(0) Vision Model - CLIP"
+    },
+    {
+      "id": 28,
+      "type": "PathchSageAttentionKJ",
+      "pos": [
+        -900,
+        -450
+      ],
+      "size": [
+        280,
+        58
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 366
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            213
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "a5bd3c86c8ed6b83c55c2d0e7a59515b15a0137f",
+        "Node name for S&R": "PathchSageAttentionKJ",
+        "title": "(1) Model Patch - Sage Attention"
+      },
+      "widgets_values": [
+        "auto"
+      ],
+      "title": "(1) Model Patch - Sage Attention"
+    },
+    {
+      "id": 97,
+      "type": "UnetLoaderGGUFDisTorchMultiGPU",
+      "pos": [
+        -1200,
+        -900
+      ],
+      "size": [
+        280,
+        160
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            275
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-multigpu",
+        "ver": "1.6.2",
+        "Node name for S&R": "UnetLoaderGGUFDisTorchMultiGPU",
+        "title": "(0) Model Loader - GGUF Multi-GPU"
+      },
+      "widgets_values": [
+        "wan2.1-i2v-14b-720p-Q4_K_S.gguf",
+        "cuda:0",
+        8,
+        false,
+        ""
+      ],
+      "title": "(0) Model Loader - GGUF Multi-GPU"
+    },
+    {
+      "id": 95,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        -850,
+        -800
+      ],
+      "size": [
+        280,
+        82
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 275
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            335
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "LoraLoaderModelOnly",
+        "title": "(1) LoRA Stack - Bounce Motion V01"
+      },
+      "widgets_values": [
+        "WAN\\bounceV_01.safetensors",
+        1.0000000000000002
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "title": "(1) LoRA Stack - Bounce Motion V01"
+    },
+    {
+      "id": 48,
+      "type": "ModelSamplingSD3",
+      "pos": [
+        -800,
+        -300
+      ],
+      "size": [
+        280,
+        58
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 336
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            366
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "ModelSamplingSD3",
+        "title": "(1) Model Config - SD3 Sampling"
+      },
+      "widgets_values": [
+        5.000000000000001
+      ],
+      "title": "(1) Model Config - SD3 Sampling"
+    },
+    {
+      "id": 236,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        -950,
+        -600
+      ],
+      "size": [
+        280,
+        82
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 335
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            336
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "LoraLoaderModelOnly",
+        "title": "(1) LoRA Stack - Bouncy Walk V01"
+      },
+      "widgets_values": [
+        "WAN\\BouncyWalkV01.safetensors",
+        0.8000000000000002
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "title": "(1) LoRA Stack - Bouncy Walk V01"
+    },
+    {
+      "id": 110,
+      "type": "PreviewImage",
+      "pos": [
+        -900,
+        -50
+      ],
+      "size": [
+        280,
+        300
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 308
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewImage",
+        "title": "(7) Preview - Input Image"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "title": "(7) Preview - Input Image"
+    },
+    {
+      "id": 14,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -500,
+        -50
+      ],
+      "size": [
+        280,
+        200
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 272
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            502
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPTextEncode",
+        "title": "(2) Text Encode - Negative Prompt"
+      },
+      "widgets_values": [
+        "Overexposure, static, blurred details, subtitles, paintings, pictures, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, mutilated, redundant fingers, poorly painted hands, poorly painted faces, deformed, disfigured, deformed limbs, fused fingers, cluttered background, three legs,  upside down, white flashlights, glow light effect, post edit, ugly distorted hands, scrambled fingers, wild arm movement, text, icons, logo, post production, speaking, a lot of people in the background",
+        [
+          false,
+          true
+        ]
+      ],
+      "color": "#322",
+      "bgcolor": "#533",
+      "title": "(2) Text Encode - Negative Prompt"
+    },
+    {
+      "id": 16,
+      "type": "CLIPVisionEncode",
+      "pos": [
+        -500,
+        250
+      ],
+      "size": [
+        280,
+        78
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip_vision",
+          "name": "clip_vision",
+          "type": "CLIP_VISION",
+          "link": 19
+        },
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 316
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CLIP_VISION_OUTPUT",
+          "name": "CLIP_VISION_OUTPUT",
+          "type": "CLIP_VISION_OUTPUT",
+          "links": [
+            510
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPVisionEncode",
+        "title": "(2) Vision Encode - Style Reference"
+      },
+      "widgets_values": [
+        "none"
+      ],
+      "title": "(2) Vision Encode - Style Reference"
+    },
+    {
+      "id": 54,
+      "type": "WanVideoTeaCacheKJ",
+      "pos": [
+        -450,
+        -450
+      ],
+      "size": [
+        280,
+        154
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 172
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            514,
+            515,
+            516
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "a5bd3c86c8ed6b83c55c2d0e7a59515b15a0137f",
+        "Node name for S&R": "WanVideoTeaCacheKJ",
+        "title": "(46) WanVideoTeaCacheKJ"
+      },
+      "widgets_values": [
+        0.23000000000000007,
+        0,
+        1,
+        "main_device",
+        "i2v_720"
+      ],
+      "title": "(46) WanVideoTeaCacheKJ"
+    },
+    {
+      "id": 99,
+      "type": "VAELoaderMultiGPU",
+      "pos": [
+        -1200,
+        -350
+      ],
+      "size": [
+        280,
+        82
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            503,
+            512,
+            517
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-multigpu",
+        "ver": "1.6.2",
+        "Node name for S&R": "VAELoaderMultiGPU",
+        "title": "(3) VAELoaderMultiGPU"
+      },
+      "widgets_values": [
+        "wan_2.1_vae.safetensors",
+        "cuda:0"
+      ],
+      "title": "(3) VAELoaderMultiGPU"
+    },
+    {
+      "id": 118,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -450,
+        -800
+      ],
+      "size": [
+        280,
+        200
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 303
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            501
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPTextEncode",
+        "title": "(32) CLIPTextEncode"
+      },
+      "widgets_values": [
+        "A realistic video of a beautiful woman, she's jumping and Her breasts bounce in an exaggerated manner. her breasts are really soft and wobble a lot when she jump. her breasts are bouncing. she looking at the camera.",
+        [
+          false,
+          true
+        ]
+      ],
+      "color": "#232",
+      "bgcolor": "#353",
+      "title": "(32) CLIPTextEncode"
+    },
+    {
+      "id": 324,
+      "type": "Note",
+      "pos": [
+        -1600,
+        200
+      ],
+      "size": [
+        520,
+        190
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "------------------------------------------------------------------------------------------------------------------------->\nimage crop by mask is an easy way to resize the image to keep only the subject to anim and remove the useless pixels, the less the pixels, the faster the generation. this node avoid to use a third party software to resize your image and is more efficient that the basic crop image node.\n\nhow to use.\n1. unbypass of course\n2. right click on the image ---> open in mask editor\n3. just do 4 points at the top, left, right and bottom of the subject, everything outside this points will be croped\n(you can just do 2 point top-left and bottom-right, works too)\n4. save\n\nit's optional, bypass if you don't need it or you'll get an error."
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 310,
+      "type": "CFGGuider",
+      "pos": [
+        -100,
+        -650
+      ],
+      "size": [
+        260,
+        98
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 514
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 482
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 483
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "GUIDER",
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            487
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CFGGuider",
+        "title": "(47) CFGGuider"
+      },
+      "widgets_values": [
+        6
+      ],
+      "title": "(47) CFGGuider"
+    },
+    {
+      "id": 318,
+      "type": "KSamplerSelect",
+      "pos": [
+        -200,
+        -200
+      ],
+      "size": [
+        260,
+        60
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "SAMPLER",
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            488
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "KSamplerSelect",
+        "title": "(5) Sampler - Gradient Estimation"
+      },
+      "widgets_values": [
+        "uni_pc"
+      ],
+      "title": "(5) Sampler - Gradient Estimation"
+    },
+    {
+      "id": 319,
+      "type": "RandomNoise",
+      "pos": [
+        -150,
+        -50
+      ],
+      "size": [
+        260,
+        82
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "widget": {
+            "name": "noise_seed"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "NOISE",
+          "name": "NOISE",
+          "type": "NOISE",
+          "links": [
+            486,
+            493
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "RandomNoise",
+        "title": "(6) RandomNoise"
+      },
+      "widgets_values": [
+        1061653907119176,
+        "fixed"
+      ],
+      "title": "(6) RandomNoise"
+    },
+    {
+      "id": 313,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        50,
+        -900
+      ],
+      "size": [
+        240,
+        106
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "noise",
+          "name": "noise",
+          "type": "NOISE",
+          "link": 486
+        },
+        {
+          "localized_name": "guider",
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 487
+        },
+        {
+          "localized_name": "sampler",
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 488
+        },
+        {
+          "localized_name": "sigmas",
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 489
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 490
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "output",
+          "name": "output",
+          "type": "LATENT",
+          "links": [],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "denoised_output",
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": [
+            497,
+            511
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "SamplerCustomAdvanced",
+        "title": "(5) Sampler - Advanced Custom"
+      },
+      "widgets_values": [],
+      "title": "(5) Sampler - Advanced Custom"
+    },
+    {
+      "id": 312,
+      "type": "CFGGuider",
+      "pos": [
+        50,
+        -700
+      ],
+      "size": [
+        240,
+        98
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 516
+        },
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 484
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 485
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "GUIDER",
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            494
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CFGGuider",
+        "title": "(49) CFGGuider"
+      },
+      "widgets_values": [
+        1
+      ],
+      "title": "(49) CFGGuider"
+    },
+    {
+      "id": 316,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        50,
+        -450
+      ],
+      "size": [
+        240,
+        106
+      ],
+      "flags": {},
+      "order": 52,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "noise",
+          "name": "noise",
+          "type": "NOISE",
+          "link": 493
+        },
+        {
+          "localized_name": "guider",
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 494
+        },
+        {
+          "localized_name": "sampler",
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 495
+        },
+        {
+          "localized_name": "sigmas",
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 496
+        },
+        {
+          "localized_name": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 497
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "output",
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            498
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "denoised_output",
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "SamplerCustomAdvanced",
+        "title": "(5) Sampler - Advanced Custom"
+      },
+      "widgets_values": [],
+      "title": "(5) Sampler - Advanced Custom"
+    },
+    {
+      "id": 311,
+      "type": "KSamplerSelect",
+      "pos": [
+        200,
+        -250
+      ],
+      "size": [
+        240,
+        58
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "SAMPLER",
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            495
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "KSamplerSelect",
+        "title": "(5) Sampler - Gradient Estimation"
+      },
+      "widgets_values": [
+        "gradient_estimation"
+      ],
+      "title": "(5) Sampler - Gradient Estimation"
+    },
+    {
+      "id": 322,
+      "type": "VAEDecode",
+      "pos": [
+        100,
+        -100
+      ],
+      "size": [
+        240,
+        46
+      ],
+      "flags": {},
+      "order": 53,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 511
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 512
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            518
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "VAEDecode",
+        "title": "(5) VAE Decode - Second Pass"
+      },
+      "widgets_values": [],
+      "title": "(5) VAE Decode - Second Pass"
+    },
+    {
+      "id": 323,
+      "type": "WanSkipEndFrameImages_F2",
+      "pos": [
+        50,
+        100
+      ],
+      "size": [
+        240,
+        58
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 55,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 518
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            519
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-wanstartendframesnative",
+        "ver": "1.0.5",
+        "Node name for S&R": "WanSkipEndFrameImages_F2",
+        "title": "(6) Video - Skip End Frames"
+      },
+      "widgets_values": [
+        1
+      ],
+      "title": "(6) Video - Skip End Frames"
+    },
+    {
+      "id": 328,
+      "type": "Note",
+      "pos": [
+        400,
+        -500
+      ],
+      "size": [
+        180,
+        88
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "<---------------\nsecond pass sampler"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 321,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        650,
+        -800
+      ],
+      "size": [
+        240,
+        798
+      ],
+      "flags": {},
+      "order": 58,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 519
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "Filenames",
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "c9dcc3a229437df232d61da4f9697c87c1f22428",
+        "Node name for S&R": "VHS_VideoCombine",
+        "title": "(6) Video Output - Combine & Save"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Wan/",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": false,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Wan_00014.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Wan_00014.png",
+            "fullpath": "H:\\AI\\ComfyUI\\temp\\Wan_00014.mp4"
+          }
+        }
+      },
+      "title": "(6) Video Output - Combine & Save"
+    },
+    {
+      "id": 320,
+      "type": "VAEDecode",
+      "pos": [
+        400,
+        -300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 498
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 517
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            505,
+            507
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "VAEDecode",
+        "title": "(5) VAE Decode - First Pass"
+      },
+      "widgets_values": [],
+      "title": "(5) VAE Decode - First Pass"
+    },
+    {
+      "id": 329,
+      "type": "Note",
+      "pos": [
+        400,
+        -750
+      ],
+      "size": [
+        180,
+        100
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "-------------------------------->\nfirst pass preview.\ndon't be affraid if quality look weird. it's normal."
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 306,
+      "type": "ColorMatchImage",
+      "pos": [
+        200,
+        250
+      ],
+      "size": [
+        240,
+        126
+      ],
+      "flags": {},
+      "order": 57,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 507
+        },
+        {
+          "localized_name": "reference",
+          "name": "reference",
+          "type": "IMAGE",
+          "link": 529
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            474
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "image-fitlers",
+        "ver": "7ba4e444f0416f5cf7ee55d56b1504dea2404ac7",
+        "Node name for S&R": "ColorMatchImage",
+        "title": "(6) Color Process - Match Reference"
+      },
+      "widgets_values": [
+        "blur",
+        0,
+        1
+      ],
+      "title": "(6) Color Process - Match Reference"
+    },
+    {
+      "id": 330,
+      "type": "Note",
+      "pos": [
+        50,
+        450
+      ],
+      "size": [
+        360,
+        88
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ncolor can change during generation doing a color jump between the last and first frame. i use this to normalize the frames color using the input image has reference."
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 279,
+      "type": "MathExpression|pysssss",
+      "pos": [
+        1400,
+        -150
+      ],
+      "size": [
+        320,
+        200
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 59,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "a",
+          "name": "a",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 400
+        },
+        {
+          "localized_name": "b",
+          "name": "b",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 401
+        },
+        {
+          "localized_name": "c",
+          "name": "c",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 402
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            411,
+            435
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "9f7b3215e6af317603056a9a1666bf6e83e28835",
+        "title": "(4) Math - Expression Calculator"
+      },
+      "widgets_values": [
+        "a-b-c",
+        [
+          false,
+          true
+        ]
+      ],
+      "title": "(4) Math - Expression Calculator"
+    },
+    {
+      "id": 290,
+      "type": "MathExpression|pysssss",
+      "pos": [
+        1400,
+        100
+      ],
+      "size": [
+        320,
+        200
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "a",
+          "name": "a",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 435
+        },
+        {
+          "localized_name": "b",
+          "name": "b",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": null
+        },
+        {
+          "localized_name": "c",
+          "name": "c",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            449
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "9f7b3215e6af317603056a9a1666bf6e83e28835",
+        "title": "(4) Math - Expression Calculator"
+      },
+      "widgets_values": [
+        "a-1",
+        [
+          false,
+          true
+        ]
+      ],
+      "title": "(4) Math - Expression Calculator"
+    },
+    {
+      "id": 282,
+      "type": "RIFE VFI",
+      "pos": [
+        1200,
+        450
+      ],
+      "size": [
+        400,
+        198
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 67,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "frames",
+          "name": "frames",
+          "type": "IMAGE",
+          "link": 442
+        },
+        {
+          "localized_name": "optional_interpolation_states",
+          "name": "optional_interpolation_states",
+          "shape": 7,
+          "type": "INTERPOLATION_STATES",
+          "link": null
+        },
+        {
+          "name": "multiplier",
+          "type": "INT",
+          "widget": {
+            "name": "multiplier"
+          },
+          "link": 458
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            415,
+            469
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-frame-interpolation",
+        "ver": "18b7cce5b08290741929e39d4955b88382db4e1d",
+        "Node name for S&R": "RIFE VFI",
+        "title": "(67) RIFE VFI"
+      },
+      "widgets_values": [
+        "rife47.pth",
+        10,
+        3,
+        true,
+        true,
+        1
+      ],
+      "title": "(67) RIFE VFI"
+    },
+    {
+      "id": 304,
+      "type": "MathExpression|pysssss",
+      "pos": [
+        1700,
+        400
+      ],
+      "size": [
+        320,
+        200
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "a",
+          "name": "a",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 464
+        },
+        {
+          "localized_name": "b",
+          "name": "b",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": null
+        },
+        {
+          "localized_name": "c",
+          "name": "c",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            468
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "9f7b3215e6af317603056a9a1666bf6e83e28835",
+        "title": "(4) Math - Expression Calculator"
+      },
+      "widgets_values": [
+        "a-1",
+        [
+          false,
+          true
+        ]
+      ],
+      "title": "(4) Math - Expression Calculator"
+    },
+    {
+      "id": 305,
+      "type": "ImageFromBatch+",
+      "pos": [
+        1450,
+        250
+      ],
+      "size": [
+        260,
+        82
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 69,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 469
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 468
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            470
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "33ff89fd354d8ec3ab6affb605a79a931b445d99",
+        "Node name for S&R": "ImageFromBatch+",
+        "title": "(69) ImageFromBatch+"
+      },
+      "widgets_values": [
+        1,
+        -1
+      ],
+      "title": "(69) ImageFromBatch+"
+    },
+    {
+      "id": 327,
+      "type": "Note",
+      "pos": [
+        400,
+        -900
+      ],
+      "size": [
+        180,
+        88
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "<---------------\nfirst pass sampler"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 284,
+      "type": "PreviewImage",
+      "pos": [
+        950,
+        -200
+      ],
+      "size": [
+        320,
+        260
+      ],
+      "flags": {},
+      "order": 68,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 415
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewImage",
+        "title": "(68) PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "title": "(68) PreviewImage"
+    },
+    {
+      "id": 299,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1900,
+        -800
+      ],
+      "size": [
+        380,
+        1086
+      ],
+      "flags": {},
+      "order": 64,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 456
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "Filenames",
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "c9dcc3a229437df232d61da4f9697c87c1f22428",
+        "Node name for S&R": "VHS_VideoCombine",
+        "title": "(6) Video Output - Combine & Save"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Wan/",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": false,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Wan_00017.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Wan_00017.png",
+            "fullpath": "H:\\AI\\ComfyUI\\temp\\Wan_00017.mp4"
+          }
+        }
+      },
+      "title": "(6) Video Output - Combine & Save"
+    },
+    {
+      "id": 332,
+      "type": "Note",
+      "pos": [
+        1500,
+        -950
+      ],
+      "size": [
+        380,
+        130
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "preview video including frame skip and end->start interpolation.\nthis is the final render before sending to the full interpolation and save, the most important preview.\n\n  |\n  |\n  |\n  v"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 334,
+      "type": "Note",
+      "pos": [
+        2300,
+        -950
+      ],
+      "size": [
+        380,
+        130
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "final render frames including frame skip and end->start interpolation.\nto see in detail what the end interpolation do. and correct if necessary.\n\n  |\n  |\n  |\n  |\n  v"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 337,
+      "type": "Note",
+      "pos": [
+        1100,
+        -500
+      ],
+      "size": [
+        400,
+        180
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "<------------------------------------------\nthe most important thing ! use this and navigate between the lasts and firsts frames with the arrow keys to understand what happen between your loop end and start. the loop can:\n-start a new loop but don't have enough frames to end. it's the best case easy to correct by skipping the surplus frames.\n-end to soon, pretty hard to corect, require sometime to skip a lot of frames to find to close frames, results are not the best.\n-freeze at end, the movement is almost non-existent at end, in some case it can be really hard to save with a natural movement due to a light position change of the character but sometimes it's not a problem, middle hard.\n-do random things, random hard i guess...."
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 317,
+      "type": "BasicScheduler",
+      "pos": [
+        -250,
+        -200
+      ],
+      "size": [
+        260,
+        110
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 515
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "SIGMAS",
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            491
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "BasicScheduler",
+        "title": "(5) Scheduler - Basic"
+      },
+      "widgets_values": [
+        "sgm_uniform",
+        20,
+        1
+      ],
+      "title": "(5) Scheduler - Basic"
+    },
+    {
+      "id": 314,
+      "type": "SplitSigmas",
+      "pos": [
+        -150,
+        250
+      ],
+      "size": [
+        260,
+        80
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "sigmas",
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 491
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "high_sigmas",
+          "name": "high_sigmas",
+          "type": "SIGMAS",
+          "links": [
+            489
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "low_sigmas",
+          "name": "low_sigmas",
+          "type": "SIGMAS",
+          "links": [
+            496
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "SplitSigmas",
+        "title": "(50) SplitSigmas"
+      },
+      "widgets_values": [
+        6
+      ],
+      "title": "(50) SplitSigmas"
+    },
+    {
+      "id": 326,
+      "type": "Note",
+      "pos": [
+        -1200,
+        -1250
+      ],
+      "size": [
+        1540,
+        170
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "how it work: i use the same image at start and end to try to do a loop with WanStartEndFramesNative. but it's not perfect.\n\nso, i took the last and first frame of the loop and use the interpolation to generate the missing frames and close the loop.\nthis work well but it's very linear and not natural, this is why i say later to be gentle.\n\nthe point of the frame skip, the last and first frames will be close, but don't loop naturally, so i will create a gap on purpose to be filled with the interpolations frames.\n\ni use the preview image to choose 2 close frames to process, a tutorial video is available in the examples (on the prvious workflow but usage is the same).\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 325,
+      "type": "Note",
+      "pos": [
+        -1200,
+        -1000
+      ],
+      "size": [
+        1540,
+        170
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "How to use\nnote: stay in fixed seed and keep the group bypassed for now.\n\n1- launch the run\n2- once done, if the the video \"jump\" use the 3 sliders to find the sweet spot, move gently the slider and re-run, the video will not be generate again due to fixed seed, only the video combine will be updated. skip first and last frames and do test, be gentle with the interpolation 2 or 3 is enough. it's usually better to skip at least 1 frame at start, so, the movement is already initiated. the min for last frame is set to 1, the original last frame is the same as the first but in bad quality. the min to interpolation is set to 2 or you'll not have middle frame.\n3- once you find the sweet spot, turn the group on, and launch a last re-run, the video will be interpolated and saved.\n4- once over, think to turn the group off again and set all the sliders to min value, you can now manually change the seed or use another image.\n\nnote: sometimes it's pretty hard to get a decent result, just change the seed and restart ;)"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 230,
+      "type": "Seed Everywhere",
+      "pos": [
+        -1200,
+        -200
+      ],
+      "size": [
+        280,
+        82
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "cg-use-everywhere",
+        "ver": "ccf8d95cb0678b611e5c082ca5d76a703a301539",
+        "Node name for S&R": "Seed Everywhere",
+        "group_restricted": 0,
+        "color_restricted": 0,
+        "title": "(17) Seed Everywhere"
+      },
+      "widgets_values": [
+        6516516620,
+        "fixed"
+      ],
+      "title": "(17) Seed Everywhere"
+    },
+    {
+      "id": 331,
+      "type": "Note",
+      "pos": [
+        -150,
+        50
+      ],
+      "size": [
+        260,
+        150
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsplitsigmas and basic scheduler:\nsplit sigmas is generally half the number of steps but not always true, you can see things like this:\n20 steps split sigmas set to 6.\n6 steps wil be used to create the movement in low quality, 14 will be used to refine this low quality quality movement in high quality vid.\ni've got awesome quality with this settings so i let it like this, do your tests."
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 335,
+      "type": "Note",
+      "pos": [
+        750,
+        150
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nend interpolation frames.\nuse the last and first frames at the frame skip output to create the missing frames between, first and last frames are auto-skipped, only the middles ones are used to avoid frames duplication."
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 333,
+      "type": "Note",
+      "pos": [
+        2000,
+        -1200
+      ],
+      "size": [
+        380,
+        130
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "preview video including frame skip but no end->start interpolation.\nin some rare cases (1/100) the video can be perfect without end interpolation. just to be sure the end interpolation don't create \"jump\" or \"freeze\" at the loop end.\n\n  |\n  |\n  v"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 112,
+      "type": "easy cleanGpuUsed",
+      "pos": [
+        -1200,
+        450
+      ],
+      "size": [
+        280,
+        30
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "anything",
+          "name": "anything",
+          "type": "*",
+          "link": 525
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "output",
+          "name": "output",
+          "type": "*",
+          "links": [
+            526
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "ff6c0f0e39a02e3f7b0833482ce388159978f2e6",
+        "Node name for S&R": "easy cleanGpuUsed",
+        "title": "(35) easy cleanGpuUsed"
+      },
+      "widgets_values": [],
+      "title": "(35) easy cleanGpuUsed"
+    },
+    {
+      "id": 109,
+      "type": "ImageCropByMask",
+      "pos": [
+        -1300,
+        350
+      ],
+      "size": [
+        280,
+        50
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 37,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 526
+        },
+        {
+          "localized_name": "mask",
+          "name": "mask",
+          "type": "MASK",
+          "link": 521
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            527
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "68db110554d5f1d9bef8d027a111a49fd7f85e1b",
+        "Node name for S&R": "ImageCropByMask",
+        "title": "(37) ImageCropByMask"
+      },
+      "widgets_values": [],
+      "title": "(37) ImageCropByMask"
+    },
+    {
+      "id": 96,
+      "type": "ImageResizeKJ",
+      "pos": [
+        -850,
+        -400
+      ],
+      "size": [
+        280,
+        266
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 527
+        },
+        {
+          "localized_name": "get_image_size",
+          "name": "get_image_size",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "width_input",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "width_input"
+          },
+          "link": null
+        },
+        {
+          "name": "height_input",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "height_input"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            308,
+            316,
+            499,
+            500,
+            529
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            508
+          ],
+          "slot_index": 1
+        },
+        {
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            509
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "52c2e31a903fec2dd654fb614ea82ba2757d5028",
+        "Node name for S&R": "ImageResizeKJ",
+        "title": "(39) ImageResizeKJ"
+      },
+      "widgets_values": [
+        720,
+        720,
+        "lanczos",
+        true,
+        16,
+        0,
+        0,
+        "disabled"
+      ],
+      "title": "(39) ImageResizeKJ"
+    },
+    {
+      "id": 38,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1400,
+        -2200
+      ],
+      "size": [
+        380,
+        1086
+      ],
+      "flags": {},
+      "order": 71,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 422
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "Filenames",
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "c9dcc3a229437df232d61da4f9697c87c1f22428",
+        "Node name for S&R": "VHS_VideoCombine",
+        "title": "(6) Video Output - Combine & Save"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Wan/",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": false,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Wan_00018.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Wan_00018.png",
+            "fullpath": "H:\\AI\\ComfyUI\\temp\\Wan_00018.mp4"
+          }
+        }
+      },
+      "title": "(6) Video Output - Combine & Save"
+    },
+    {
+      "id": 338,
+      "type": "Note",
+      "pos": [
+        3400,
+        -250
+      ],
+      "size": [
+        380,
+        130
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "not enough notes, just add one for fun.\nthis workflow can be confusing a little but result can be really awesome.\nhope you like it, have fun."
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 355,
+      "type": "Note",
+      "pos": [
+        2800,
+        -1250
+      ],
+      "size": [
+        640,
+        370
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "you can play with this parameters to influence on the final vid speed or fluidity.\nhow it work:\nfor this example we wil use a 20 frames generated vid.\n\n-final interpolation slider: if the slider is set to 3 that mean the interpolation will use 1 image to create 3, the output vid will now have 20x3=60 frames.\n\n-fps slider: now we have 60 frames, ok, we can do a short and quick video, really smooth at 60 fps, the video duration will be 1 second, or a 30fps video, a little less smooth, but slower and longer, 60 frames @ 30 fps mean (60 frames/30fps)= 2seconds vid.\n\nyou can see on the example video an interpolation 4/60fps vid is the same speed that an interpolation 2/30fps vid but smoother. the vid play 2x faster but she have 2x more frames. (she will also be heavier but not necessarily 2x, depending on a lot of factor, not the point here)\n\nWarning, playing with final interpolation slider will force the rife vfi module to re-process the images, it's not a problem, you just need to wait a little. to high interpolation can ruin quality or create artifact on fast movement.\nplaying with the fps slider just relaunch the video combine.\nyou can turn the save button off during your test to don't save all the videos, just don't forget to turn it on again and re-run  once you've got a good result (yeah i'm dumb enough to forget and relaunch a gen without save).\n\n\ni've found an issue with the full interpolation, the frames are interpolated from the first to the last, but no frames are created between the last and the first, creating a jump, it's not really visible at low interpolation/fps, but higher the sliders, the more visible it is, i've correct this with all the nodes under the sliders, you don't need to touch this, it's full auto.\n\n  |\n  v"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 315,
+      "type": "WanImageToVideo_F2",
+      "pos": [
+        -100,
+        -750
+      ],
+      "size": [
+        260,
+        206
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 501
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 502
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 503
+        },
+        {
+          "localized_name": "start_image",
+          "name": "start_image",
+          "type": "IMAGE",
+          "link": 499
+        },
+        {
+          "localized_name": "end_image",
+          "name": "end_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 500
+        },
+        {
+          "localized_name": "clip_vision_output",
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": 510
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 508
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 509
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            482,
+            484
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            483,
+            485
+          ],
+          "slot_index": 1
+        },
+        {
+          "localized_name": "latent",
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            490,
+            504
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanStartEndFramesNative",
+        "ver": "c3b06e9b26c3ef47e0737a2f50b80fead89311eb",
+        "Node name for S&R": "WanImageToVideo_F2",
+        "title": "(44) WanImageToVideo_F2"
+      },
+      "widgets_values": [
+        480,
+        576,
+        45
+      ],
+      "title": "(44) WanImageToVideo_F2"
+    },
+    {
+      "id": 276,
+      "type": "VHS_GetImageCount",
+      "pos": [
+        1100,
+        100
+      ],
+      "size": [
+        180,
+        26
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 56,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 505
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "count",
+          "name": "count",
+          "type": "INT",
+          "links": [
+            400
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "c9dcc3a229437df232d61da4f9697c87c1f22428",
+        "Node name for S&R": "VHS_GetImageCount",
+        "title": "(56) VHS_GetImageCount"
+      },
+      "widgets_values": {},
+      "title": "(56) VHS_GetImageCount"
+    },
+    {
+      "id": 294,
+      "type": "ImageFromBatch+",
+      "pos": [
+        1050,
+        350
+      ],
+      "size": [
+        260,
+        82
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 65,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 450
+        },
+        {
+          "name": "start",
+          "type": "INT",
+          "widget": {
+            "name": "start"
+          },
+          "link": 449
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            452
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "33ff89fd354d8ec3ab6affb605a79a931b445d99",
+        "Node name for S&R": "ImageFromBatch+",
+        "title": "(65) ImageFromBatch+"
+      },
+      "widgets_values": [
+        0,
+        -1
+      ],
+      "title": "(65) ImageFromBatch+"
+    },
+    {
+      "id": 249,
+      "type": "GetImageRangeFromBatch",
+      "pos": [
+        1200,
+        800
+      ],
+      "size": [
+        320,
+        102
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 474
+        },
+        {
+          "localized_name": "masks",
+          "name": "masks",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "start_index",
+          "type": "INT",
+          "widget": {
+            "name": "start_index"
+          },
+          "link": 403
+        },
+        {
+          "name": "num_frames",
+          "type": "INT",
+          "widget": {
+            "name": "num_frames"
+          },
+          "link": 411
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            359,
+            421,
+            445,
+            450,
+            456
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "52c2e31a903fec2dd654fb614ea82ba2757d5028",
+        "Node name for S&R": "GetImageRangeFromBatch",
+        "title": "(60) GetImageRangeFromBatch"
+      },
+      "widgets_values": [
+        1,
+        39
+      ],
+      "title": "(60) GetImageRangeFromBatch"
+    },
+    {
+      "id": 293,
+      "type": "easy batchAnything",
+      "pos": [
+        1500,
+        400
+      ],
+      "size": [
+        120,
+        46
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 66,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "any_1",
+          "name": "any_1",
+          "type": "*",
+          "link": 452
+        },
+        {
+          "localized_name": "any_2",
+          "name": "any_2",
+          "type": "*",
+          "link": 453
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "batch",
+          "name": "batch",
+          "type": "*",
+          "links": [
+            442
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "ff6c0f0e39a02e3f7b0833482ce388159978f2e6",
+        "Node name for S&R": "easy batchAnything",
+        "title": "(66) easy batchAnything"
+      },
+      "widgets_values": [],
+      "title": "(66) easy batchAnything"
+    },
+    {
+      "id": 291,
+      "type": "JWImageExtractFromBatch",
+      "pos": [
+        1200,
+        1000
+      ],
+      "size": [
+        260,
+        58
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 63,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 445
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            453,
+            565
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "jameswalker-nodes",
+        "ver": "5bd85aaf7616878471469c4ec7e11bbd0cef3bf2",
+        "Node name for S&R": "JWImageExtractFromBatch",
+        "title": "(63) JWImageExtractFromBatch"
+      },
+      "widgets_values": [
+        0
+      ],
+      "title": "(63) JWImageExtractFromBatch"
+    },
+    {
+      "id": 221,
+      "type": "RIFE VFI",
+      "pos": [
+        2700,
+        -800
+      ],
+      "size": [
+        380,
+        198
+      ],
+      "flags": {},
+      "order": 73,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "frames",
+          "name": "frames",
+          "type": "IMAGE",
+          "link": 568
+        },
+        {
+          "localized_name": "optional_interpolation_states",
+          "name": "optional_interpolation_states",
+          "shape": 7,
+          "type": "INTERPOLATION_STATES",
+          "link": null
+        },
+        {
+          "name": "multiplier",
+          "type": "INT",
+          "widget": {
+            "name": "multiplier"
+          },
+          "link": 543
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            555,
+            569
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-frame-interpolation",
+        "ver": "18b7cce5b08290741929e39d4955b88382db4e1d",
+        "Node name for S&R": "RIFE VFI",
+        "title": "(73) RIFE VFI"
+      },
+      "widgets_values": [
+        "rife47.pth",
+        10,
+        3,
+        false,
+        false,
+        1
+      ],
+      "title": "(73) RIFE VFI"
+    },
+    {
+      "id": 281,
+      "type": "easy batchAnything",
+      "pos": [
+        1200,
+        1100
+      ],
+      "size": [
+        320,
+        46
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 70,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "any_1",
+          "name": "any_1",
+          "type": "*",
+          "link": 421
+        },
+        {
+          "localized_name": "any_2",
+          "name": "any_2",
+          "type": "*",
+          "link": 470
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "batch",
+          "name": "batch",
+          "type": "*",
+          "links": [
+            422,
+            566
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "ff6c0f0e39a02e3f7b0833482ce388159978f2e6",
+        "Node name for S&R": "easy batchAnything",
+        "title": "(70) easy batchAnything"
+      },
+      "widgets_values": [],
+      "title": "(70) easy batchAnything"
+    },
+    {
+      "id": 358,
+      "type": "easy batchAnything",
+      "pos": [
+        1450,
+        1250
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 72,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "any_1",
+          "name": "any_1",
+          "type": "*",
+          "link": 566
+        },
+        {
+          "localized_name": "any_2",
+          "name": "any_2",
+          "type": "*",
+          "link": 565
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "batch",
+          "name": "batch",
+          "type": "*",
+          "links": [
+            568
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "eff718c13f8605f43eea63166652ca76fd43ff29",
+        "Node name for S&R": "easy batchAnything",
+        "title": "(72) easy batchAnything"
+      },
+      "widgets_values": [],
+      "title": "(72) easy batchAnything"
+    },
+    {
+      "id": 278,
+      "type": "mxSlider",
+      "pos": [
+        1100,
+        -650
+      ],
+      "size": [
+        220,
+        30
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 23,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "",
+          "name": "",
+          "type": "INT",
+          "links": [
+            402
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "(23) mxSlider",
+      "properties": {
+        "cnr_id": "comfyui-mxtoolkit",
+        "ver": "d3333cca48025509932766ffda98e82050453118",
+        "Node name for S&R": "mxSlider",
+        "value": 1,
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "decimals": 0,
+        "snap": true,
+        "title": "(23) mxSlider"
+      },
+      "widgets_values": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": 277,
+      "type": "mxSlider",
+      "pos": [
+        1100,
+        -550
+      ],
+      "size": [
+        220,
+        30
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 24,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "",
+          "name": "",
+          "type": "INT",
+          "links": [
+            401,
+            403
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "(24) mxSlider",
+      "properties": {
+        "cnr_id": "comfyui-mxtoolkit",
+        "ver": "d3333cca48025509932766ffda98e82050453118",
+        "Node name for S&R": "mxSlider",
+        "value": 0,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "decimals": 0,
+        "snap": true,
+        "title": "(24) mxSlider"
+      },
+      "widgets_values": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 301,
+      "type": "mxSlider",
+      "pos": [
+        1200,
+        -250
+      ],
+      "size": [
+        220,
+        30
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 25,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "",
+          "name": "",
+          "type": "INT",
+          "links": [
+            458,
+            464
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "(25) mxSlider",
+      "properties": {
+        "cnr_id": "comfyui-mxtoolkit",
+        "ver": "d3333cca48025509932766ffda98e82050453118",
+        "Node name for S&R": "mxSlider",
+        "value": 2,
+        "min": 2,
+        "max": 10,
+        "step": 1,
+        "decimals": 0,
+        "snap": true,
+        "title": "(25) mxSlider"
+      },
+      "widgets_values": [
+        2,
+        2,
+        0
+      ]
+    },
+    {
+      "id": 336,
+      "type": "Note",
+      "pos": [
+        1150,
+        150
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "title": "(8) Documentation - Note"
+      },
+      "widgets_values": [
+        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nMagic stuff, please, don't touch !"
+      ],
+      "color": "#432",
+      "bgcolor": "#653",
+      "title": "(8) Documentation - Note"
+    },
+    {
+      "id": 359,
+      "type": "WanSkipEndFrameImages_F2",
+      "pos": [
+        3200,
+        -600
+      ],
+      "size": [
+        240,
+        58
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 75,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 569
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            570
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "(6) Video - Skip End Frames",
+      "properties": {
+        "cnr_id": "comfyui-wanstartendframesnative",
+        "ver": "1.0.5",
+        "Node name for S&R": "WanSkipEndFrameImages_F2",
+        "title": "(6) Video - Skip End Frames"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 222,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2700,
+        -450
+      ],
+      "size": [
+        380,
+        1086
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 76,
+      "mode": 4,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 570
+        },
+        {
+          "localized_name": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "localized_name": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "frame_rate",
+          "type": "FLOAT,INT",
+          "widget": {
+            "name": "frame_rate"
+          },
+          "link": 554
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "Filenames",
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "c9dcc3a229437df232d61da4f9697c87c1f22428",
+        "Node name for S&R": "VHS_VideoCombine",
+        "title": "(6) Video Output - Combine & Save"
+      },
+      "widgets_values": {
+        "frame_rate": 0,
+        "loop_count": 0,
+        "filename_prefix": "Wan/",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": false,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Wan_00978.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 60,
+            "workflow": "Wan_00978.png",
+            "fullpath": "H:\\AI\\ComfyUI\\output\\Wan_00978.mp4"
+          }
+        }
+      },
+      "title": "(6) Video Output - Combine & Save"
+    },
+    {
+      "id": 349,
+      "type": "mxSlider",
+      "pos": [
+        3200,
+        -800
+      ],
+      "size": [
+        220,
+        30
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 27,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "",
+          "name": "",
+          "type": "INT",
+          "links": [
+            543
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "(27) mxSlider",
+      "properties": {
+        "cnr_id": "comfyui-mxtoolkit",
+        "ver": "d3333cca48025509932766ffda98e82050453118",
+        "Node name for S&R": "mxSlider",
+        "value": 3,
+        "min": 2,
+        "max": 5,
+        "step": 1,
+        "decimals": 0,
+        "snap": true,
+        "title": "(27) mxSlider"
+      },
+      "widgets_values": [
+        3,
+        3,
+        0
+      ]
+    },
+    {
+      "id": 339,
+      "type": "LoadImage",
+      "pos": [
+        -1300,
+        -450
+      ],
+      "size": [
+        280,
+        360
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 28,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            525
+          ],
+          "slot_index": 0
+        },
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            521
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "LoadImage",
+        "title": "(3) Image Input - Source"
+      },
+      "widgets_values": [
+        "clipspace/clipspace-mask-19330537.8.png [input]",
+        "image",
+        ""
+      ],
+      "title": "(3) Image Input - Source"
+    },
+    {
+      "id": 356,
+      "type": "mxSlider",
+      "pos": [
+        3200,
+        -650
+      ],
+      "size": [
+        220,
+        30
+      ],
+      "flags": {
+        "pinned": true
+      },
+      "order": 29,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "localized_name": "",
+          "name": "",
+          "type": "INT",
+          "links": [
+            554
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "(29) mxSlider",
+      "properties": {
+        "cnr_id": "comfyui-mxtoolkit",
+        "ver": "d3333cca48025509932766ffda98e82050453118",
+        "Node name for S&R": "mxSlider",
+        "value": 60,
+        "min": 20,
+        "max": 120,
+        "step": 1,
+        "decimals": 0,
+        "snap": true,
+        "title": "(29) mxSlider"
+      },
+      "widgets_values": [
+        60,
+        60,
+        0
+      ]
+    },
+    {
+      "id": 246,
+      "type": "PreviewImage",
+      "pos": [
+        950,
+        -1300
+      ],
+      "size": [
+        320,
+        530
+      ],
+      "flags": {},
+      "order": 62,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 359
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewImage",
+        "title": "(62) PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "title": "(62) PreviewImage"
+    },
+    {
+      "id": 247,
+      "type": "PreviewImage",
+      "pos": [
+        2250,
+        -700
+      ],
+      "size": [
+        380,
+        1230
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 74,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 555
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewImage",
+        "title": "(74) PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "title": "(74) PreviewImage"
+    },
+    {
+      "id": 300,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": [
+        1100,
+        -700
+      ],
+      "size": [
+        220,
+        58
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "full interpolation and save",
+        "showNav": true,
+        "sort": "position",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default",
+        "title": "(30) Fast Groups Bypasser (rgthree)"
+      },
+      "title": "(30) Fast Groups Bypasser (rgthree)"
+    },
+    {
+      "id": "reroute_1",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        -1600
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_2",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -1600
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_3",
+      "type": "Reroute",
+      "pos": [
+        -500,
+        400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_4",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        -2000
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_5",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -2000
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_6",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_7",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -1900
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_8",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -650
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_9",
+      "type": "Reroute",
+      "pos": [
+        -900,
+        -1600
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_10",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -1500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_11",
+      "type": "Reroute",
+      "pos": [
+        -500,
+        300
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_12",
+      "type": "Reroute",
+      "pos": [
+        -900,
+        -1500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_13",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -1400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_14",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_15",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -650
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_16",
+      "type": "Reroute",
+      "pos": [
+        -800,
+        -700
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_17",
+      "type": "Reroute",
+      "pos": [
+        -900,
+        400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_18",
+      "type": "Reroute",
+      "pos": [
+        -600,
+        -400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_19",
+      "type": "Reroute",
+      "pos": [
+        -500,
+        500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_20",
+      "type": "Reroute",
+      "pos": [
+        1600,
+        -500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_21",
+      "type": "Reroute",
+      "pos": [
+        750,
+        50
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_22",
+      "type": "Reroute",
+      "pos": [
+        750,
+        150
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_23",
+      "type": "Reroute",
+      "pos": [
+        1750,
+        -500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_24",
+      "type": "Reroute",
+      "pos": [
+        1250,
+        0
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_25",
+      "type": "Reroute",
+      "pos": [
+        1400,
+        700
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_26",
+      "type": "Reroute",
+      "pos": [
+        1600,
+        -400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_27",
+      "type": "Reroute",
+      "pos": [
+        1500,
+        -650
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_28",
+      "type": "Reroute",
+      "pos": [
+        1300,
+        1250
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_29",
+      "type": "Reroute",
+      "pos": [
+        1700,
+        -600
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_30",
+      "type": "Reroute",
+      "pos": [
+        750,
+        450
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_31",
+      "type": "Reroute",
+      "pos": [
+        750,
+        550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_32",
+      "type": "Reroute",
+      "pos": [
+        1500,
+        -300
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_33",
+      "type": "Reroute",
+      "pos": [
+        1700,
+        700
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_34",
+      "type": "Reroute",
+      "pos": [
+        1750,
+        -400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_35",
+      "type": "Reroute",
+      "pos": [
+        1200,
+        350
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_36",
+      "type": "Reroute",
+      "pos": [
+        1200,
+        700
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_37",
+      "type": "Reroute",
+      "pos": [
+        1600,
+        -250
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_38",
+      "type": "Reroute",
+      "pos": [
+        1200,
+        800
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_39",
+      "type": "Reroute",
+      "pos": [
+        1100,
+        1200
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_40",
+      "type": "Reroute",
+      "pos": [
+        1650,
+        -300
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_41",
+      "type": "Reroute",
+      "pos": [
+        1100,
+        1350
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_42",
+      "type": "Reroute",
+      "pos": [
+        1200,
+        1300
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_43",
+      "type": "Reroute",
+      "pos": [
+        1650,
+        850
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_44",
+      "type": "Reroute",
+      "pos": [
+        2000,
+        350
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_45",
+      "type": "Reroute",
+      "pos": [
+        1750,
+        300
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_46",
+      "type": "Reroute",
+      "pos": [
+        1600,
+        300
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_47",
+      "type": "Reroute",
+      "pos": [
+        1700,
+        950
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_48",
+      "type": "Reroute",
+      "pos": [
+        400,
+        -550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_49",
+      "type": "Reroute",
+      "pos": [
+        1100,
+        1450
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_50",
+      "type": "Reroute",
+      "pos": [
+        1200,
+        1400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_51",
+      "type": "Reroute",
+      "pos": [
+        -200,
+        -500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CONDITIONING"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_52",
+      "type": "Reroute",
+      "pos": [
+        -450,
+        -200
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CONDITIONING"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_53",
+      "type": "Reroute",
+      "pos": [
+        400,
+        -400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "LATENT"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_54",
+      "type": "Reroute",
+      "pos": [
+        -500,
+        400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_55",
+      "type": "Reroute",
+      "pos": [
+        -200,
+        -400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_56",
+      "type": "Reroute",
+      "pos": [
+        -350,
+        400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_57",
+      "type": "Reroute",
+      "pos": [
+        -500,
+        700
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_58",
+      "type": "Reroute",
+      "pos": [
+        -50,
+        -400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_59",
+      "type": "Reroute",
+      "pos": [
+        -350,
+        550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_60",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        650
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CONDITIONING"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_61",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        800
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CONDITIONING"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_62",
+      "type": "Reroute",
+      "pos": [
+        -800,
+        -900
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_63",
+      "type": "Reroute",
+      "pos": [
+        -200,
+        -500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_64",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        700
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_65",
+      "type": "Reroute",
+      "pos": [
+        -500,
+        550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "LATENT"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_66",
+      "type": "Reroute",
+      "pos": [
+        400,
+        -650
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_67",
+      "type": "Reroute",
+      "pos": [
+        1100,
+        1550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_68",
+      "type": "Reroute",
+      "pos": [
+        1200,
+        1500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_69",
+      "type": "Reroute",
+      "pos": [
+        400,
+        -300
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_70",
+      "type": "Reroute",
+      "pos": [
+        -50,
+        -250
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_71",
+      "type": "Reroute",
+      "pos": [
+        -50,
+        400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_72",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        -1500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_73",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        900
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "CLIP"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_74",
+      "type": "Reroute",
+      "pos": [
+        450,
+        -100
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "LATENT"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_75",
+      "type": "Reroute",
+      "pos": [
+        -100,
+        450
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "LATENT"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_76",
+      "type": "Reroute",
+      "pos": [
+        200,
+        -50
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "LATENT"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_77",
+      "type": "Reroute",
+      "pos": [
+        -750,
+        -550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_78",
+      "type": "Reroute",
+      "pos": [
+        -50,
+        -500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_79",
+      "type": "Reroute",
+      "pos": [
+        300,
+        50
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_80",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        -1900
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_81",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        1050
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_82",
+      "type": "Reroute",
+      "pos": [
+        -300,
+        -1800
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_83",
+      "type": "Reroute",
+      "pos": [
+        50,
+        -2000
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_84",
+      "type": "Reroute",
+      "pos": [
+        -100,
+        600
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "MODEL"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_85",
+      "type": "Reroute",
+      "pos": [
+        -850,
+        -750
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_86",
+      "type": "Reroute",
+      "pos": [
+        450,
+        -1000
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_87",
+      "type": "Reroute",
+      "pos": [
+        450,
+        0
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "VAE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_88",
+      "type": "Reroute",
+      "pos": [
+        450,
+        -200
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_89",
+      "type": "Reroute",
+      "pos": [
+        500,
+        100
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_90",
+      "type": "Reroute",
+      "pos": [
+        500,
+        200
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_91",
+      "type": "Reroute",
+      "pos": [
+        -800,
+        350
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_92",
+      "type": "Reroute",
+      "pos": [
+        -900,
+        -250
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_93",
+      "type": "Reroute",
+      "pos": [
+        -350,
+        550
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_94",
+      "type": "Reroute",
+      "pos": [
+        -100,
+        700
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_95",
+      "type": "Reroute",
+      "pos": [
+        -200,
+        400
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_96",
+      "type": "Reroute",
+      "pos": [
+        3200,
+        -750
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_97",
+      "type": "Reroute",
+      "pos": [
+        2400,
+        650
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_98",
+      "type": "Reroute",
+      "pos": [
+        2400,
+        800
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_99",
+      "type": "Reroute",
+      "pos": [
+        1850,
+        -600
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_100",
+      "type": "Reroute",
+      "pos": [
+        2800,
+        -600
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_101",
+      "type": "Reroute",
+      "pos": [
+        2800,
+        -500
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_102",
+      "type": "Reroute",
+      "pos": [
+        3350,
+        -750
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_103",
+      "type": "Reroute",
+      "pos": [
+        2800,
+        750
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    },
+    {
+      "id": "reroute_104",
+      "type": "Reroute",
+      "pos": [
+        2800,
+        900
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "title": "(Bus) * Route"
+      },
+      "widgets_values": [
+        "IMAGE"
+      ],
+      "title": "(Bus) * Route"
+    }
+  ],
+  "links": [
+    [
+      571,
+      17,
+      0,
+      "reroute_1",
+      0,
+      "CLIP"
+    ],
+    [
+      572,
+      "reroute_1",
+      0,
+      "reroute_2",
+      0,
+      "CLIP"
+    ],
+    [
+      573,
+      "reroute_2",
+      0,
+      "reroute_3",
+      0,
+      "CLIP"
+    ],
+    [
+      574,
+      "reroute_3",
+      0,
+      16,
+      0,
+      "CLIP"
+    ],
+    [
+      575,
+      50,
+      0,
+      "reroute_4",
+      0,
+      "MODEL"
+    ],
+    [
+      576,
+      "reroute_4",
+      0,
+      "reroute_5",
+      0,
+      "MODEL"
+    ],
+    [
+      577,
+      "reroute_5",
+      0,
+      "reroute_6",
+      0,
+      "MODEL"
+    ],
+    [
+      578,
+      "reroute_6",
+      0,
+      54,
+      0,
+      "MODEL"
+    ],
+    [
+      579,
+      28,
+      0,
+      "reroute_7",
+      0,
+      "MODEL"
+    ],
+    [
+      580,
+      "reroute_7",
+      0,
+      "reroute_8",
+      0,
+      "MODEL"
+    ],
+    [
+      581,
+      "reroute_8",
+      0,
+      84,
+      0,
+      "MODEL"
+    ],
+    [
+      214,
+      84,
+      0,
+      50,
+      0,
+      "MODEL"
+    ],
+    [
+      582,
+      98,
+      0,
+      "reroute_9",
+      0,
+      "CLIP"
+    ],
+    [
+      583,
+      "reroute_9",
+      0,
+      "reroute_10",
+      0,
+      "CLIP"
+    ],
+    [
+      584,
+      "reroute_10",
+      0,
+      "reroute_11",
+      0,
+      "CLIP"
+    ],
+    [
+      585,
+      "reroute_11",
+      0,
+      14,
+      0,
+      "CLIP"
+    ],
+    [
+      275,
+      97,
+      0,
+      95,
+      0,
+      "MODEL"
+    ],
+    [
+      586,
+      98,
+      0,
+      "reroute_12",
+      0,
+      "CLIP"
+    ],
+    [
+      587,
+      "reroute_12",
+      0,
+      "reroute_13",
+      0,
+      "CLIP"
+    ],
+    [
+      588,
+      "reroute_13",
+      0,
+      "reroute_14",
+      0,
+      "CLIP"
+    ],
+    [
+      589,
+      "reroute_14",
+      0,
+      118,
+      0,
+      "CLIP"
+    ],
+    [
+      590,
+      96,
+      0,
+      "reroute_15",
+      0,
+      "IMAGE"
+    ],
+    [
+      591,
+      "reroute_15",
+      0,
+      "reroute_16",
+      0,
+      "IMAGE"
+    ],
+    [
+      592,
+      "reroute_16",
+      0,
+      "reroute_17",
+      0,
+      "IMAGE"
+    ],
+    [
+      593,
+      "reroute_17",
+      0,
+      110,
+      0,
+      "IMAGE"
+    ],
+    [
+      594,
+      96,
+      0,
+      "reroute_18",
+      0,
+      "IMAGE"
+    ],
+    [
+      595,
+      "reroute_18",
+      0,
+      "reroute_19",
+      0,
+      "IMAGE"
+    ],
+    [
+      596,
+      "reroute_19",
+      0,
+      16,
+      1,
+      "IMAGE"
+    ],
+    [
+      330,
+      230,
+      0,
+      53,
+      4,
+      "INT"
+    ],
+    [
+      333,
+      230,
+      0,
+      53,
+      4,
+      "INT"
+    ],
+    [
+      335,
+      95,
+      0,
+      236,
+      0,
+      "MODEL"
+    ],
+    [
+      336,
+      236,
+      0,
+      48,
+      0,
+      "MODEL"
+    ],
+    [
+      597,
+      249,
+      0,
+      "reroute_20",
+      0,
+      "IMAGE"
+    ],
+    [
+      598,
+      "reroute_20",
+      0,
+      "reroute_21",
+      0,
+      "IMAGE"
+    ],
+    [
+      599,
+      "reroute_21",
+      0,
+      "reroute_22",
+      0,
+      "IMAGE"
+    ],
+    [
+      600,
+      "reroute_22",
+      0,
+      246,
+      0,
+      "IMAGE"
+    ],
+    [
+      366,
+      48,
+      0,
+      28,
+      0,
+      "MODEL"
+    ],
+    [
+      378,
+      230,
+      0,
+      53,
+      4,
+      "INT"
+    ],
+    [
+      397,
+      230,
+      0,
+      53,
+      4,
+      "INT"
+    ],
+    [
+      400,
+      276,
+      0,
+      279,
+      0,
+      "INT,FLOAT,IMAGE,LATENT"
+    ],
+    [
+      601,
+      277,
+      0,
+      "reroute_23",
+      0,
+      "IMAGE"
+    ],
+    [
+      602,
+      "reroute_23",
+      0,
+      "reroute_24",
+      0,
+      "IMAGE"
+    ],
+    [
+      603,
+      "reroute_24",
+      0,
+      "reroute_25",
+      0,
+      "IMAGE"
+    ],
+    [
+      604,
+      "reroute_25",
+      0,
+      279,
+      1,
+      "IMAGE"
+    ],
+    [
+      605,
+      278,
+      0,
+      "reroute_26",
+      0,
+      "IMAGE"
+    ],
+    [
+      606,
+      "reroute_26",
+      0,
+      "reroute_27",
+      0,
+      "IMAGE"
+    ],
+    [
+      607,
+      "reroute_27",
+      0,
+      "reroute_28",
+      0,
+      "IMAGE"
+    ],
+    [
+      608,
+      "reroute_28",
+      0,
+      279,
+      2,
+      "IMAGE"
+    ],
+    [
+      403,
+      277,
+      0,
+      249,
+      2,
+      "INT"
+    ],
+    [
+      411,
+      279,
+      0,
+      249,
+      3,
+      "INT"
+    ],
+    [
+      609,
+      282,
+      0,
+      "reroute_29",
+      0,
+      "IMAGE"
+    ],
+    [
+      610,
+      "reroute_29",
+      0,
+      "reroute_30",
+      0,
+      "IMAGE"
+    ],
+    [
+      611,
+      "reroute_30",
+      0,
+      "reroute_31",
+      0,
+      "IMAGE"
+    ],
+    [
+      612,
+      "reroute_31",
+      0,
+      284,
+      0,
+      "IMAGE"
+    ],
+    [
+      421,
+      249,
+      0,
+      281,
+      0,
+      "*"
+    ],
+    [
+      613,
+      281,
+      0,
+      "reroute_32",
+      0,
+      "IMAGE"
+    ],
+    [
+      614,
+      "reroute_32",
+      0,
+      "reroute_33",
+      0,
+      "IMAGE"
+    ],
+    [
+      615,
+      "reroute_33",
+      0,
+      38,
+      0,
+      "IMAGE"
+    ],
+    [
+      435,
+      279,
+      0,
+      290,
+      0,
+      "INT,FLOAT,IMAGE,LATENT"
+    ],
+    [
+      616,
+      293,
+      0,
+      "reroute_34",
+      0,
+      "IMAGE"
+    ],
+    [
+      617,
+      "reroute_34",
+      0,
+      "reroute_35",
+      0,
+      "IMAGE"
+    ],
+    [
+      618,
+      "reroute_35",
+      0,
+      "reroute_36",
+      0,
+      "IMAGE"
+    ],
+    [
+      619,
+      "reroute_36",
+      0,
+      282,
+      0,
+      "IMAGE"
+    ],
+    [
+      620,
+      249,
+      0,
+      "reroute_37",
+      0,
+      "IMAGE"
+    ],
+    [
+      621,
+      "reroute_37",
+      0,
+      "reroute_38",
+      0,
+      "IMAGE"
+    ],
+    [
+      622,
+      "reroute_38",
+      0,
+      "reroute_39",
+      0,
+      "IMAGE"
+    ],
+    [
+      623,
+      "reroute_39",
+      0,
+      291,
+      0,
+      "IMAGE"
+    ],
+    [
+      449,
+      290,
+      0,
+      294,
+      1,
+      "INT"
+    ],
+    [
+      624,
+      249,
+      0,
+      "reroute_40",
+      0,
+      "IMAGE"
+    ],
+    [
+      625,
+      "reroute_40",
+      0,
+      "reroute_41",
+      0,
+      "IMAGE"
+    ],
+    [
+      626,
+      "reroute_41",
+      0,
+      "reroute_42",
+      0,
+      "IMAGE"
+    ],
+    [
+      627,
+      "reroute_42",
+      0,
+      294,
+      0,
+      "IMAGE"
+    ],
+    [
+      452,
+      294,
+      0,
+      293,
+      0,
+      "*"
+    ],
+    [
+      453,
+      291,
+      0,
+      293,
+      1,
+      "*"
+    ],
+    [
+      628,
+      249,
+      0,
+      "reroute_43",
+      0,
+      "IMAGE"
+    ],
+    [
+      629,
+      "reroute_43",
+      0,
+      "reroute_44",
+      0,
+      "IMAGE"
+    ],
+    [
+      630,
+      "reroute_44",
+      0,
+      "reroute_45",
+      0,
+      "IMAGE"
+    ],
+    [
+      631,
+      "reroute_45",
+      0,
+      299,
+      0,
+      "IMAGE"
+    ],
+    [
+      458,
+      301,
+      0,
+      282,
+      2,
+      "INT"
+    ],
+    [
+      632,
+      301,
+      0,
+      "reroute_46",
+      0,
+      "IMAGE"
+    ],
+    [
+      633,
+      "reroute_46",
+      0,
+      "reroute_47",
+      0,
+      "IMAGE"
+    ],
+    [
+      634,
+      "reroute_47",
+      0,
+      304,
+      0,
+      "IMAGE"
+    ],
+    [
+      468,
+      304,
+      0,
+      305,
+      1,
+      "INT"
+    ],
+    [
+      469,
+      282,
+      0,
+      305,
+      0,
+      "IMAGE"
+    ],
+    [
+      470,
+      305,
+      0,
+      281,
+      1,
+      "*"
+    ],
+    [
+      471,
+      230,
+      0,
+      53,
+      4,
+      "INT"
+    ],
+    [
+      635,
+      306,
+      0,
+      "reroute_48",
+      0,
+      "IMAGE"
+    ],
+    [
+      636,
+      "reroute_48",
+      0,
+      "reroute_49",
+      0,
+      "IMAGE"
+    ],
+    [
+      637,
+      "reroute_49",
+      0,
+      "reroute_50",
+      0,
+      "IMAGE"
+    ],
+    [
+      638,
+      "reroute_50",
+      0,
+      249,
+      0,
+      "IMAGE"
+    ],
+    [
+      475,
+      230,
+      0,
+      53,
+      4,
+      "INT"
+    ],
+    [
+      481,
+      230,
+      0,
+      53,
+      4,
+      "INT"
+    ],
+    [
+      639,
+      315,
+      0,
+      "reroute_51",
+      0,
+      "CONDITIONING"
+    ],
+    [
+      640,
+      "reroute_51",
+      0,
+      310,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      641,
+      315,
+      1,
+      "reroute_52",
+      0,
+      "CONDITIONING"
+    ],
+    [
+      642,
+      "reroute_52",
+      0,
+      310,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      484,
+      315,
+      0,
+      312,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      485,
+      315,
+      1,
+      312,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      486,
+      319,
+      0,
+      313,
+      0,
+      "NOISE"
+    ],
+    [
+      487,
+      310,
+      0,
+      313,
+      1,
+      "GUIDER"
+    ],
+    [
+      488,
+      318,
+      0,
+      313,
+      2,
+      "SAMPLER"
+    ],
+    [
+      489,
+      314,
+      0,
+      313,
+      3,
+      "SIGMAS"
+    ],
+    [
+      490,
+      315,
+      2,
+      313,
+      4,
+      "LATENT"
+    ],
+    [
+      491,
+      317,
+      0,
+      314,
+      0,
+      "SIGMAS"
+    ],
+    [
+      493,
+      319,
+      0,
+      316,
+      0,
+      "NOISE"
+    ],
+    [
+      494,
+      312,
+      0,
+      316,
+      1,
+      "GUIDER"
+    ],
+    [
+      495,
+      311,
+      0,
+      316,
+      2,
+      "SAMPLER"
+    ],
+    [
+      496,
+      314,
+      1,
+      316,
+      3,
+      "SIGMAS"
+    ],
+    [
+      643,
+      313,
+      1,
+      "reroute_53",
+      0,
+      "LATENT"
+    ],
+    [
+      644,
+      "reroute_53",
+      0,
+      316,
+      4,
+      "LATENT"
+    ],
+    [
+      498,
+      316,
+      0,
+      320,
+      0,
+      "LATENT"
+    ],
+    [
+      645,
+      96,
+      0,
+      "reroute_54",
+      0,
+      "IMAGE"
+    ],
+    [
+      646,
+      "reroute_54",
+      0,
+      "reroute_55",
+      0,
+      "IMAGE"
+    ],
+    [
+      647,
+      "reroute_55",
+      0,
+      "reroute_56",
+      0,
+      "IMAGE"
+    ],
+    [
+      648,
+      "reroute_56",
+      0,
+      315,
+      3,
+      "IMAGE"
+    ],
+    [
+      649,
+      96,
+      0,
+      "reroute_57",
+      0,
+      "IMAGE"
+    ],
+    [
+      650,
+      "reroute_57",
+      0,
+      "reroute_58",
+      0,
+      "IMAGE"
+    ],
+    [
+      651,
+      "reroute_58",
+      0,
+      "reroute_59",
+      0,
+      "IMAGE"
+    ],
+    [
+      652,
+      "reroute_59",
+      0,
+      315,
+      4,
+      "IMAGE"
+    ],
+    [
+      653,
+      118,
+      0,
+      "reroute_60",
+      0,
+      "CONDITIONING"
+    ],
+    [
+      654,
+      "reroute_60",
+      0,
+      315,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      655,
+      14,
+      0,
+      "reroute_61",
+      0,
+      "CONDITIONING"
+    ],
+    [
+      656,
+      "reroute_61",
+      0,
+      315,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      657,
+      99,
+      0,
+      "reroute_62",
+      0,
+      "VAE"
+    ],
+    [
+      658,
+      "reroute_62",
+      0,
+      "reroute_63",
+      0,
+      "VAE"
+    ],
+    [
+      659,
+      "reroute_63",
+      0,
+      "reroute_64",
+      0,
+      "VAE"
+    ],
+    [
+      660,
+      "reroute_64",
+      0,
+      315,
+      2,
+      "VAE"
+    ],
+    [
+      661,
+      315,
+      2,
+      "reroute_65",
+      0,
+      "LATENT"
+    ],
+    [
+      662,
+      "reroute_65",
+      0,
+      50,
+      1,
+      "LATENT"
+    ],
+    [
+      663,
+      320,
+      0,
+      "reroute_66",
+      0,
+      "IMAGE"
+    ],
+    [
+      664,
+      "reroute_66",
+      0,
+      "reroute_67",
+      0,
+      "IMAGE"
+    ],
+    [
+      665,
+      "reroute_67",
+      0,
+      "reroute_68",
+      0,
+      "IMAGE"
+    ],
+    [
+      666,
+      "reroute_68",
+      0,
+      276,
+      0,
+      "IMAGE"
+    ],
+    [
+      667,
+      320,
+      0,
+      "reroute_69",
+      0,
+      "IMAGE"
+    ],
+    [
+      668,
+      "reroute_69",
+      0,
+      "reroute_70",
+      0,
+      "IMAGE"
+    ],
+    [
+      669,
+      "reroute_70",
+      0,
+      "reroute_71",
+      0,
+      "IMAGE"
+    ],
+    [
+      670,
+      "reroute_71",
+      0,
+      306,
+      0,
+      "IMAGE"
+    ],
+    [
+      508,
+      96,
+      1,
+      315,
+      6,
+      "INT"
+    ],
+    [
+      509,
+      96,
+      2,
+      315,
+      7,
+      "INT"
+    ],
+    [
+      671,
+      16,
+      0,
+      "reroute_72",
+      0,
+      "CLIP"
+    ],
+    [
+      672,
+      "reroute_72",
+      0,
+      "reroute_73",
+      0,
+      "CLIP"
+    ],
+    [
+      673,
+      "reroute_73",
+      0,
+      315,
+      5,
+      "CLIP"
+    ],
+    [
+      674,
+      313,
+      1,
+      "reroute_74",
+      0,
+      "LATENT"
+    ],
+    [
+      675,
+      "reroute_74",
+      0,
+      "reroute_75",
+      0,
+      "LATENT"
+    ],
+    [
+      676,
+      "reroute_75",
+      0,
+      "reroute_76",
+      0,
+      "LATENT"
+    ],
+    [
+      677,
+      "reroute_76",
+      0,
+      322,
+      0,
+      "LATENT"
+    ],
+    [
+      678,
+      99,
+      0,
+      "reroute_77",
+      0,
+      "VAE"
+    ],
+    [
+      679,
+      "reroute_77",
+      0,
+      "reroute_78",
+      0,
+      "VAE"
+    ],
+    [
+      680,
+      "reroute_78",
+      0,
+      "reroute_79",
+      0,
+      "VAE"
+    ],
+    [
+      681,
+      "reroute_79",
+      0,
+      322,
+      1,
+      "VAE"
+    ],
+    [
+      514,
+      54,
+      0,
+      310,
+      0,
+      "MODEL"
+    ],
+    [
+      682,
+      54,
+      0,
+      "reroute_80",
+      0,
+      "MODEL"
+    ],
+    [
+      683,
+      "reroute_80",
+      0,
+      "reroute_81",
+      0,
+      "MODEL"
+    ],
+    [
+      684,
+      "reroute_81",
+      0,
+      317,
+      0,
+      "MODEL"
+    ],
+    [
+      685,
+      54,
+      0,
+      "reroute_82",
+      0,
+      "MODEL"
+    ],
+    [
+      686,
+      "reroute_82",
+      0,
+      "reroute_83",
+      0,
+      "MODEL"
+    ],
+    [
+      687,
+      "reroute_83",
+      0,
+      "reroute_84",
+      0,
+      "MODEL"
+    ],
+    [
+      688,
+      "reroute_84",
+      0,
+      312,
+      0,
+      "MODEL"
+    ],
+    [
+      689,
+      99,
+      0,
+      "reroute_85",
+      0,
+      "VAE"
+    ],
+    [
+      690,
+      "reroute_85",
+      0,
+      "reroute_86",
+      0,
+      "VAE"
+    ],
+    [
+      691,
+      "reroute_86",
+      0,
+      "reroute_87",
+      0,
+      "VAE"
+    ],
+    [
+      692,
+      "reroute_87",
+      0,
+      320,
+      1,
+      "VAE"
+    ],
+    [
+      518,
+      322,
+      0,
+      323,
+      0,
+      "IMAGE"
+    ],
+    [
+      693,
+      323,
+      0,
+      "reroute_88",
+      0,
+      "IMAGE"
+    ],
+    [
+      694,
+      "reroute_88",
+      0,
+      "reroute_89",
+      0,
+      "IMAGE"
+    ],
+    [
+      695,
+      "reroute_89",
+      0,
+      "reroute_90",
+      0,
+      "IMAGE"
+    ],
+    [
+      696,
+      "reroute_90",
+      0,
+      321,
+      0,
+      "IMAGE"
+    ],
+    [
+      521,
+      339,
+      1,
+      109,
+      1,
+      "MASK"
+    ],
+    [
+      525,
+      339,
+      0,
+      112,
+      0,
+      "*"
+    ],
+    [
+      526,
+      112,
+      0,
+      109,
+      0,
+      "IMAGE"
+    ],
+    [
+      697,
+      109,
+      0,
+      "reroute_91",
+      0,
+      "IMAGE"
+    ],
+    [
+      698,
+      "reroute_91",
+      0,
+      "reroute_92",
+      0,
+      "IMAGE"
+    ],
+    [
+      699,
+      "reroute_92",
+      0,
+      96,
+      0,
+      "IMAGE"
+    ],
+    [
+      700,
+      96,
+      0,
+      "reroute_93",
+      0,
+      "IMAGE"
+    ],
+    [
+      701,
+      "reroute_93",
+      0,
+      "reroute_94",
+      0,
+      "IMAGE"
+    ],
+    [
+      702,
+      "reroute_94",
+      0,
+      "reroute_95",
+      0,
+      "IMAGE"
+    ],
+    [
+      703,
+      "reroute_95",
+      0,
+      306,
+      1,
+      "IMAGE"
+    ],
+    [
+      543,
+      349,
+      0,
+      221,
+      2,
+      "INT"
+    ],
+    [
+      554,
+      356,
+      0,
+      222,
+      4,
+      "FLOAT,INT"
+    ],
+    [
+      704,
+      221,
+      0,
+      "reroute_96",
+      0,
+      "IMAGE"
+    ],
+    [
+      705,
+      "reroute_96",
+      0,
+      "reroute_97",
+      0,
+      "IMAGE"
+    ],
+    [
+      706,
+      "reroute_97",
+      0,
+      "reroute_98",
+      0,
+      "IMAGE"
+    ],
+    [
+      707,
+      "reroute_98",
+      0,
+      247,
+      0,
+      "IMAGE"
+    ],
+    [
+      565,
+      291,
+      0,
+      358,
+      1,
+      "*"
+    ],
+    [
+      566,
+      281,
+      0,
+      358,
+      0,
+      "*"
+    ],
+    [
+      708,
+      358,
+      0,
+      "reroute_99",
+      0,
+      "IMAGE"
+    ],
+    [
+      709,
+      "reroute_99",
+      0,
+      "reroute_100",
+      0,
+      "IMAGE"
+    ],
+    [
+      710,
+      "reroute_100",
+      0,
+      "reroute_101",
+      0,
+      "IMAGE"
+    ],
+    [
+      711,
+      "reroute_101",
+      0,
+      221,
+      0,
+      "IMAGE"
+    ],
+    [
+      569,
+      221,
+      0,
+      359,
+      0,
+      "IMAGE"
+    ],
+    [
+      712,
+      359,
+      0,
+      "reroute_102",
+      0,
+      "IMAGE"
+    ],
+    [
+      713,
+      "reroute_102",
+      0,
+      "reroute_103",
+      0,
+      "IMAGE"
+    ],
+    [
+      714,
+      "reroute_103",
+      0,
+      "reroute_104",
+      0,
+      "IMAGE"
+    ],
+    [
+      715,
+      "reroute_104",
+      0,
+      222,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "(0) Model & Resource Loaders",
+      "bounding": [
+        0,
+        -2200,
+        2000,
+        2800
+      ],
+      "color": "#355335",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Load all base models, CLIP, VAE, and vision models",
+        "collapsible": true,
+        "category": "initialization"
+      }
+    },
+    {
+      "title": "(1) LoRA Application Chain",
+      "bounding": [
+        2500,
+        -2200,
+        4000,
+        1200
+      ],
+      "color": "#355335",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Apply LoRA models in sequence for outfit variations",
+        "collapsible": true,
+        "category": "model_modification"
+      }
+    },
+    {
+      "title": "(2) Text Encoding & Conditioning",
+      "bounding": [
+        7000,
+        -1600,
+        4000,
+        2200
+      ],
+      "color": "#353553",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Process text prompts and create conditioning",
+        "collapsible": true,
+        "category": "prompt_processing"
+      }
+    },
+    {
+      "title": "(3) Image Preparation & Masking",
+      "bounding": [
+        11500,
+        -1200,
+        4000,
+        2400
+      ],
+      "color": "#453553",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Prepare input images, apply masks, resize and crop",
+        "collapsible": true,
+        "category": "preprocessing"
+      }
+    },
+    {
+      "title": "(4) Seeds & Control Parameters",
+      "bounding": [
+        16000,
+        -800,
+        4000,
+        2400
+      ],
+      "color": "#534535",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Control parameters, seeds, and variation settings",
+        "collapsible": true,
+        "category": "control_logic"
+      }
+    },
+    {
+      "title": "(5) Sampling & Generation",
+      "bounding": [
+        20500,
+        -1600,
+        4000,
+        2400
+      ],
+      "color": "#533535",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Core image generation and sampling operations",
+        "collapsible": true,
+        "category": "generation"
+      }
+    },
+    {
+      "title": "(6) Video Enhancement & Combination",
+      "bounding": [
+        25000,
+        -1200,
+        4000,
+        2400
+      ],
+      "color": "#533545",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Video processing, frame interpolation, and enhancement",
+        "collapsible": true,
+        "category": "post_processing"
+      }
+    },
+    {
+      "title": "(7) Preview & Save Operations",
+      "bounding": [
+        29500,
+        -800,
+        3000,
+        2400
+      ],
+      "color": "#355353",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Final outputs, previews, and save operations",
+        "collapsible": true,
+        "category": "output"
+      }
+    },
+    {
+      "title": "(8) Workflow Documentation",
+      "bounding": [
+        33000,
+        -2200,
+        7000,
+        4400
+      ],
+      "color": "#444444",
+      "font_size": 24,
+      "locked": false,
+      "metadata": {
+        "purpose": "Notes and documentation for workflow usage",
+        "collapsible": true,
+        "category": "documentation"
+      }
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": [
+        0,
+        0
+      ]
+    }
+  },
+  "version": 0.4
+}

@@ -1,0 +1,11 @@
+{
+  "requirements": {
+    "models": ["SD1.5 base model"],
+    "controlnets": ["ControlNet OpenPose"],
+    "adapters": ["IP-Adapter"],
+    "loras": ["fashion LoRAs", "clothing LoRAs", "outfit variation LoRAs"],
+    "custom_nodes": ["pose control nodes", "outfit variation nodes"]
+  },
+  "compatibility": "SD1.5"
+}
+EOF < /dev/null

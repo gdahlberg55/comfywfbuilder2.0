@@ -1,0 +1,297 @@
+{
+  "workflow_version": "v2_20250814_192355",
+  "total_nodes": 35,
+  "total_links": 49,
+  "analysis_timestamp": "2025-08-15T00:00:00Z",
+  
+  "connection_analysis": {
+    "MODEL_connections": {
+      "source_nodes": [
+        {
+          "node_id": 1,
+          "node_type": "CheckpointLoaderSimple",
+          "output_slot": 0,
+          "connections": [
+            {"target_node": 2, "target_type": "Efficient Loader", "link_id": 1}
+          ]
+        },
+        {
+          "node_id": 3,
+          "node_type": "Load LoRA Stack (rgthree)",
+          "output_slot": 0,
+          "connections": [
+            {"target_node": 7, "target_type": "Efficient KSampler", "link_id": 6},
+            {"target_node": 11, "target_type": "FaceDetailerPipe", "link_id": 6},
+            {"target_node": 13, "target_type": "HandDetailerPipe", "link_id": 6},
+            {"target_node": 16, "target_type": "MaskDetailerPipe", "link_id": 6},
+            {"target_node": 19, "target_type": "UltimateSDUpscale", "link_id": 6}
+          ]
+        },
+        {
+          "node_id": 30,
+          "node_type": "ImageOnlyCheckpointLoader",
+          "output_slot": 0,
+          "connections": [
+            {"target_node": 32, "target_type": "KSampler", "link_id": 40}
+          ]
+        }
+      ],
+      "total_MODEL_connections": 7,
+      "can_be_simplified": true,
+      "ae_node_benefit": "Can reduce from 7 visible connections to 2 AE nodes"
+    },
+    
+    "CLIP_connections": {
+      "source_nodes": [
+        {
+          "node_id": 1,
+          "node_type": "CheckpointLoaderSimple",
+          "output_slot": 1,
+          "connections": [
+            {"target_node": 4, "target_type": "CLIPTextEncode", "link_id": 2},
+            {"target_node": 5, "target_type": "CLIPTextEncode", "link_id": 3},
+            {"target_node": 11, "target_type": "FaceDetailerPipe", "link_id": 2},
+            {"target_node": 13, "target_type": "HandDetailerPipe", "link_id": 2},
+            {"target_node": 16, "target_type": "MaskDetailerPipe", "link_id": 2}
+          ]
+        }
+      ],
+      "total_CLIP_connections": 5,
+      "can_be_simplified": true,
+      "ae_node_benefit": "Can reduce from 5 visible connections to 1 AE node"
+    },
+    
+    "VAE_connections": {
+      "source_nodes": [
+        {
+          "node_id": 1,
+          "node_type": "CheckpointLoaderSimple",
+          "output_slot": 2,
+          "connections": [
+            {"target_node": 11, "target_type": "FaceDetailerPipe", "link_id": 4},
+            {"target_node": 13, "target_type": "HandDetailerPipe", "link_id": 4},
+            {"target_node": 16, "target_type": "MaskDetailerPipe", "link_id": 4},
+            {"target_node": 19, "target_type": "UltimateSDUpscale", "link_id": 4}
+          ]
+        },
+        {
+          "node_id": 30,
+          "node_type": "ImageOnlyCheckpointLoader",
+          "output_slot": 2,
+          "connections": [
+            {"target_node": 33, "target_type": "VAEDecode", "link_id": 42}
+          ]
+        }
+      ],
+      "total_VAE_connections": 5,
+      "can_be_simplified": true,
+      "ae_node_benefit": "Can reduce from 5 visible connections to 2 AE nodes"
+    },
+    
+    "CONDITIONING_connections": {
+      "positive_conditioning": {
+        "source_node": 4,
+        "connections": [
+          {"target_node": 7, "link_id": 7},
+          {"target_node": 11, "link_id": 7},
+          {"target_node": 13, "link_id": 7},
+          {"target_node": 16, "link_id": 7},
+          {"target_node": 19, "link_id": 7}
+        ],
+        "total_connections": 5
+      },
+      "negative_conditioning": {
+        "source_node": 5,
+        "connections": [
+          {"target_node": 7, "link_id": 8},
+          {"target_node": 11, "link_id": 8},
+          {"target_node": 13, "link_id": 8},
+          {"target_node": 16, "link_id": 8},
+          {"target_node": 19, "link_id": 8}
+        ],
+        "total_connections": 5
+      },
+      "total_CONDITIONING_connections": 10,
+      "can_be_simplified": true,
+      "ae_node_benefit": "Can reduce from 10 visible connections to 2 AE nodes"
+    },
+    
+    "detector_connections": {
+      "bbox_face_detector": {
+        "source_node": 8,
+        "connections": [
+          {"target_node": 11, "link_id": 12},
+          {"target_node": 12, "link_id": 13}
+        ],
+        "total_connections": 2
+      },
+      "bbox_hand_detector": {
+        "source_node": 9,
+        "connections": [
+          {"target_node": 13, "link_id": 14},
+          {"target_node": 14, "link_id": 15}
+        ],
+        "total_connections": 2
+      },
+      "sam_model": {
+        "source_node": 10,
+        "connections": [
+          {"target_node": 11, "link_id": 16},
+          {"target_node": 13, "link_id": 17},
+          {"target_node": 16, "link_id": 18}
+        ],
+        "total_connections": 3
+      },
+      "total_detector_connections": 7,
+      "can_be_simplified": true,
+      "ae_node_benefit": "Can reduce from 7 visible connections to 3 AE nodes"
+    },
+    
+    "upscale_model_connections": {
+      "realesrgan_model": {
+        "source_node": 17,
+        "connections": [
+          {"target_node": 18, "link_id": 27},
+          {"target_node": 19, "link_id": 27}
+        ],
+        "total_connections": 2
+      },
+      "total_upscale_connections": 2,
+      "can_be_simplified": true,
+      "ae_node_benefit": "Can reduce from 2 visible connections to 1 AE node"
+    }
+  },
+  
+  "ae_node_recommendations": {
+    "recommended_ae_nodes": [
+      {
+        "ae_id": "AE_MODEL_MAIN",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute main MODEL from LoRA stack",
+        "position": [400, 500],
+        "source": {"node": 3, "output": 0},
+        "targets": [7, 11, 13, 16, 19],
+        "connection_reduction": 5
+      },
+      {
+        "ae_id": "AE_CLIP",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute CLIP to all detailers",
+        "position": [400, 600],
+        "source": {"node": 1, "output": 1},
+        "targets": [11, 13, 16],
+        "connection_reduction": 3
+      },
+      {
+        "ae_id": "AE_VAE_MAIN",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute VAE to all processing nodes",
+        "position": [400, 700],
+        "source": {"node": 1, "output": 2},
+        "targets": [11, 13, 16, 19],
+        "connection_reduction": 4
+      },
+      {
+        "ae_id": "AE_POSITIVE",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute positive conditioning",
+        "position": [900, 400],
+        "source": {"node": 4, "output": 0},
+        "targets": [7, 11, 13, 16, 19],
+        "connection_reduction": 5
+      },
+      {
+        "ae_id": "AE_NEGATIVE",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute negative conditioning",
+        "position": [900, 500],
+        "source": {"node": 5, "output": 0},
+        "targets": [7, 11, 13, 16, 19],
+        "connection_reduction": 5
+      },
+      {
+        "ae_id": "AE_FACE_DETECTOR",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute face detector",
+        "position": [1700, 150],
+        "source": {"node": 8, "output": 0},
+        "targets": [11, 12],
+        "connection_reduction": 2
+      },
+      {
+        "ae_id": "AE_HAND_DETECTOR",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute hand detector",
+        "position": [1700, 250],
+        "source": {"node": 9, "output": 0},
+        "targets": [13, 14],
+        "connection_reduction": 2
+      },
+      {
+        "ae_id": "AE_SAM_MODEL",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute SAM model",
+        "position": [1700, 350],
+        "source": {"node": 10, "output": 0},
+        "targets": [11, 13, 16],
+        "connection_reduction": 3
+      },
+      {
+        "ae_id": "AE_UPSCALE_MODEL",
+        "type": "AnyToAnyExtrasNode",
+        "purpose": "Distribute upscale model",
+        "position": [4400, 150],
+        "source": {"node": 17, "output": 0},
+        "targets": [18, 19],
+        "connection_reduction": 2
+      }
+    ],
+    "total_ae_nodes_needed": 9,
+    "total_connection_reduction": 36,
+    "percentage_reduction": 73.5
+  },
+  
+  "layout_recommendations": {
+    "data_bus_lanes": [
+      {
+        "lane_id": "MODEL_BUS",
+        "y_position": 1200,
+        "purpose": "Horizontal MODEL distribution",
+        "nodes": ["AE_MODEL_MAIN"]
+      },
+      {
+        "lane_id": "CONDITIONING_BUS",
+        "y_position": 1300,
+        "purpose": "Horizontal conditioning distribution",
+        "nodes": ["AE_POSITIVE", "AE_NEGATIVE"]
+      },
+      {
+        "lane_id": "RESOURCE_BUS",
+        "y_position": 1400,
+        "purpose": "Horizontal CLIP/VAE distribution",
+        "nodes": ["AE_CLIP", "AE_VAE_MAIN"]
+      },
+      {
+        "lane_id": "DETECTOR_BUS",
+        "y_position": 1500,
+        "purpose": "Horizontal detector distribution",
+        "nodes": ["AE_FACE_DETECTOR", "AE_HAND_DETECTOR", "AE_SAM_MODEL"]
+      }
+    ]
+  },
+  
+  "implementation_strategy": {
+    "phase1": "Add AE nodes for primary resources (MODEL, CLIP, VAE)",
+    "phase2": "Add AE nodes for conditioning paths",
+    "phase3": "Add AE nodes for detectors",
+    "phase4": "Remove original long-distance connections",
+    "phase5": "Organize AE nodes in data bus lanes",
+    "benefits": [
+      "Reduce visual clutter by 73.5%",
+      "Create clear data flow paths",
+      "Improve workflow readability",
+      "Enable easier modification of connections",
+      "Support modular workflow design"
+    ]
+  }
+}

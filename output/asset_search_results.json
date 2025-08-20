@@ -1,0 +1,163 @@
+{
+  "models": [
+    {
+      "name": "Stable Diffusion v1.5",
+      "url": "https://huggingface.co/runwayml/stable-diffusion-v1-5",
+      "type": "checkpoint",
+      "size": "~4GB",
+      "notes": "Official SD1.5 model, requires license acceptance"
+    },
+    {
+      "name": "Stable Diffusion v1.5 (alternative)",
+      "url": "https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5",
+      "type": "checkpoint",
+      "size": "~4GB",
+      "notes": "Alternative repository for same model"
+    }
+  ],
+  "controlnets": [
+    {
+      "name": "control_v11p_sd15_openpose",
+      "url": "https://huggingface.co/lllyasviel/control_v11p_sd15_openpose",
+      "type": "controlnet",
+      "version": "v1.1",
+      "notes": "Improved version with better hand detection",
+      "install_path": "ComfyUI/models/controlnet/SD1.5/"
+    },
+    {
+      "name": "sd-controlnet-openpose",
+      "url": "https://huggingface.co/lllyasviel/sd-controlnet-openpose",
+      "type": "controlnet",
+      "version": "v1.0",
+      "notes": "Original version"
+    },
+    {
+      "name": "ControlNet-v1-1_fp16_safetensors",
+      "url": "https://huggingface.co/comfyanonymous/ControlNet-v1-1_fp16_safetensors",
+      "type": "controlnet",
+      "notes": "ComfyUI-optimized version by ComfyAnonymous"
+    }
+  ],
+  "ip_adapters": [
+    {
+      "name": "ip-adapter_sd15.safetensors",
+      "type": "ip_adapter",
+      "install_path": "ComfyUI/models/ipadapter/",
+      "notes": "Base IP-Adapter for SD1.5"
+    },
+    {
+      "name": "ip-adapter-plus_sd15.safetensors",
+      "type": "ip_adapter",
+      "install_path": "ComfyUI/models/ipadapter/",
+      "notes": "Enhanced version with better features"
+    },
+    {
+      "name": "ip-adapter-plus-face_sd15.safetensors",
+      "type": "ip_adapter",
+      "install_path": "ComfyUI/models/ipadapter/",
+      "notes": "Face-focused version"
+    }
+  ],
+  "clip_vision": [
+    {
+      "name": "CLIP-ViT-H-14-laion2B-s32B-b79K",
+      "type": "clip_vision",
+      "notes": "Required for IP-Adapter"
+    },
+    {
+      "name": "CLIP-ViT-bigG-14-laion2B-39B-b160k",
+      "type": "clip_vision",
+      "notes": "Alternative CLIP encoder"
+    }
+  ],
+  "loras": [
+    {
+      "name": "Fashion Girl LoRA",
+      "url": "https://civitai.com/models/8217/fashion-girl",
+      "type": "lora",
+      "version": "v7.0",
+      "platform": "Civitai",
+      "notes": "Character/Art style for fashion"
+    },
+    {
+      "name": "LEOSAM's Clothing Adjuster",
+      "url": "https://civitai.com/models/88132/leosams-clothing-adjuster-lora",
+      "type": "lora",
+      "version": "3.0",
+      "platform": "Civitai",
+      "notes": "Allows clothing adjustment/removal"
+    },
+    {
+      "name": "All-in-one Clothing Bundle",
+      "url": "https://civitai.com/models/148678/all-in-one-clothing-bundle-sd",
+      "type": "lora",
+      "version": "v1.0",
+      "platform": "Civitai",
+      "notes": "Multiple outfit variations in one LoRA"
+    },
+    {
+      "name": "ChameleonAI Fashion LoRAs",
+      "url": "https://huggingface.co/ChameleonAI/ChameleonAILoras",
+      "type": "lora",
+      "platform": "HuggingFace",
+      "notes": "Various outfit variations including sports bra, priestess dress, pilgrim coat"
+    }
+  ],
+  "custom_nodes": [
+    {
+      "name": "ComfyUI_IPAdapter_plus",
+      "url": "https://github.com/cubiq/ComfyUI_IPAdapter_plus",
+      "type": "custom_node",
+      "notes": "Essential for IP-Adapter functionality"
+    },
+    {
+      "name": "ComfyUI ControlNet Auxiliary Preprocessors",
+      "type": "custom_node",
+      "notes": "Required for OpenPose preprocessing, install via ComfyUI Manager"
+    },
+    {
+      "name": "ComfyUI_MagicClothing",
+      "url": "https://github.com/frankchieng/ComfyUI_MagicClothing",
+      "type": "custom_node",
+      "notes": "Specialized for clothing swap workflows"
+    },
+    {
+      "name": "FaceDetailer",
+      "type": "custom_node",
+      "notes": "Enhances facial and outfit details, install via ComfyUI Manager"
+    },
+    {
+      "name": "DeepFashion",
+      "type": "custom_node",
+      "notes": "Optimized for detailed fashion/outfit processing"
+    }
+  ],
+  "additional_models": [
+    {
+      "name": "cloth_segm.pth",
+      "type": "segmentation_model",
+      "notes": "For MagicClothing - clothing segmentation"
+    },
+    {
+      "name": "magic_clothing_768_vitonhd_joint.safetensors",
+      "type": "magic_clothing",
+      "notes": "Upper-body clothing model"
+    },
+    {
+      "name": "OMS_1024_VTHD+DressCode_200000.safetensors",
+      "type": "magic_clothing",
+      "notes": "Lower-body and full-body clothing model"
+    }
+  ],
+  "workflow_requirements": {
+    "base_resolution": "512x512",
+    "compatibility": "SD1.5",
+    "recommended_nodes": [
+      "IPAdapter Advanced",
+      "IPAdapter Unified Loader",
+      "OpenPose Pose node or DWPose Estimator",
+      "UltralyticsDetectorProvider",
+      "Semantic Segmentation nodes"
+    ]
+  }
+}

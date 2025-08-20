@@ -1,0 +1,87 @@
+{
+  "workflow_name": "AnimateDiff Evolution Workflow v2 with AE Integration",
+  "version": "2.0",
+  "date_created": "2025-08-14T19:23:55",
+  "created_by": "ComfyUI Workflow Serializer",
+  "description": "AnimateDiff Evolution workflow with Anything Everywhere nodes for clean data bus architecture",
+  "statistics": {
+    "total_nodes": 44,
+    "processing_nodes": 35,
+    "ae_nodes": 9,
+    "visible_connections": 13,
+    "original_connections": 49,
+    "connection_reduction_percentage": 73.5
+  },
+  "node_types": {
+    "loaders": ["CheckpointLoaderSimple"],
+    "animatediff": [
+      "ADE_AnimateDiffLoRAHookKeyframeInterpolation",
+      "ADE_AnimateDiffLoaderV1Advanced",
+      "ADE_AnimateDiffModelSettings",
+      "ADE_UseEvolvedSampling",
+      "ADE_MultivalDynamic",
+      "ADE_AnimateDiffKeyframe",
+      "ADE_LoraHookKeyframeGroup",
+      "ADE_CameraManualPoseAppend",
+      "ADE_CameraPoseCombo",
+      "ADE_ApplyAnimateDiffModelSimple"
+    ],
+    "conditioning": ["CLIPTextEncode"],
+    "sampling": ["KSampler", "EmptyLatentImage"],
+    "decoding": ["VAEDecode"],
+    "output": ["VHS_VideoCombine"],
+    "ae_nodes": ["Anything Everywhere"]
+  },
+  "ae_configuration": {
+    "data_buses": {
+      "foundation": {
+        "y_position": 500,
+        "nodes": ["AE_MODEL_MAIN", "AE_CLIP", "AE_VAE_MAIN", "AE_POSITIVE", "AE_NEGATIVE"]
+      },
+      "detection": {
+        "y_position": 150,
+        "nodes": ["AE_FACE_DETECTOR", "AE_HAND_DETECTOR", "AE_SAM_MODEL"]
+      },
+      "upscaling": {
+        "y_position": 150,
+        "nodes": ["AE_UPSCALE_MODEL"]
+      }
+    },
+    "connection_mapping": {
+      "AE_MODEL_MAIN": {
+        "source": "node_3_output",
+        "targets": ["node_5", "node_7", "node_11", "node_13", "node_16", "node_19"]
+      },
+      "AE_CLIP": {
+        "source": "node_1_output",
+        "targets": ["node_11", "node_13", "node_16"]
+      },
+      "AE_VAE_MAIN": {
+        "source": "node_1_output",
+        "targets": ["node_11", "node_13", "node_16", "node_19"]
+      },
+      "AE_POSITIVE": {
+        "source": "node_6_output",
+        "targets": ["node_7", "node_11", "node_13", "node_16", "node_19"]
+      },
+      "AE_NEGATIVE": {
+        "source": "node_7_output",
+        "targets": ["node_7", "node_11", "node_13", "node_16", "node_19"]
+      }
+    }
+  },
+  "workflow_features": [
+    "AnimateDiff Evolution for advanced animation control",
+    "LoRA keyframe interpolation",
+    "Camera pose control",
+    "Multi-value dynamic strength control",
+    "Anything Everywhere integration for clean connections",
+    "Professional data bus architecture",
+    "Semantic grouping with color coding"
+  ],
+  "file_locations": {
+    "workflow": "workflow_ae_final.json",
+    "analysis": "ae_analysis_report.md",
+    "architecture": "ae_workflow_architecture_summary.md"
+  }
+}

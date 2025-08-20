@@ -1,0 +1,184 @@
+{
+  "workflow_organization": {
+    "workflow_name": "SDXL Advanced Multi-Detail Enhancement with Video Extension",
+    "version": "2.0_grouped",
+    "timestamp": "20250814_192355",
+    "organization_type": "color_coordinated_groups",
+    
+    "groups": [
+      {
+        "id": "group_1",
+        "title": "(1) Model & LoRA Loading",
+        "color": "#355335",
+        "bounding": [20, 80, 375, 600],
+        "nodes": ["1", "2", "3"],
+        "description": "Model loading and LoRA stack configuration"
+      },
+      {
+        "id": "group_2",
+        "title": "(2) Text Encoding",
+        "color": "#353553",
+        "bounding": [620, 80, 450, 420],
+        "nodes": ["4", "5"],
+        "description": "Positive and negative prompt encoding"
+      },
+      {
+        "id": "group_3",
+        "title": "(3) Primary Generation",
+        "color": "#533535",
+        "bounding": [1220, 80, 375, 780],
+        "nodes": ["6", "7"],
+        "description": "Latent generation and KSampler processing"
+      },
+      {
+        "id": "group_4",
+        "title": "(4) Face Enhancement",
+        "color": "#453553",
+        "bounding": [1820, 80, 450, 1050],
+        "nodes": ["8", "9"],
+        "description": "Face detection and detail enhancement"
+      },
+      {
+        "id": "group_5",
+        "title": "(5) Video Preparation",
+        "color": "#534535",
+        "bounding": [2420, 80, 420, 730],
+        "nodes": ["10", "11", "12"],
+        "description": "Image scaling and SVD conditioning"
+      },
+      {
+        "id": "group_6",
+        "title": "(6) Video Generation",
+        "color": "#355353",
+        "bounding": [3020, 80, 345, 700],
+        "nodes": ["13", "14"],
+        "description": "Video sampling and VAE decoding"
+      },
+      {
+        "id": "group_7",
+        "title": "(7) Output & Save",
+        "color": "#444444",
+        "bounding": [3620, 80, 345, 680],
+        "nodes": ["15", "16"],
+        "description": "Save image and animated GIF output"
+      }
+    ],
+    
+    "node_details": {
+      "1": {
+        "type": "CheckpointLoaderSimple",
+        "group": "group_1",
+        "position": {"x": 50, "y": 100},
+        "size": {"width": 315, "height": 98}
+      },
+      "2": {
+        "type": "Efficient Loader (LoRA Stack)",
+        "group": "group_1",
+        "position": {"x": 50, "y": 280},
+        "size": {"width": 315, "height": 156}
+      },
+      "3": {
+        "type": "Load LoRA Stack (rgthree)",
+        "group": "group_1",
+        "position": {"x": 50, "y": 516},
+        "size": {"width": 315, "height": 142}
+      },
+      "4": {
+        "type": "CLIP Text Encode (Positive)",
+        "group": "group_2",
+        "position": {"x": 650, "y": 100},
+        "size": {"width": 400, "height": 150}
+      },
+      "5": {
+        "type": "CLIP Text Encode (Negative)",
+        "group": "group_2",
+        "position": {"x": 650, "y": 330},
+        "size": {"width": 400, "height": 150}
+      },
+      "6": {
+        "type": "EmptyLatentImage",
+        "group": "group_3",
+        "position": {"x": 1250, "y": 100},
+        "size": {"width": 315, "height": 106}
+      },
+      "7": {
+        "type": "Efficient KSampler",
+        "group": "group_3",
+        "position": {"x": 1250, "y": 286},
+        "size": {"width": 325, "height": 550}
+      },
+      "8": {
+        "type": "UltralyticsDetectorProvider",
+        "group": "group_4",
+        "position": {"x": 1850, "y": 100},
+        "size": {"width": 320, "height": 80}
+      },
+      "9": {
+        "type": "FaceDetailerPipe",
+        "group": "group_4",
+        "position": {"x": 1850, "y": 260},
+        "size": {"width": 400, "height": 850}
+      },
+      "10": {
+        "type": "ImageScaleBy",
+        "group": "group_5",
+        "position": {"x": 2450, "y": 100},
+        "size": {"width": 315, "height": 82}
+      },
+      "11": {
+        "type": "ImageOnlyCheckpointLoader",
+        "group": "group_5",
+        "position": {"x": 2450, "y": 262},
+        "size": {"width": 369, "height": 98}
+      },
+      "12": {
+        "type": "SVD_img2vid_Conditioning",
+        "group": "group_5",
+        "position": {"x": 2450, "y": 440},
+        "size": {"width": 315, "height": 350}
+      },
+      "13": {
+        "type": "KSampler",
+        "group": "group_6",
+        "position": {"x": 3050, "y": 100},
+        "size": {"width": 315, "height": 500}
+      },
+      "14": {
+        "type": "VAEDecode",
+        "group": "group_6",
+        "position": {"x": 3050, "y": 680},
+        "size": {"width": 210, "height": 74}
+      },
+      "15": {
+        "type": "SaveImage",
+        "group": "group_7",
+        "position": {"x": 3650, "y": 100},
+        "size": {"width": 315, "height": 270}
+      },
+      "16": {
+        "type": "VHS_SaveGifFile",
+        "group": "group_7",
+        "position": {"x": 3650, "y": 450},
+        "size": {"width": 315, "height": 290}
+      }
+    },
+    
+    "color_scheme_compliance": {
+      "loaders": "#355335 (Dark Green) - Used for Model & LoRA Loading",
+      "conditioning": "#353553 (Dark Blue) - Used for Text Encoding",
+      "sampling": "#533535 (Dark Red) - Used for Primary Generation",
+      "post_processing": "#453553 (Dark Purple) - Used for Face Enhancement",
+      "control_networks": "#534535 (Dark Orange) - Used for Video Preparation",
+      "image_io": "#355353 (Dark Teal) - Used for Video Generation",
+      "utility": "#444444 (Dark Gray) - Used for Output & Save"
+    },
+    
+    "layout_metrics": {
+      "total_width": 3965,
+      "total_height": 1270,
+      "group_spacing": 600,
+      "node_spacing_within_group": 80,
+      "grid_alignment": 20
+    }
+  }
+}

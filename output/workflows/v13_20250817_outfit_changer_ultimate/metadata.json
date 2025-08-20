@@ -1,0 +1,105 @@
+{
+  "workflow_metadata": {
+    "name": "Outfit Changer Ultimate",
+    "version": "v13_20250817",
+    "type": "outfit_transformation",
+    "architecture": "FLUX",
+    "created": "2025-08-17",
+    "author": "ComfyUI Workflow Builder v2.0",
+    "complexity": "advanced",
+    "node_count": 28,
+    "link_count": 36,
+    "group_count": 6
+  },
+  "technical_specifications": {
+    "model_type": "FLUX Dev FP8",
+    "clip_models": ["clip_l", "t5xxl_fp16"],
+    "vae_model": "ae.safetensors",
+    "controlnet": "control_flux_openpose",
+    "upscaler": "4x-UltraSharp",
+    "resolution": "1024x1024",
+    "sampling": {
+      "method": "dpmpp_2m",
+      "scheduler": "simple",
+      "steps": 30,
+      "guidance": 3.5
+    }
+  },
+  "layout_standards": {
+    "spacing": {
+      "horizontal": 70,
+      "vertical": 70,
+      "section_gap": 150
+    },
+    "organization": "left-to-right flow",
+    "grouping": "semantic clusters",
+    "color_scheme": "standard ComfyUI palette"
+  },
+  "features": {
+    "core": [
+      "FLUX model integration",
+      "Dual CLIP text encoding",
+      "Advanced guidance control",
+      "Professional layout"
+    ],
+    "advanced": [
+      "Power LoRA stacking (3 slots)",
+      "ControlNet pose preservation",
+      "Wildcard outfit variations",
+      "Masked compositing",
+      "AI upscaling pipeline"
+    ],
+    "optimization": [
+      "Efficient node arrangement",
+      "Minimal wire crossings",
+      "Clear execution flow",
+      "Resource management"
+    ]
+  },
+  "dependencies": {
+    "required_models": [
+      "flux1-dev-fp8.safetensors",
+      "clip_l.safetensors",
+      "t5xxl_fp16.safetensors",
+      "ae.safetensors"
+    ],
+    "optional_models": [
+      "outfit_transformer_flux.safetensors",
+      "clothing_detail_flux.safetensors",
+      "style_transfer_flux.safetensors",
+      "control_flux_openpose.safetensors",
+      "4x-UltraSharp.pth"
+    ],
+    "custom_nodes": [
+      "rgthree-comfy",
+      "ComfyUI-Impact-Pack"
+    ]
+  },
+  "usage_instructions": {
+    "setup": [
+      "1. Load the workflow JSON in ComfyUI",
+      "2. Install required custom nodes if missing",
+      "3. Download FLUX models to models/unet/",
+      "4. Place LoRA files in models/loras/flux/"
+    ],
+    "operation": [
+      "1. Load person image in node (5)",
+      "2. Load outfit reference in node (6)",
+      "3. Adjust outfit description in node (10)",
+      "4. Set seed, steps, and guidance in control nodes",
+      "5. Queue prompt to generate"
+    ],
+    "optimization_tips": [
+      "Use lower steps (20) for faster previews",
+      "Disable upscaling for testing",
+      "Adjust LoRA strengths for style control",
+      "Use wildcards for outfit variations"
+    ]
+  },
+  "performance_metrics": {
+    "estimated_vram": "12-16GB",
+    "generation_time": "30-60 seconds",
+    "quality_rating": "professional",
+    "stability": "high"
+  }
+}

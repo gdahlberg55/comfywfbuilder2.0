@@ -1,0 +1,564 @@
+{
+  "last_node_id": 40,
+  "last_link_id": 50,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [50, 155],
+      "size": [320, 82],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [1], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "UNETLoader"},
+      "widgets_values": ["flux1-dev-fp8.safetensors", "default"],
+      "title": "UNETLoader",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 2,
+      "type": "DualCLIPLoader",
+      "pos": [50, 239],
+      "size": [320, 106],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {"name": "CLIP", "type": "CLIP", "links": [2, 3], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "DualCLIPLoader"},
+      "widgets_values": ["clip_l.safetensors", "t5xxl_fp16.safetensors", "flux", "cpu"],
+      "title": "DualCLIPLoader",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [50, 347],
+      "size": [320, 58],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {"name": "VAE", "type": "VAE", "links": [4, 5], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "VAELoader"},
+      "widgets_values": ["ae.safetensors"],
+      "title": "VAELoader",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [50, 505],
+      "size": [320, 314],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [6, 7], "slot_index": 0},
+        {"name": "MASK", "type": "MASK", "links": null, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "LoadImage"},
+      "widgets_values": ["person_input.png", "image"],
+      "title": "LoadImage",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 5,
+      "type": "LoadImage",
+      "pos": [50, 821],
+      "size": [320, 314],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [8], "slot_index": 0},
+        {"name": "MASK", "type": "MASK", "links": null, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "LoadImage"},
+      "widgets_values": ["outfit_reference.png", "image"],
+      "title": "LoadImage",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncodeFlux",
+      "pos": [420, 155],
+      "size": [400, 200],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 2}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [9], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncodeFlux"},
+      "widgets_values": [
+        "professional photo of person wearing elegant business suit, navy blue blazer, white shirt, formal attire, high quality fashion photography, detailed fabric textures",
+        "",
+        3.5
+      ],
+      "title": "CLIPTextEncodeFlux",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncodeFlux",
+      "pos": [420, 357],
+      "size": [400, 200],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {"name": "clip", "type": "CLIP", "link": 3}
+      ],
+      "outputs": [
+        {"name": "CONDITIONING", "type": "CONDITIONING", "links": [10], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "CLIPTextEncodeFlux"},
+      "widgets_values": [
+        "",
+        "deformed, ugly, bad anatomy, wrong person, different face, bad clothing fit",
+        3.5
+      ],
+      "title": "CLIPTextEncodeFlux",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 8,
+      "type": "ControlNetLoader",
+      "pos": [420, 635],
+      "size": [320, 58],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "outputs": [
+        {"name": "CONTROL_NET", "type": "CONTROL_NET", "links": [11], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ControlNetLoader"},
+      "widgets_values": ["control_flux_openpose.safetensors"],
+      "title": "ControlNetLoader",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 9,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [420, 695],
+      "size": [400, 166],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {"name": "positive", "type": "CONDITIONING", "link": 9},
+        {"name": "negative", "type": "CONDITIONING", "link": 10},
+        {"name": "control_net", "type": "CONTROL_NET", "link": 11},
+        {"name": "image", "type": "IMAGE", "link": 6}
+      ],
+      "outputs": [
+        {"name": "positive", "type": "CONDITIONING", "links": [12], "slot_index": 0},
+        {"name": "negative", "type": "CONDITIONING", "links": [13], "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "ControlNetApplyAdvanced"},
+      "widgets_values": [0.8, 0, 1],
+      "title": "ControlNetApplyAdvanced",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 10,
+      "type": "ModelSamplingFlux",
+      "pos": [870, 155],
+      "size": [320, 122],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 1},
+        {"name": "width", "type": "INT", "link": 14},
+        {"name": "height", "type": "INT", "link": 15}
+      ],
+      "outputs": [
+        {"name": "MODEL", "type": "MODEL", "links": [16], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "ModelSamplingFlux"},
+      "widgets_values": [1.15, 0.5],
+      "title": "ModelSamplingFlux",
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 11,
+      "type": "EmptySD3LatentImage",
+      "pos": [870, 279],
+      "size": [320, 106],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "outputs": [
+        {"name": "LATENT", "type": "LATENT", "links": [17], "slot_index": 0},
+        {"name": "width", "type": "INT", "links": [14], "slot_index": 1},
+        {"name": "height", "type": "INT", "links": [15], "slot_index": 2}
+      ],
+      "properties": {"Node name for S&R": "EmptySD3LatentImage"},
+      "widgets_values": [1024, 1024, 1],
+      "title": "EmptySD3LatentImage",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 12,
+      "type": "BasicScheduler",
+      "pos": [870, 387],
+      "size": [320, 106],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 16}
+      ],
+      "outputs": [
+        {"name": "SIGMAS", "type": "SIGMAS", "links": [18], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "BasicScheduler"},
+      "widgets_values": ["simple", 30, 1],
+      "title": "BasicScheduler",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 13,
+      "type": "BasicGuider",
+      "pos": [870, 495],
+      "size": [320, 74],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {"name": "model", "type": "MODEL", "link": 16},
+        {"name": "conditioning", "type": "CONDITIONING", "link": 12}
+      ],
+      "outputs": [
+        {"name": "GUIDER", "type": "GUIDER", "links": [19], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "BasicGuider"},
+      "title": "BasicGuider"
+    },
+    {
+      "id": 14,
+      "type": "RandomNoise",
+      "pos": [870, 571],
+      "size": [320, 82],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "outputs": [
+        {"name": "NOISE", "type": "NOISE", "links": [20], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "RandomNoise"},
+      "widgets_values": [123456789],
+      "title": "RandomNoise",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 15,
+      "type": "KSamplerSelect",
+      "pos": [870, 655],
+      "size": [320, 58],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "outputs": [
+        {"name": "SAMPLER", "type": "SAMPLER", "links": [21], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "KSamplerSelect"},
+      "widgets_values": ["dpmpp_2m"],
+      "title": "KSamplerSelect"
+    },
+    {
+      "id": 16,
+      "type": "SamplerCustomAdvanced",
+      "pos": [1240, 155],
+      "size": [320, 236],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {"name": "noise", "type": "NOISE", "link": 20},
+        {"name": "guider", "type": "GUIDER", "link": 19},
+        {"name": "sampler", "type": "SAMPLER", "link": 21},
+        {"name": "sigmas", "type": "SIGMAS", "link": 18},
+        {"name": "latent_image", "type": "LATENT", "link": 17}
+      ],
+      "outputs": [
+        {"name": "output", "type": "LATENT", "links": [22], "slot_index": 0},
+        {"name": "denoised_output", "type": "LATENT", "links": null, "slot_index": 1}
+      ],
+      "properties": {"Node name for S&R": "SamplerCustomAdvanced"},
+      "title": "SamplerCustomAdvanced",
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 17,
+      "type": "VAEDecode",
+      "pos": [1240, 393],
+      "size": [320, 46],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {"name": "samples", "type": "LATENT", "link": 22},
+        {"name": "vae", "type": "VAE", "link": 4}
+      ],
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [23, 24], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "VAEDecode"},
+      "title": "VAEDecode"
+    },
+    {
+      "id": 18,
+      "type": "PreviewImage",
+      "pos": [1610, 155],
+      "size": [320, 246],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 23}
+      ],
+      "properties": {"Node name for S&R": "PreviewImage"},
+      "title": "PreviewImage",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 19,
+      "type": "SaveImage",
+      "pos": [1610, 403],
+      "size": [320, 270],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 24}
+      ],
+      "properties": {"Node name for S&R": "SaveImage"},
+      "widgets_values": ["OutfitChanger_FLUX"],
+      "title": "SaveImage",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 30,
+      "type": "Note",
+      "pos": [100, 155],
+      "size": [250, 100],
+      "flags": {"collapsed": false},
+      "order": 26,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🔵 MODELS\nflux1-dev-fp8: https://huggingface.co/Comfy-Org/flux1-dev/blob/main/flux1-dev-fp8.safetensors\nclip_l: https://huggingface.co/comfyanonymous/flux_text_encoders/blob/main/clip_l.safetensors\nt5xxl_fp16: https://huggingface.co/comfyanonymous/flux_text_encoders/blob/main/t5xxl_fp16.safetensors\nae: https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/ae.safetensors"],
+      "color": "#3f789e",
+      "bgcolor": "#5f90b0"
+    },
+    {
+      "id": 31,
+      "type": "Note",
+      "pos": [100, 435],
+      "size": [200, 30],
+      "flags": {"collapsed": false},
+      "order": 27,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🟠 INPUTS"],
+      "color": "#b58b2a",
+      "bgcolor": "#d7a33c"
+    },
+    {
+      "id": 32,
+      "type": "Note",
+      "pos": [500, 155],
+      "size": [200, 30],
+      "flags": {"collapsed": false},
+      "order": 28,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🟢 PROMPTS"],
+      "color": "#84a96e",
+      "bgcolor": "#96bb80"
+    },
+    {
+      "id": 33,
+      "type": "Note",
+      "pos": [500, 565],
+      "size": [250, 50],
+      "flags": {"collapsed": false},
+      "order": 29,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🟢 POSE\ncontrol_flux_openpose: https://huggingface.co/XLabs-AI/flux-controlnet-collections/blob/main/flux-openpose-controlnet.safetensors"],
+      "color": "#84a96e",
+      "bgcolor": "#96bb80"
+    },
+    {
+      "id": 34,
+      "type": "Note",
+      "pos": [920, 155],
+      "size": [200, 30],
+      "flags": {"collapsed": false},
+      "order": 30,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🟣 SETTINGS"],
+      "color": "#a1309b",
+      "bgcolor": "#b342ad"
+    },
+    {
+      "id": 35,
+      "type": "Note",
+      "pos": [1290, 155],
+      "size": [200, 30],
+      "flags": {"collapsed": false},
+      "order": 31,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🟪 GENERATE"],
+      "color": "#8b4c9b",
+      "bgcolor": "#9d5ead"
+    },
+    {
+      "id": 36,
+      "type": "Note",
+      "pos": [1660, 155],
+      "size": [200, 30],
+      "flags": {"collapsed": false},
+      "order": 32,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🟤 OUTPUT"],
+      "color": "#b06634",
+      "bgcolor": "#c27846"
+    },
+    {
+      "id": 40,
+      "type": "Note",
+      "pos": [420, 950],
+      "size": [1100, 120],
+      "flags": {"collapsed": false},
+      "order": 33,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["⭐ QUICK START GUIDE ⭐\n\n1️⃣ Upload your person photo (Step 4)\n2️⃣ Describe the outfit you want (Step 6) - Be specific! Examples: \"red dress\", \"business suit\", \"casual jeans and t-shirt\"\n3️⃣ Optional: Adjust image size (Step 8) - Default 1024x1024 works well\n4️⃣ Optional: Change seed for variations (Step 10) - Different numbers = different results\n5️⃣ Click the 'Queue Prompt' button to generate!\n\n💡 Tips: Steps=30 for quality, 20 for speed | Lower guidance (3.5) for flexibility | Higher (5.0) for accuracy"],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [1, 1, 0, 10, 0, "MODEL"],
+    [2, 2, 0, 6, 0, "CLIP"],
+    [3, 2, 0, 7, 0, "CLIP"],
+    [4, 3, 0, 17, 1, "VAE"],
+    [5, 3, 0, 18, 1, "VAE"],
+    [6, 4, 0, 9, 3, "IMAGE"],
+    [7, 4, 0, 18, 0, "IMAGE"],
+    [8, 5, 0, 6, 1, "IMAGE"],
+    [9, 6, 0, 9, 0, "CONDITIONING"],
+    [10, 7, 0, 9, 1, "CONDITIONING"],
+    [11, 8, 0, 9, 2, "CONTROL_NET"],
+    [12, 9, 0, 13, 1, "CONDITIONING"],
+    [13, 9, 1, 16, 2, "CONDITIONING"],
+    [14, 11, 1, 10, 1, "INT"],
+    [15, 11, 2, 10, 2, "INT"],
+    [16, 10, 0, 12, 0, "MODEL"],
+    [17, 11, 0, 16, 4, "LATENT"],
+    [18, 12, 0, 16, 3, "SIGMAS"],
+    [19, 13, 0, 16, 1, "GUIDER"],
+    [20, 14, 0, 16, 0, "NOISE"],
+    [21, 15, 0, 16, 2, "SAMPLER"],
+    [22, 16, 0, 17, 0, "LATENT"],
+    [23, 17, 0, 18, 0, "IMAGE"],
+    [24, 17, 0, 19, 0, "IMAGE"]
+  ],
+  "groups": [
+    {
+      "title": "STEP 1-3: MODELS",
+      "bounding": [30, 120, 360, 330],
+      "color": "#3f789e",
+      "font_size": 20
+    },
+    {
+      "title": "STEP 4-5: INPUTS",
+      "bounding": [30, 470, 360, 690],
+      "color": "#b58b2a",
+      "font_size": 20
+    },
+    {
+      "title": "STEP 6-7: PROMPTS",
+      "bounding": [400, 120, 440, 470],
+      "color": "#84a96e",
+      "font_size": 20
+    },
+    {
+      "title": "POSE CONTROL",
+      "bounding": [400, 600, 440, 290],
+      "color": "#88a96e",
+      "font_size": 20
+    },
+    {
+      "title": "STEP 8-10: SETTINGS",
+      "bounding": [850, 120, 360, 690],
+      "color": "#a1309b",
+      "font_size": 20
+    },
+    {
+      "title": "GENERATION",
+      "bounding": [1220, 120, 360, 350],
+      "color": "#8b4c9b",
+      "font_size": 20
+    },
+    {
+      "title": "OUTPUT",
+      "bounding": [1590, 120, 360, 590],
+      "color": "#b06634",
+      "font_size": 20
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7,
+      "offset": [0, 0]
+    },
+    "workflow_metadata": {
+      "version": "v13_compact_standards_2.0",
+      "standards_compliant": true,
+      "layout": "compact",
+      "updated": "2025-08-17",
+      "features": [
+        "2px micro-spacing between adjacent nodes",
+        "35px group header clearance",
+        "Original node names",
+        "Step numbers in group titles",
+        "Thin 30px note nodes",
+        "No overlapping elements"
+      ]
+    }
+  },
+  "version": 0.4
+}
