@@ -1,0 +1,49 @@
+# Personal workflows and outputs
+personal_workflows/
+output/
+temp/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Individual workflow files in root
+*.json
+!docs/standards/*.json
+!examples/*.json
+
+# Individual Python scripts for specific workflows
+fix_*.py
+create_*.py
+reorganize_*.py
+
+# Archive folder (keep for now but consider removing)
+archive/
+
+# Nested git repository
+comfywfbuilder2.0/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+nul
+
+# Claude local settings (may contain personal info)
+.claude/settings.local.json
