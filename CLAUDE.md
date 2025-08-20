@@ -46,7 +46,8 @@ The system operates on a Shared Context System (SCS), implemented via MCP Memory
 
 ## Environment Awareness (Claude Code)
 
-- **Current Working Directory:** `C:\Users\gdahl\OneDrive\Documents\Projects\ComfyUI\comfywfBuilder2.0\`
+- **System Repository (READ ONLY):** `C:\Users\gdahl\OneDrive\Documents\Projects\ComfyUI\comfywfBuilder2.0\`
+- **Active Workspace (ALL OUTPUTS HERE):** `C:\Users\gdahl\OneDrive\Documents\Projects\ComfyUI\comfyui-workspace\`
 - **Additional Working Directory:** `C:\Users\gdahl\Downloads\wan21SeamlessLoop_v12\` (for source workflows)
 - **Delegation:** You invoke agents defined in the local `.claude/agents` directory.  
 - **Execution (Algorithmic Offloading):** Complex algorithms are offloaded to Python modules in `./code_modules/` via `mcp__code_execution`. You manage the invocation flow, not the execution logic itself.  
@@ -182,12 +183,12 @@ The sequence is mandatory. Wait for SCS confirmation before proceeding to the ne
   - Mark issues as FIXED when resolved
   - Reference issue numbers in logs
 
-## Output Management (CRITICAL - NO ROOT FOLDER CLUTTER):
-- **NEVER SAVE TO ROOT**: The project root must remain clean - NO JSON files in root directory
-- **Current Work Directory**: `output\workflows\CURRENT\` for active workflows being developed
-- **Archive Old Work**: Move completed/old workflows to `output\workflows\archive\`
-- **Reorganized Workflow Location**: `output\workflows\CURRENT\{original_name}_reorganized.json`
-- **Versioned Outputs**: Save each generation to `/output/workflows/v{N}_{YYYYMMDD}_{HHMMSS}/`
+## Output Management (CRITICAL - USE WORKSPACE ONLY):
+- **NEVER SAVE TO REPOSITORY**: The repository folder must remain clean - NO generated files
+- **WORKSPACE OUTPUT ONLY**: ALL outputs go to `C:\Users\gdahl\OneDrive\Documents\Projects\ComfyUI\comfyui-workspace\`
+- **Current Work Directory**: `comfyui-workspace\output\workflows\CURRENT\` for active workflows
+- **Archive Old Work**: Move completed workflows to `comfyui-workspace\output\workflows\archive\`
+- **Versioned Outputs**: Save to `comfyui-workspace\output\workflows\v{N}_{YYYYMMDD}_{HHMMSS}/`
 - **Complete Package**: Each version folder contains workflow.json, metadata.json, and preview.png
 - **Logging**: Detailed logs in /output/logs/{YYYYMMDD}/generation_{HHMMSS}.log
 - **Memory Persistence**: Use MCP memory to cache schemas and patterns in /output/memory/
