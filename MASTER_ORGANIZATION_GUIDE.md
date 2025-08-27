@@ -26,6 +26,9 @@ comfywfBuilder2.0/
 │   ├── protocols/                # System protocols (ACTIVE)
 │   ├── reports/                  # Generated reports
 │   └── standards/                # Templates and standards
+│       ├── WORKFLOW_LAYOUT_STANDARDS.md  # Layout specifications
+│       ├── GOLD_STANDARD_ANALYSIS.md     # Validation criteria
+│       └── COLOR_SCHEME.md               # Group color codes
 │
 ├── 📦 output/                     # All generated outputs
 │   ├── debug/                    # Debug logs by date
@@ -60,7 +63,14 @@ comfywfBuilder2.0/
 ### Workflows
 ```
 Pattern: {project}_{version}_{timestamp}_{stage}.json
-Example: outfit_changer_v1_20250817_143022_final.json
+Example: flux_nsfw_perfect_spacing_20250127.json
+
+Layout Requirements:
+- Column-based organization within groups
+- 200px+ vertical spacing between nodes (no overlaps)
+- 400px+ horizontal spacing between columns
+- Groups aligned by top edge in rows
+- 20px grid snap for all positions
 ```
 
 ### Documentation
@@ -114,6 +124,7 @@ Example: 20250817_143022
 - [ ] Run `python cleanup_files.py`
 - [ ] Update KNOWN_ISSUES_TRACKER.md
 - [ ] Archive completed workflows
+- [ ] Validate workflow layouts against WORKFLOW_LAYOUT_STANDARDS.md
 
 ### Monthly Tasks
 - [ ] Archive workflows older than 30 days

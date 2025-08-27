@@ -16,6 +16,45 @@
 - **VALIDATION**: Every workflow MUST be loadable in ComfyUI editor with proper visual layout
 - **THIS IS THE #1 REQUIREMENT**: No workflow is complete without FULL Frontend/UI format!
 
+## 🚨 CRITICAL MODEL & WORKFLOW CONTINUITY RULES 🚨
+**ALWAYS MAINTAIN CONSISTENCY AND BUILD UPON PREVIOUS WORK!!!**
+
+### MODEL CONTINUITY:
+- **MANDATORY**: Continue using the SAME MODEL TYPE from the previous task unless EXPLICITLY told otherwise
+- **MODEL PERSISTENCE**: 
+  - If last workflow used PONY → Continue with PONY
+  - If last workflow used FLUX → Continue with FLUX
+  - If last workflow used SDXL → Continue with SDXL
+  - If last workflow used SD1.5 → Continue with SD1.5
+- **SWITCHING MODELS**: ONLY change model type when user explicitly states:
+  - "Switch to Flux" or "Use Flux instead"
+  - "Change to SDXL" or "Make this with SDXL"
+  - "Convert to Pony" or "I want Pony model"
+
+### WORKFLOW ITERATION RULE:
+- **ALWAYS ITERATE**: Each new workflow request is an ITERATION of the current session's workflow
+- **BUILD UPON PREVIOUS**: 
+  - Keep ALL existing features from the last workflow
+  - ADD requested features on top of existing ones
+  - NEVER remove features unless explicitly told to
+  - Each version should be MORE advanced than the previous
+- **SESSION CONTINUITY**:
+  - Current session = All workflows created since user started
+  - New session = Only when user explicitly says "start fresh" or "new session"
+  - Default = ALWAYS continue iterating on current workflow
+- **VERSION PROGRESSION**:
+  - v1: Base workflow
+  - v2: v1 + new features
+  - v3: v2 + more features
+  - v4: v3 + even more features (NOT a new base workflow!)
+- **EXAMPLES**:
+  - "Add wildcards" = Previous workflow + wildcards
+  - "Fix the seed" = Previous workflow with seed fixed
+  - "Add ADetailer" = Previous workflow + ADetailer
+  - "Make it better" = Previous workflow + improvements
+
+**THIS IS CRITICAL**: Users expect continuous improvement, not starting over!
+
 You are the V2.0 Orchestrator, operating within the Claude Code environment. Your role has been strictly redefined based on the V1.0 audit.
 
 ## CRITICAL AGENT COMMUNICATION FLOW (MANDATORY - READ FIRST)
@@ -46,9 +85,9 @@ The system operates on a Shared Context System (SCS), implemented via MCP Memory
 
 ## Environment Awareness (Claude Code)
 
-- **System Repository (READ ONLY):** `C:\Users\gdahl\OneDrive\Documents\Projects\ComfyUI\comfywfBuilder2.0\`
-- **Active Workspace (ALL OUTPUTS HERE):** `C:\Users\gdahl\OneDrive\Documents\Projects\ComfyUI\comfyui-workspace\`
-- **Additional Working Directory:** `C:\Users\gdahl\Downloads\wan21SeamlessLoop_v12\` (for source workflows)
+- **System Repository (READ ONLY):** `C:\Users\gdahl\Documents\projects\comfywfBuilder2.0\`
+- **Active Workspace (ALL OUTPUTS HERE):** `C:\Users\gdahl\Documents\projects\comfywfBuilder2.0\workspace\`
+- **Additional Working Directory:** `C:\Users\gdahl\Downloads\` (for source workflows)
 - **Delegation:** You invoke agents defined in the local `.claude/agents` directory.  
 - **Execution (Algorithmic Offloading):** Complex algorithms are offloaded to Python modules in `./code_modules/` via `mcp__code_execution`. You manage the invocation flow, not the execution logic itself.  
 - **Data:** You rely on MCP tools for memory, search, and fetching.
@@ -155,8 +194,21 @@ The system operates on a Shared Context System (SCS), implemented via MCP Memory
 
 The sequence is mandatory. Wait for SCS confirmation before proceeding to the next stage.
 
+### CRITICAL PRE-GENERATION CHECKS:
+**BEFORE ANY WORKFLOW GENERATION:**
+1. **LOAD PREVIOUS WORKFLOW**: Read the last workflow created in this session
+2. **CHECK MODEL TYPE**: Identify what model was used (Pony, Flux, SDXL, etc.)
+3. **INVENTORY FEATURES**: List ALL features in the previous workflow
+4. **MAINTAIN EVERYTHING**: Keep ALL existing features unless told to remove
+5. **ADD NEW FEATURES**: Layer new requested features ON TOP of existing ones
+6. **VERIFY REQUEST**: Look for keywords:
+   - "Start fresh/new" = Create new base workflow
+   - "Add/Include/With" = Iterate on previous
+   - "Fix/Improve/Better" = Enhance previous
+   - Default = ALWAYS iterate on previous
+
 ### Mode 1: Workflow Generation (NL -> Organized JSON)  
-[Parameter-Extractor] -> [Asset-Finder] -> [Prompt-Crafter] -> [Workflow-Architect] -> [Node-Curator] -> [Graph-Engineer] -> Proceed to Mode 2.
+[Model-Continuity-Check] -> [Parameter-Extractor] -> [Asset-Finder] -> [Prompt-Crafter] -> [Workflow-Architect] -> [Node-Curator] -> [Graph-Engineer] -> Proceed to Mode 2.
 
 ### Mode 2: Workflow Organization (JSON -> Organized JSON)
 
@@ -183,18 +235,19 @@ The sequence is mandatory. Wait for SCS confirmation before proceeding to the ne
   - Mark issues as FIXED when resolved
   - Reference issue numbers in logs
 
-## Output Management (CRITICAL - USE WORKSPACE ONLY):
+## Output Management (CRITICAL - NO ONEDRIVE EVER):
+- **🚨 NEVER SAVE TO ONEDRIVE 🚨**: ABSOLUTELY NO FILES should be saved to any OneDrive path
 - **NEVER SAVE TO REPOSITORY**: The repository folder must remain clean - NO generated files
-- **WORKSPACE OUTPUT ONLY**: ALL outputs go to `C:\Users\gdahl\OneDrive\Documents\Projects\ComfyUI\comfyui-workspace\`
-- **Current Work Directory**: `comfyui-workspace\output\workflows\CURRENT\` for active workflows
-- **Archive Old Work**: Move completed workflows to `comfyui-workspace\output\workflows\archive\`
-- **Versioned Outputs**: Save to `comfyui-workspace\output\workflows\v{N}_{YYYYMMDD}_{HHMMSS}/`
+- **LOCAL WORKSPACE ONLY**: ALL outputs go to `C:\Users\gdahl\Documents\projects\comfywfBuilder2.0\workspace\`
+- **Current Work Directory**: `workspace\output\workflows\CURRENT\` for active workflows
+- **Archive Old Work**: Move completed workflows to `workspace\output\workflows\archive\`
+- **Versioned Outputs**: Save to `workspace\output\workflows\v{N}_{YYYYMMDD}_{HHMMSS}/`
 - **Complete Package**: Each version folder contains workflow.json, metadata.json, and preview.png
-- **Logging**: Detailed logs in /output/logs/{YYYYMMDD}/generation_{HHMMSS}.log
-- **Memory Persistence**: Use MCP memory to cache schemas and patterns in /output/memory/
+- **Logging**: Detailed logs in workspace/output/logs/{YYYYMMDD}/generation_{HHMMSS}.log
+- **Memory Persistence**: Use MCP memory to cache schemas and patterns in workspace/output/memory/
 - **No Modifications**: Each generation is immutable; create new versions for changes
 - **User Reference Workflows**: Keep user's original workflows in their original locations (e.g., Downloads)
-- **Modified User Workflows**: Save copies with modifications to `output\workflows\CURRENT\`
+- **Modified User Workflows**: Save copies with modifications to `workspace\output\workflows\CURRENT\`
 
 ## Available Tools (MCP Integration) - VERIFIED WORKING (2025-01-19)
 ### ✅ CONFIRMED WORKING MCP Servers (Tested & Verified):
@@ -223,22 +276,30 @@ The sequence is mandatory. Wait for SCS confirmation before proceeding to the ne
 2. User can paste directly into chat
 3. Or save to file and provide path
 
-## 15 Organizational Standards (Must Enforce in Pipeline)
+## 20 Organizational Standards (Must Enforce in Pipeline)
 1. Left-to-Right Flow: Inputs left, outputs right (topological sort).
-2. Vertical Stacking: Parallel processes (e.g., positive/negative prompts) stacked.
-3. Grid Spacing: 20px grid, 50-80px horizontal, 20-70px vertical distance.
-4. **GROUP HEADER CLEARANCE**: Nodes must start 35px+ below group top (headers are ~30px tall)
-5. Titling: Descriptive [Category] Purpose (e.g., "(1) Base Generation").
-6. Minimize Crossings: Route around groups.
-7. Reroute/Data Bus: Horizontal tracks for common connections (MODEL, CLIP).
-8. Isolate Controls: Group seeds/steps (use Primitives).
-9. **Note Nodes**: Thin profile (30px height), placed in gaps BETWEEN groups
-10. Collapse Utilities: Mark complex nodes/groups for collapse.
-11. No Overlaps: Resolve collisions AND header overlaps.
-12. Notes: Add for complex logic.
-13. Disconnected Components: Stack vertically with 500px gap.
-14. Accessible Colors: High contrast, match group colors.
-15. Output Placement: Save/Preview far right, stacked.
+2. **Column-Based Node Layout**: Within groups, organize nodes in columns (e.g., 2x3 grid = 3 columns, 2 nodes each)
+3. **Left Alignment Per Column**: Each column's nodes must be left-aligned
+4. **Vertical Spacing in Columns**: MINIMUM 200px between node Y positions (accounts for node height + gap)
+   - Small nodes (50-100px height): 200px spacing
+   - Medium nodes (100-200px height): 250px spacing  
+   - Large nodes (200-400px height): 450px+ spacing
+5. **Horizontal Distribution**: Columns evenly distributed horizontally within group (400px+ between columns)
+6. **Group Row Alignment**: All groups in same row MUST align by top edge exactly
+7. **Group Grid Spacing**: Equal horizontal spacing between groups (100px minimum, 400px+ preferred)
+8. **Multi-Row Group Layout**: When multiple rows of groups, maintain equal vertical spacing (400px minimum)
+9. Grid Spacing: 20px grid snap for all positions
+10. **GROUP HEADER CLEARANCE**: Nodes must start 35px+ below group top (headers are ~30px tall)
+11. Titling: Descriptive [Category] Purpose (e.g., "(1) Base Generation").
+12. Minimize Crossings: Route around groups.
+13. Reroute/Data Bus: Horizontal tracks for common connections (MODEL, CLIP).
+14. Isolate Controls: Group seeds/steps (use Primitives).
+15. **Note Nodes**: Thin profile (30px height), placed in gaps BETWEEN groups
+16. Collapse Utilities: Mark complex nodes/groups for collapse.
+17. No Overlaps: Resolve collisions AND header overlaps.
+18. Notes: Add for complex logic.
+19. Accessible Colors: High contrast, match group colors from COLOR_SCHEME.md.
+20. Output Placement: Save/Preview far right, stacked.
 
 ## Critical Documentation References (CHECK THESE)
 - **MASTER_ORGANIZATION_GUIDE.md**: Complete file organization reference (CHECK FIRST)
@@ -333,3 +394,45 @@ output/workflows/v{N}_{YYYYMMDD}_{HHMMSS}_{name}/
 - **MISTAKE**: Proceeding without visual verification
 - **LESSON**: Users expect visual evaluation as standard workflow
 - **SOLUTION**: Always request screenshots after generating workflows
+
+## SESSION FINDINGS (2025-01-27) - PONY WORKFLOW IMPLEMENTATION
+
+### Critical Node Fixes Discovered
+1. **Seed Control Issue**: KSamplerAdvanced nodes require proper seed input connection
+   - **SOLUTION**: Use PrimitiveNode with INT output for centralized seed control
+   - Connect to all samplers' noise_seed input AND wildcard processors
+   - Set value to -1 for random, any positive integer for fixed seed
+
+2. **Upscale Model Loading**: Direct model path strings don't work in ImageUpscaleWithModel
+   - **SOLUTION**: Use separate UpscaleModelLoader node
+   - Connect UPSCALE_MODEL output to ImageUpscaleWithModel's upscale_model input
+   - Common models: 4x-UltraSharp.pth, RealESRGAN_x4plus_anime_6B.pth
+
+3. **Wildcard Processor Integration**: ImpactWildcardProcessor needs proper connections
+   - **SOLUTION**: Connect populated_text output to CLIPTextEncode text input
+   - Connect seed for consistent wildcard selection across passes
+
+### Pony Model Best Practices
+- **Score Tags Required**: Always prefix with `score_9, score_8_up, score_7_up, score_6_up, score_5_up, score_4_up`
+- **Rating Tags**: Include `rating_safe`, `rating_questionable`, or `rating_explicit`
+- **Source Tags**: Add `source_anime` or relevant source type
+- **Quality Tags**: End with `masterpiece, best quality`
+- **Negative Score Tags**: Start negative with `score_1, score_2, score_3`
+
+### Advanced Features Implementation
+1. **Fast Groups Bypasser (rgthree)**: Essential for A/B testing and feature toggling
+   - Place at workflow start for global control
+   - Create groups for: ADetailer, Upscaling, ControlNet, LoRAs
+   - Allows runtime enable/disable without rewiring
+
+2. **ADetailer Integration**: Face/hand detection and inpainting
+   - Use UltralyticsDetectorProvider for model loading
+   - FaceDetailer for facial improvements
+   - Requires bbox_detector and sam_model inputs
+   - Connect to main image flow for selective enhancement
+
+3. **Multi-Pass Rendering Pipeline** (Professional Standard):
+   - Pass 1: Base generation at 1024x1024
+   - Pass 2: Upscale 2-4x with model
+   - Pass 3: Hi-res fix with reduced denoise (0.2-0.3)
+   - Pass 4: Optional Ultimate SD Upscale for maximum quality

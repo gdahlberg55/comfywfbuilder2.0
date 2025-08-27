@@ -51,8 +51,23 @@
       "mcp__filesystem__edit_file",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git clone:*)"
+      "Bash(git clone:*)",
+      "Bash(Get-Date -Format \"yyyyMMdd_HHmmss\")",
+      "mcp__brave-search__brave_web_search",
+      "Bash(claude mcp:*)",
+      "mcp__memory__read_graph",
+      "WebSearch",
+      "WebFetch(domain:openart.ai)",
+      "Bash(copy:*)",
+      "Bash(curl:*)",
+      "mcp__filesystem__list_allowed_directories",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "C:\\Users\\gdahl\\OneDrive\\Documents\\Projects\\ComfyUI",
+      "C:\\Users\\gdahl\\OneDrive\\Documents\\Projects\\ComfyUI\\comfyui-workspace"
+    ]
   }
 }

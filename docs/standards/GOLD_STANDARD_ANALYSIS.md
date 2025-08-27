@@ -37,7 +37,9 @@ The `Templating-Enforcer` agent MUST validate the following criteria in the fina
 
 ### Rule 3: Aesthetic Spacing and Overlap  
 - **Check:** Confirm zero overlaps (AABB validation).  
-- **Check:** Validate that the minimum spacing between any two parallel groups is at least 100px.
+- **Check:** Validate minimum vertical spacing between nodes: 200px for small nodes, 250px for medium, 450px+ for large.
+- **Check:** Validate that the minimum spacing between any two parallel groups is at least 100px (400px preferred).
+- **Check:** Verify column-based layout within groups with proper left alignment.
 
 ### Rule 4: Group Organization  
 - **Check:** Verify the workflow contains between 5 and 15 logical, semantic groups.  
@@ -45,6 +47,8 @@ The `Templating-Enforcer` agent MUST validate the following criteria in the fina
 
 ### Rule 5: Alignment  
 - **Check:** Verify all node positions (`pos[x]`, `pos[y]`) are divisible by the grid size (20px).
+- **Check:** Verify all groups in same row have identical Y coordinate (top-edge alignment).
+- **Check:** Verify consistent column X positions within each group (left-alignment per column).
 
 ## Action on Failure
 
