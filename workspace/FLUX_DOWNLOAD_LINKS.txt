@@ -1,0 +1,43 @@
+FLUX MODEL DOWNLOAD LINKS - MANUAL DOWNLOAD
+============================================================
+
+STATUS:
+[OK] t5xxl_fp8_e4m3fn.safetensors - Already installed (4.6GB)
+[DOWNLOADING] clip_l.safetensors - Currently downloading...
+
+MISSING MODELS - DOWNLOAD THESE:
+
+1. FLUX UNET MODEL (11.9GB) - MOST IMPORTANT
+   Direct Link: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors
+   Alternative (FP8): https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8.safetensors
+   Save to: C:\Users\gdahl\Documents\ComfyUI\models\unet\flux1-dev-fp8.safetensors
+
+2. FLUX VAE (335MB) - REQUIRED
+   Direct Link: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors
+   Save to: C:\Users\gdahl\Documents\ComfyUI\models\vae\ae.safetensors
+
+============================================================
+HOW TO DOWNLOAD:
+
+Option 1: Browser Download
+- Click the links above
+- Save to the specified folders
+
+Option 2: HuggingFace CLI
+pip install huggingface-hub
+huggingface-cli download black-forest-labs/FLUX.1-dev flux1-dev.safetensors --local-dir C:\Users\gdahl\Documents\ComfyUI\models\unet
+
+Option 3: wget (if installed)
+wget https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8.safetensors -O C:\Users\gdahl\Documents\ComfyUI\models\unet\flux1-dev-fp8.safetensors
+
+============================================================
+YOUR FLUX WORKFLOW IS READY:
+flux_inpaint_workflow_with_clipskip.json
+
+Features:
+- Inpainting support with mask
+- CLIPSetLastLayer for clip skip control
+- Same layout as your Pony workflow
+- All groups and organization maintained
+
+Once you download the UNET and VAE models, the workflow will work!

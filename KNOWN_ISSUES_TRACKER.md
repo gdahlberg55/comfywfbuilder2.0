@@ -61,11 +61,38 @@ Track known issues, their status, and workarounds for the ComfyUI Agentic Workfl
 
 ## Fixed Issues
 
+### ISSUE-007: PNG Workflow Extraction
+**Status**: FIXED
+**Severity**: HIGH
+**Date Reported**: 2025-01-31
+**Date Resolved**: 2025-01-31
+**Affected Components**: Workflow Import, File Discovery
+**Description**: Need to extract workflows embedded in PNG metadata from ComfyUI
+**Workaround**: Manual JSON export from ComfyUI
+**Resolution**: Developed Python script to extract workflow from PNG tEXt chunks
+```python
+# extract_workflow.py - Reads PNG chunks, finds tEXt with "workflow" keyword
+# Successfully extracts full Frontend/UI format with all visual metadata
+```
+
+### ISSUE-008: CLIPSetLastLayer Integration
+**Status**: FIXED  
+**Severity**: MEDIUM
+**Date Reported**: 2025-01-31
+**Date Resolved**: 2025-01-31
+**Affected Components**: Node Integration, Workflow Modification
+**Description**: Adding clip skip functionality while preserving existing layout
+**Workaround**: Manual node addition in ComfyUI
+**Resolution**: Automated script to insert CLIPSetLastLayer with proper connections
+- Preserves all existing node positions and groups
+- Updates links and maintains proper connection flow
+- Sets default clip skip value to -2
+
 ### ISSUE-005: Duplicate Agent Creation
 **Status**: FIXED
 **Severity**: HIGH
 **Date Reported**: 2025-08-14
-**Date Resolved**: 2025-08-15
+**Date Resolved**:
 **Affected Components**: Agent Management
 **Description**: System creating duplicate agents due to not checking existing files
 **Workaround**: Search comprehensively before creating agents
@@ -120,8 +147,10 @@ Track known issues, their status, and workarounds for the ComfyUI Agentic Workfl
 - 2025-08-17: Created initial tracker, added 6 issues
 - 2025-08-17: Fixed ISSUE-002 (File Naming) and ISSUE-006 (Wrong Workflow)
 - 2025-08-17: Added improvement suggestions and monitoring section
+- 2025-01-31: Fixed ISSUE-007 (PNG Workflow Extraction) and ISSUE-008 (CLIPSetLastLayer Integration)
+- 2025-01-31: Developed automated workflow modification scripts
 
 ---
 
-*Last Updated: 2025-08-17*
-*Next Review: 2025-08-24*
+*Last Updated: 2025-01-31*
+*Next Review: 2025-02-07*

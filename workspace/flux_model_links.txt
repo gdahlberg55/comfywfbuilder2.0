@@ -1,0 +1,45 @@
+FLUX MODEL DOWNLOAD LINKS
+============================================================
+
+flux1-dev-fp8.safetensors:
+  URL: https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8_e4m3fn.safetensors
+  Save to: C:\Users\gdahl\Documents\ComfyUI\models\unet\flux1-dev-fp8.safetensors
+  Size: 11.9GB
+  Description: Flux.1 Dev model in FP8 format for reduced VRAM usage
+
+flux1-schnell-fp8.safetensors:
+  URL: https://huggingface.co/Comfy-Org/flux1-schnell/resolve/main/flux1-schnell-fp8_e4m3fn.safetensors
+  Save to: C:\Users\gdahl\Documents\ComfyUI\models\unet\flux1-schnell-fp8.safetensors
+  Size: 11.9GB
+  Description: Flux.1 Schnell (fast) model in FP8 format
+
+t5xxl_fp16.safetensors:
+  URL: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors
+  Save to: C:\Users\gdahl\Documents\ComfyUI\models\clip\t5xxl_fp16.safetensors
+  Size: 9.5GB
+  Description: T5-XXL text encoder for Flux
+
+clip_l.safetensors:
+  URL: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors
+  Save to: C:\Users\gdahl\Documents\ComfyUI\models\clip\clip_l.safetensors
+  Size: 246MB
+  Description: CLIP-L text encoder for Flux
+
+ae.safetensors:
+  URL: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors
+  Save to: C:\Users\gdahl\Documents\ComfyUI\models\vae\ae.safetensors
+  Size: 335MB
+  Description: Flux VAE (autoencoder)
+
+flux-RealismLora.safetensors:
+  URL: https://civitai.com/api/download/models/680306
+  Save to: C:\Users\gdahl\Documents\ComfyUI\models\loras\flux-RealismLora.safetensors
+  Size: ~250MB
+  Description: Realism enhancement LoRA for Flux
+
+flux-DetailEnhancer.safetensors:
+  URL: https://civitai.com/api/download/models/721451
+  Save to: C:\Users\gdahl\Documents\ComfyUI\models\loras\flux-DetailEnhancer.safetensors
+  Size: ~250MB
+  Description: Detail enhancement LoRA for Flux
+

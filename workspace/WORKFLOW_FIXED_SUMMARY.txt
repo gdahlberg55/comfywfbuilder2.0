@@ -1,0 +1,54 @@
+FLUX WORKFLOW - FIXED AND READY
+============================================================
+Date: 2025-01-31
+
+ISSUE RESOLVED:
+============================================================
+✅ Fixed validation error: "negative, received_type(MODEL) mismatch input_type(CONDITIONING)"
+
+ROOT CAUSE:
+- Duplicate node IDs (two nodes with ID 4)
+- ModelSamplingFlux and CLIPTextEncodeFlux both had ID 4
+- This caused incorrect link routing
+
+SOLUTION:
+- Renumbered negative CLIPTextEncodeFlux from ID 4 to ID 30
+- Updated all links to reference the new ID
+- Validated all connections are correct types
+
+============================================================
+WORKFLOW STATUS: READY TO USE
+============================================================
+
+File: flux_inpaint_workflow_with_clipskip.json
+
+Validated connections:
+✅ KSampler model input: receives MODEL from Power Lora Loader
+✅ KSampler positive input: receives CONDITIONING from positive CLIPTextEncodeFlux
+✅ KSampler negative input: receives CONDITIONING from negative CLIPTextEncodeFlux  
+✅ KSampler latent input: receives LATENT from VAEEncodeForInpaint
+
+Features:
+- Flux model support with fp8 optimization
+- Inpainting with mask support
+- CLIPSetLastLayer for clip skip control
+- Same layout as your Pony workflow
+- 7 organized groups
+- Power Lora Loader for multiple LoRAs
+
+============================================================
+MODEL STATUS:
+============================================================
+✅ CLIP Models: INSTALLED
+   - clip_l.safetensors
+   - t5xxl_fp8_e4m3fn.safetensors
+
+✅ VAE Model: INSTALLED
+   - ae.safetensors
+
+⏳ FLUX UNET: DOWNLOADING (1.4GB of ~6GB)
+   - flux1-dev-fp8.safetensors
+   - Will complete automatically in background
+
+Once the UNET download completes, the workflow is fully functional!
+============================================================

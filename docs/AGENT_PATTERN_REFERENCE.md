@@ -5,6 +5,25 @@
 - **ONLY LEARN FROM:** User-provided workflows (currently: `C:\Users\gdahl\Downloads\4.5 ultimate.json`)
 - **NEVER REFERENCE:** Claude/Orchestrator-generated workflows (not professional grade)
 - **ALWAYS CHECK:** User's reference workflows FIRST before creating anything new
+- **NEW CAPABILITY:** Extract workflows from PNG metadata when user provides screenshots
+
+## Updated Patterns (2025-01-31)
+
+### Workflow Extraction Pattern
+**Method**: Extract embedded workflows from PNG files
+```python
+# Check PNG for tEXt chunks with "workflow" keyword
+# Parse JSON from metadata
+# Validate Frontend/UI format
+```
+
+### CLIPSetLastLayer Integration
+**Standard Pattern for All Workflows:**
+1. Insert between CLIP source and text encoders
+2. Position in clear space (typically [250, 500])
+3. Default value: -2 (adjustable -1 to -12)
+4. Title: "[CLIP] Skip Last Layers"
+5. Preserve all existing node positions
 
 ---
 

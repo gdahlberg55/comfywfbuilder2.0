@@ -62,12 +62,42 @@
       "Bash(curl:*)",
       "mcp__filesystem__list_allowed_directories",
       "Read(C:\\Users\\gdahl\\Downloads/**)",
-      "Read(C:\\Users\\gdahl\\Downloads/**)"
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(C:\\Users\\gdahl\\Documents\\ComfyUI\\models\\unknown/**)",
+      "Read(C:\\Users\\gdahl\\Documents\\ComfyUI\\models\\unknown/**)",
+      "Bash(claude /graph-analyzer:*)",
+      "Bash(claude /layout-strategist \"Design WAN2.1 professional layout for seamless loop video workflow. Context in workspace/layout_strategy_request.json. 81 nodes require 1500-2000px horizontal spacing between major groups, 250px vertical spacing, data bus routing for MODEL/CLIP/VAE. Extreme spacing level for professional presentation. Store layout parameters in SCS memory for reroute-engineer agent.\")",
+      "Bash(where python)",
+      "Bash(py:*)",
+      "Bash(dir /b workspace)",
+      "WebFetch(domain:learn.thinkdiffusion.com)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(C:\\Users\\gdahl\\Downloads\\wan21SeamlessLoop_v12/**)",
+      "Read(C:\\Users\\gdahl\\Downloads\\wan21SeamlessLoop_v12/**)",
+      "Read(C:\\Users\\gdahl\\Downloads\\wan21SeamlessLoop_v12/**)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Bash(dir:*)",
+      "Read(C:\\Users\\gdahl\\Documents\\ComfyUI\\models\\vae/**)",
+      "Read(C:\\Users\\gdahl\\Documents\\ComfyUI\\custom_nodes/**)",
+      "Read(C:\\Users\\gdahl\\Documents\\ComfyUI\\custom_nodes/**)",
+      "Read(C:\\Users\\gdahl\\Documents\\ComfyUI\\custom_nodes/**)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(C:\\Users\\gdahl\\Downloads/**)",
+      "Read(//c/Users/gdahl/Documents/End-to-end_Workflows/**)",
+      "Read(//c/Users/gdahl/Documents/ComfyUI/models/checkpoints/pony/**)",
+      "Read(//c/Users/gdahl/Documents/ComfyUI/models/loras/**)",
+      "Read(//c/Users/gdahl/Documents/ComfyUI/models/controlnet/**)",
+      "Read(//c/Users/gdahl/Documents/**)",
+      "Read(//c/Users/gdahl/**)",
+      "Bash(/mcp)"
     ],
     "deny": [],
     "additionalDirectories": [
-      "C:\\Users\\gdahl\\OneDrive\\Documents\\Projects\\ComfyUI",
-      "C:\\Users\\gdahl\\OneDrive\\Documents\\Projects\\ComfyUI\\comfyui-workspace"
+      "C:\\Users\\gdahl\\Documents\\ComfyUI",
+      "C:\\Users\\gdahl\\Documents\\projects\\comfywfBuilder2.0\\workspace"
     ]
   }
 }

@@ -1,0 +1,79 @@
+FLUX WORKFLOWS - READY TO USE
+============================================================
+Date: 2025-01-31
+
+THREE WORKFLOWS AVAILABLE:
+============================================================
+
+1. TEXT-TO-IMAGE (Generation)
+   File: flux_txt2img_workflow.json
+   Purpose: Create images from scratch using prompts
+   
+   How to use:
+   - Load the workflow in ComfyUI
+   - Set resolution in Empty Latent node (1024x1024 recommended)
+   - Enter your prompt (positive and negative)
+   - Adjust Clip Skip (-2 recommended)
+   - Click Queue Prompt
+
+2. INPAINTING (Edit existing images)
+   File: flux_inpaint_workflow_with_clipskip.json
+   Purpose: Edit specific areas of existing images
+   
+   How to use:
+   - Load the workflow in ComfyUI
+   - Load your image
+   - Load or create mask (white = areas to change)
+   - Enter prompt for what you want in masked area
+   - Click Queue Prompt
+
+3. DUAL PURPOSE (Both modes)
+   File: flux_dual_generate_inpaint.json
+   Purpose: Switch between generation and inpainting
+   
+   How to use:
+   - Default mode is inpainting
+   - To switch to generation: reconnect the Latent Route node
+     from VAEEncodeForInpaint to EmptyLatentImage
+
+============================================================
+RECOMMENDED SETTINGS FOR FLUX:
+============================================================
+
+Resolution: 1024x1024 (Flux is trained on this)
+Steps: 20
+CFG/Guidance: 3-7 (Flux prefers lower values)
+Sampler: euler, dpmpp_2m, or dpmpp_3m_sde
+Scheduler: normal or karras
+Clip Skip: -2 (stop_at_clip_layer)
+
+============================================================
+MODEL STATUS:
+============================================================
+
+✅ CLIP Models: INSTALLED
+   - clip_l.safetensors
+   - t5xxl_fp8_e4m3fn.safetensors
+
+✅ VAE Model: INSTALLED
+   - ae.safetensors
+
+⏳ FLUX UNET: Check if download completed
+   - flux1-dev-fp8.safetensors
+   - Should be ~6GB when complete
+
+============================================================
+TROUBLESHOOTING:
+============================================================
+
+If you get validation errors:
+1. Make sure all models are in correct folders
+2. Use the fixed versions (*_fixed.json if available)
+3. Check that FLUX UNET download completed fully
+
+Common issues:
+- "Model type mismatch" = Connection error (use fixed version)
+- "Model not found" = UNET still downloading
+- Black output = Denoise too low (use 1.0 for generation)
+
+============================================================

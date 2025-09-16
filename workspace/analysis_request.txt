@@ -1,0 +1,24 @@
+GRAPH ANALYZER REQUEST
+
+Task: Analyze complex video workflow for WAN2.1 reorganization
+File: workspace/output/workflows/CURRENT/seamless_loop_original.json
+Nodes: 81 total nodes
+Workflow Type: Video generation with seamless loop functionality
+
+ANALYSIS REQUIREMENTS:
+1. Identify all node types and their semantic categories
+2. Map connection patterns for MODEL, CLIP, VAE data flow
+3. Identify video processing pipeline nodes
+4. Group nodes into 6 semantic categories:
+   - Model Loading (UnetLoader, VAELoader, CLIPLoader)
+   - LoRA Stack (LoraLoaderModelOnly nodes)
+   - Prompt Processing (CLIPTextEncode)
+   - Generation Control (Samplers, schedulers, CFG)
+   - Video Processing (WanVideo*, VHS_VideoCombine)
+   - Output (Save/Preview)
+
+5. Identify optimization opportunities for professional layout
+6. Map execution flow and dependencies
+
+CONTEXT: This analysis will feed into Layout-Strategist for 1500-2000px spacing design
+SESSION: seamless_loop_wan21_reorganization

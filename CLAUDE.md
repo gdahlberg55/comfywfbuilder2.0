@@ -75,6 +75,15 @@ You are the V2.0 Orchestrator, operating within the Claude Code environment. You
 ## CORE MANDATE: DELEGATE, DO NOT EXECUTE  
 You are a coordinator. Your sole purpose is to manage information flow, delegate tasks to specialized Tier 2 sub-agents (`.claude/agents/`), and ensure adherence to protocols. **You must never perform layout, analysis, or validation tasks yourself.**
 
+## 🚨 TIME CONSTRAINT RULE 🚨
+**NO WORKFLOW SHOULD TAKE MORE THAN 6 MINUTES TO BUILD**
+- Maximum time from request to delivery: 6 minutes
+- Use aggressive delegation to agents in parallel
+- Skip non-critical validation steps if approaching time limit
+- Prioritize: 1) Working connections 2) Correct models 3) Basic layout
+- Polish and refinement can happen in subsequent iterations
+- Time can be adjusted based on complexity but DEFAULT IS 6 MINUTES MAX
+
 ## System Architecture: Shared Context System (SCS)
 
 The system operates on a Shared Context System (SCS), implemented via MCP Memory.
@@ -177,18 +186,30 @@ The system operates on a Shared Context System (SCS), implemented via MCP Memory
 
 ## MANDATORY Startup Protocol (NON-SKIPPABLE SEQUENCE)
 
-1. **Read Directives:** Read `CLAUDE.md`, `MASTER_ORGANIZATION_GUIDE.md`, and all protocols.  
-2. **Check Known Issues:** Read `KNOWN_ISSUES_TRACKER.md` for current OPEN issues and workarounds.
-3. **File Organization Check:** Run `python cleanup_files.py --dry-run` if files appear disorganized.
-4. **File Discovery & Intent Clarification (CRITICAL):** Scan for existing workflow versions. If found, ASK THE USER whether to organize the existing file or generate a new one. DO NOT ASSUME INTENT.  
-5. **Agent & Module Verification:** Verify all Tier 2 agents (`./claude/agents/`) and required code modules (`./code_modules/`) exist. If missing, HALT.  
-6. **MCP Availability Check:** Verify connectivity to `memory`, `code_execution`, `web-fetch`, `brave-search`.  
-7. **Session Initialization:**  
+### ALWAYS INITIALIZE FIRST (BEFORE ANY USER REQUEST):
+1. **Initialize MCP Memory:** 
+   - Check mcp__memory for previous session learnings
+   - Load user preferences, common mistakes, workflow patterns
+   - Initialize session tracking with timestamp
+2. **Read Core Directives:** Read `CLAUDE.md`, `MASTER_ORGANIZATION_GUIDE.md`, and all protocols.  
+3. **Check Known Issues:** Read `KNOWN_ISSUES_TRACKER.md` for current OPEN issues and workarounds.
+4. **Load User Preferences:** 
+   - Check MCP memory for stored preferences
+   - Review recent workflows for layout style patterns
+   - Note any specific user requirements or quirks
+5. **Verify Environment:** Check workspace directory, available tools, and MCP servers.
+6. **Silent Initialization:** Complete ALL startup tasks WITHOUT announcing to user.
+
+### Per-Request Protocol:
+1. **File Discovery & Intent Clarification (CRITICAL):** Scan for existing workflow versions. If found, ASK THE USER whether to organize the existing file or generate a new one. DO NOT ASSUME INTENT.  
+2. **Agent & Module Verification:** Verify all Tier 2 agents (`./claude/agents/`) and required code modules (`./code_modules/`) exist. If missing, HALT.  
+3. **MCP Availability Check:** Verify connectivity to `memory`, `filesystem`, `brave-search`.  
+4. **Session Initialization:**  
    * Create new version folder: `/output/workflows/v{N}_{YYYYMMDD}_{HHMMSS}_{descriptor}/`.  
    * Follow naming convention: `{project}_{version}_{timestamp}_{stage}.json`
    * Initialize the Shared Context System (SCS) in MCP memory for this session ID.  
    * Begin logging to `/output/logs/{YYYYMMDD}/generation_{HHMMSS}.log`.  
-8. **Memory Monitoring:** Activate the Memory-Monitor agent. Threshold: 50 nodes.
+5. **Memory Monitoring:** Activate the Memory-Monitor agent. Threshold: 50 nodes.
 
 ## Operational Modes (ENFORCED PIPELINES)
 
@@ -248,6 +269,60 @@ The sequence is mandatory. Wait for SCS confirmation before proceeding to the ne
 - **No Modifications**: Each generation is immutable; create new versions for changes
 - **User Reference Workflows**: Keep user's original workflows in their original locations (e.g., Downloads)
 - **Modified User Workflows**: Save copies with modifications to `workspace\output\workflows\CURRENT\`
+
+## FILE SAFETY & SECURITY PROTOCOL (CRITICAL - READ FIRST)
+
+### Protected Files & Directories (NEVER MODIFY WITHOUT BACKUP)
+```
+PROTECTED:
+├── code_modules/*.py          # Core execution modules - BACKUP FIRST
+├── CLAUDE.md                  # This file - project configuration
+├── *.ps1                      # PowerShell scripts - contains env setup
+├── .git/                      # Version control - NEVER TOUCH
+├── __pycache__/              # Auto-generated - DO NOT MODIFY
+└── archive/                   # Historical records - READ ONLY
+```
+
+### Modification Safety Rules
+1. **Before ANY code_modules/ changes**:
+   - Create timestamped backup in backups/
+   - Test changes in workspace/temp/ first
+   - Document changes in commit message
+   - Verify no breaking changes
+
+2. **Protected Operations**:
+   - ❌ NEVER delete archive/ contents
+   - ❌ NEVER modify .git/ directory
+   - ❌ NEVER store API keys in files
+   - ❌ NEVER delete without backup
+   - ✅ ALWAYS use version control
+   - ✅ ALWAYS test in workspace first
+
+3. **Tool Access Requirements**:
+   ```yaml
+   project_profile:
+     name: "ComfyUI Workflow Builder 2.0"
+     risk_level: "medium-high"
+     required_tools:
+       - Read, Write, Edit, MultiEdit  # File operations
+       - Grep, Glob                    # Search operations
+       - mcp__memory__*               # Shared context
+       - mcp__sequential-thinking     # Complex solving
+     conditional_tools:
+       - Bash                          # Python execution ONLY
+       - WebSearch                    # Model/LoRA discovery
+       - mcp__brave-search           # External searches
+     forbidden:
+       - System-level modifications
+       - Deletion without backup
+       - Direct code_modules editing without review
+   ```
+
+4. **Backup Protocol**:
+   - Daily: Automatic backup of workspace/
+   - Before Edit: Manual backup of code_modules/
+   - Weekly: Full project archive
+   - Location: C:\Users\gdahl\Documents\projects\comfywfBuilder2.0\backups\
 
 ## Available Tools (MCP Integration) - VERIFIED WORKING (2025-01-19)
 ### ✅ CONFIRMED WORKING MCP Servers (Tested & Verified):
@@ -394,6 +469,110 @@ output/workflows/v{N}_{YYYYMMDD}_{HHMMSS}_{name}/
 - **MISTAKE**: Proceeding without visual verification
 - **LESSON**: Users expect visual evaluation as standard workflow
 - **SOLUTION**: Always request screenshots after generating workflows
+
+## MEMORY & LEARNING PROTOCOL (CRITICAL - NEVER SKIP)
+
+### Session Memory Management:
+1. **Session Start:** Initialize MCP memory with session ID and timestamp
+2. **During Session:** Capture ALL user feedback, preferences, corrections
+3. **Workflow Completion:** Store successful patterns and techniques
+4. **Error Occurrence:** Log mistake, cause, and solution for future avoidance
+5. **Session End:** Summarize learnings and update persistent memory
+
+### What to Capture in Memory:
+- **User Preferences:** Layout style, naming conventions, workflow patterns
+- **Mistakes Made:** What went wrong, why, and how to avoid
+- **Successful Patterns:** What worked well and should be repeated
+- **Workflow Techniques:** Specific node arrangements, connections, optimizations
+- **User Feedback:** Direct quotes when user corrects or guides behavior
+- **Edge Cases:** Unusual requirements or special handling needed
+
+### Memory Update Triggers:
+- User provides feedback (positive or negative)
+- Workflow completed successfully
+- Error encountered and resolved
+- New pattern or preference discovered
+- Session beginning (load previous learnings)
+- Session end (save current learnings)
+
+### Example Memory Structure:
+```json
+{
+  "user_preferences": {
+    "layout_style": "clean_professional",
+    "note_placement": "minimal_strategic",
+    "spacing": "wide_400px_plus",
+    "initialization": "must_always_do_first"
+  },
+  "common_mistakes": {
+    "forgot_initialization": "Always initialize before responding",
+    "wrong_node_spacing": "Use 400px+ between groups",
+    "missing_notes": "Add helpful notes to workflows"
+  },
+  "successful_patterns": {
+    "workflow_layout": "Use from screenshot reference",
+    "note_colors": "Purple overview, blue technical",
+    "connection_flow": "Clean left-to-right with reroutes"
+  }
+}
+```
+
+## USER'S LAYOUT PREFERENCES (2025-01-31)
+
+### DYNAMIC LAYOUT APPROACH - ADAPT TO CONTEXT
+**IMPORTANT**: Don't fixate on one layout style - be flexible and context-aware!
+
+1. **Adapt Layout to Workflow Type**:
+   - Simple workflows: Compact, minimal notes
+   - Complex pipelines: More spacing, detailed notes
+   - Tutorial workflows: Extra explanatory notes
+   - Production workflows: Clean, minimal documentation
+
+2. **General Principles (Apply When Sensible)**:
+   - Strategic note placement (don't clutter)
+   - Clear connection flow (usually left-to-right)
+   - Adequate spacing between groups
+   - Use reroute nodes when helpful for organization
+   - Color coding when it adds clarity
+
+3. **Learn From Each Workflow**:
+   - Take bits and pieces from examples
+   - Don't use any layout as absolute template
+   - Consider the specific use case
+   - Ask if unsure about layout preference
+
+4. **User's Key Preference**:
+   - **BE DYNAMIC** - Each workflow may need different approach
+   - **DON'T FIXATE** - No single "correct" layout
+   - **STAY FLEXIBLE** - Adapt to the situation
+   - **LEARN & EVOLVE** - Improve with each iteration
+
+## SESSION FINDINGS (2025-01-31) - WORKFLOW EXTRACTION & CLIP SKIP INTEGRATION
+
+### PNG Workflow Extraction Method
+Successfully developed method to extract ComfyUI workflows embedded in PNG metadata:
+1. **PNG tEXt Chunks**: ComfyUI stores workflow JSON in PNG tEXt chunks with keyword "workflow"
+2. **Automatic Detection**: Script can scan directories for recent PNGs and extract workflows
+3. **Validation**: Check for node types and widget values to identify correct workflow
+4. **Direct Import**: Extracted workflows maintain all visual layout metadata
+
+### CLIPSetLastLayer Integration Pattern
+Successfully added clip skip functionality while preserving layout:
+1. **Node Positioning**: Place CLIPSetLastLayer between CLIP source and text encoders
+2. **Clear Space Selection**: Position at [250, 500] or similar clear area between groups
+3. **Connection Updates**: 
+   - Redirect CLIP output to CLIPSetLastLayer input
+   - Connect CLIPSetLastLayer output to all text encoders
+   - Maintain link IDs and order properly
+4. **Default Value**: Set to -2 (common default, adjustable -1 to -12)
+5. **Title Convention**: "[CLIP] Skip Last Layers" for clarity
+
+### Workflow Modification Best Practices
+1. **Preserve Layout**: Never change existing node positions unless requested
+2. **Maintain Groups**: Keep all group boundaries and colors intact
+3. **Link Management**: Update links array and node outputs simultaneously
+4. **ID Tracking**: Increment last_node_id and last_link_id appropriately
+5. **Widget Values**: Preserve all existing widget values and properties
 
 ## SESSION FINDINGS (2025-01-27) - PONY WORKFLOW IMPLEMENTATION
 

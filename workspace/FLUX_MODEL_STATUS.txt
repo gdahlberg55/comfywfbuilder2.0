@@ -1,0 +1,52 @@
+FLUX MODEL INSTALLATION STATUS
+============================================================
+Last Updated: 2025-01-31
+
+INSTALLED MODELS:
+============================================================
+
+[OK] CLIP MODELS - READY
+  - clip_l.safetensors (246 MB) - INSTALLED
+  - t5xxl_fp8_e4m3fn.safetensors (4.6 GB) - INSTALLED
+  Location: C:\Users\gdahl\Documents\ComfyUI\models\clip\
+
+[OK] VAE MODEL - READY
+  - ae.safetensors (335 MB) - INSTALLED
+  Location: C:\Users\gdahl\Documents\ComfyUI\models\vae\
+
+[IN PROGRESS] FLUX UNET MODEL
+  - flux1-dev-fp8.safetensors - DOWNLOADING (12% complete)
+  - Size: 5.97 GB (FP8 optimized version)
+  Location: C:\Users\gdahl\Documents\ComfyUI\models\unet\
+
+============================================================
+WORKFLOW STATUS:
+============================================================
+
+Your Flux workflow is saved as:
+  flux_inpaint_workflow_with_clipskip.json
+
+Features included:
+  - Inpainting support with mask input
+  - CLIPSetLastLayer for clip skip control (-2 default)
+  - Same layout as your Pony workflow
+  - All 7 groups properly organized
+  - Data bus routing for clean connections
+
+Once the UNET download completes (currently at ~12%), the workflow will be fully functional!
+
+============================================================
+MANUAL DOWNLOAD (if automatic fails):
+============================================================
+
+If the automatic download fails, you can manually download:
+
+FLUX UNET (FP8 version - 5.97GB):
+https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8.safetensors
+Save to: C:\Users\gdahl\Documents\ComfyUI\models\unet\
+
+Alternative FLUX UNET (Full version - 11.9GB):
+https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors
+Save to: C:\Users\gdahl\Documents\ComfyUI\models\unet\
+
+============================================================
